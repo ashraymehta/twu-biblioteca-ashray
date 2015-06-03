@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Library {
 
-    public ArrayList<Book> availableBooks;
+    public final ArrayList<Book> availableBooks;
 
     public Library() {
         availableBooks = new ArrayList<>();
