@@ -16,4 +16,11 @@ public class BookTest {
 
         assertThat(book.author, not(isEmptyOrNullString()));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testYearPublishedIsPositive() {
+        int yearPublished = -100;
+        String author = "Author";
+        Book book = new Book(author, yearPublished);
+    }
 }
