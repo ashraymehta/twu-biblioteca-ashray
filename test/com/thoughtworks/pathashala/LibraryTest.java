@@ -12,6 +12,5 @@ public class LibraryTest {
     public void testThatLibraryHasAListOfBooks() {
         Library library = new Library();
         assertThat(library.availableBooks, notNullValue());
-        assertThat(library.availableBooks, empty());
     }
 }
