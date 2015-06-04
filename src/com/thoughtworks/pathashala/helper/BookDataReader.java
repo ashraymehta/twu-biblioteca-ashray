@@ -1,5 +1,6 @@
 package com.thoughtworks.pathashala.helper;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class BookDataReader {
@@ -12,7 +13,23 @@ public class BookDataReader {
 
     public ArrayList<String> getListOfBooks() {
         ArrayList<String> listOfBooks = new ArrayList<>();
-        listOfBooks.add("Hello");
+        File file = new File(filePath);
+        if(file.exists()) {
+            try {
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String readLine;
+
+                while((readLine = bufferedReader.readLine()) != null) {
+                    listOfBooks.add(readLine.trim());
+                }
+            } catch (FileNotFoundException e) {
+                return listOfBooks;
+            } catch (IOException e) {
+                return listOfBooks;
+            }
+
+        }
         return listOfBooks;
     }
 }
