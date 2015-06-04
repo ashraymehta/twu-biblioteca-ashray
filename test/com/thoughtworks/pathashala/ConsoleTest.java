@@ -5,10 +5,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.print.Book;
 import java.io.*;
+import java.util.ArrayList;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ConsoleTest {
 
@@ -46,7 +50,29 @@ public class ConsoleTest {
 
         assertThat(actualOutput, is(expectedOutput));
     }
-    
+
+    @Test
+    public void testPrintListOfBooksUsingStubs() throws Exception {
+        BookDataReader bookDataReaderStub = mock(BookDataReader.class);
+        ArrayList<String> bookList = new ArrayList<>();
+        bookList.add("First book");
+        bookList.add("Second book");
+        bookList.add("Third book");
+        when(bookDataReaderStub.getListOfBooks()).
+                thenReturn(bookList);
+        Library library = new Library();
+        library.initialize(bookDataReaderStub.getListOfBooks());
+        Console console = new Console();
+        console.printListOfBooks(library.getAvailableBooks());
+
+        String actualOutput = outputStream.toString();
+        String expectedOutput = "First book" + System.lineSeparator() +
+                "Second book" + System.lineSeparator() +
+                "Third book" + System.lineSeparator();
+
+        assertThat(actualOutput, is(expectedOutput));
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(null);
