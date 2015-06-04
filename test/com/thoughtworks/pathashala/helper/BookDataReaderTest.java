@@ -40,4 +40,13 @@ public class BookDataReaderTest {
         assertThat(actualListOfBooks, is(expectedListOfBooks));
         assertThat(actualListOfBooks.size(), is(3));
     }
+
+    @Test
+    public void testListOfBooksIsEmptyIfFileDoesntExist() {
+        BookDataReader bookDataReader = new BookDataReader("Something.txt");
+
+        ArrayList<String> actualListOfBooks = bookDataReader.getListOfBooks();
+
+        assertThat(actualListOfBooks, is(empty()));
+    }
 }

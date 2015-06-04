@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
@@ -25,5 +26,18 @@ public class LibraryTest {
 
         assertThat(library.getAvailableBooks(), is(notNullValue()));
         assertThat(library.getAvailableBooks(), is(not(empty())));
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testAvailableLibraryBooksAreNotModifiable() {
+        String projectRoot = System.getProperty("user.dir");
+        String filePath = projectRoot + File.separator + "BookList.txt";
+        BookDataReader bookDataReader = new BookDataReader(filePath);
+        ArrayList<String> listOfBooksRead = bookDataReader.getListOfBooks();
+        Library library = new Library();
+        library.initialize(listOfBooksRead);
+
+        List<String> listOfBooksInLibrary = library.getAvailableBooks();
+        listOfBooksInLibrary.add("Sample Book");
     }
 }
