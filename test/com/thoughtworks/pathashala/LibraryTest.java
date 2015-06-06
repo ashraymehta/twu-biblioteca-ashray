@@ -1,13 +1,9 @@
 package com.thoughtworks.pathashala;
 
-import com.thoughtworks.pathashala.helper.BookDataReader;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class LibraryTest {
 
