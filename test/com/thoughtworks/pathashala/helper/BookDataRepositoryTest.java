@@ -11,16 +11,16 @@ import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
-public class BookDataReaderTest {
+public class BookDataRepositoryTest {
 
     private final String PROJECT_ROOT = System.getProperty("user.dir");
     private final String FILE_PATH = PROJECT_ROOT + File.separator + "BookList.txt";
 
     @Test
     public void testListOfBooksReadIsNotNullOrEmpty() throws Exception {
-        BookDataReader bookDataReader = new BookDataReader(FILE_PATH);
+        BookDataRepository bookDataRepository = new BookDataRepository(FILE_PATH);
 
-        ArrayList<String> actualListOfBooks = bookDataReader.getListOfBooks();
+        ArrayList<String> actualListOfBooks = bookDataRepository.getListOfBooks();
 
         assertThat(actualListOfBooks, is(notNullValue()));
         assertThat(actualListOfBooks, is(not(empty())));
@@ -28,9 +28,9 @@ public class BookDataReaderTest {
 
     @Test
     public void testListOfBooksReadContainsTheSameBooksAsTheFile() throws Exception {
-        BookDataReader bookDataReader = new BookDataReader(FILE_PATH);
+        BookDataRepository bookDataRepository = new BookDataRepository(FILE_PATH);
 
-        ArrayList<String> actualListOfBooks = bookDataReader.getListOfBooks();
+        ArrayList<String> actualListOfBooks = bookDataRepository.getListOfBooks();
         ArrayList<String> expectedListOfBooks = new ArrayList<>();
         expectedListOfBooks.add("Introduction to Programming");
         expectedListOfBooks.add("The Pragmatic Programmer");
@@ -43,9 +43,9 @@ public class BookDataReaderTest {
 
     @Test
     public void testListOfBooksIsEmptyIfFileDoesntExist() {
-        BookDataReader bookDataReader = new BookDataReader("Something.txt");
+        BookDataRepository bookDataRepository = new BookDataRepository("Something.txt");
 
-        ArrayList<String> actualListOfBooks = bookDataReader.getListOfBooks();
+        ArrayList<String> actualListOfBooks = bookDataRepository.getListOfBooks();
 
         assertThat(actualListOfBooks, is(empty()));
     }

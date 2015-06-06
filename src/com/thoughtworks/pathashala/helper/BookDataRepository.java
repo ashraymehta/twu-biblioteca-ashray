@@ -3,11 +3,11 @@ package com.thoughtworks.pathashala.helper;
 import java.io.*;
 import java.util.ArrayList;
 
-public class BookDataReader {
+public class BookDataRepository {
 
     private String filePath;
 
-    public BookDataReader(String file_path) {
+    public BookDataRepository(String file_path) {
         this.filePath = file_path;
     }
 
