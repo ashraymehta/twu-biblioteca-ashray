@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.awt.print.Book;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.ListResourceBundle;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -34,36 +35,17 @@ public class ConsoleTest {
     }
 
     @Test
-    public void testPrintListOfBooks() throws Exception {
-        String projectRoot = System.getProperty("user.dir");
-        String filePath = projectRoot + File.separator + "BookList.txt";
-        BookDataReader bookDataReader = new BookDataReader(filePath);
-        Library library = new Library();
-        library.initialize(bookDataReader.getListOfBooks());
-        Console console = new Console();
-        console.printListOfBooks(library.getAvailableBooks());
-
-        String actualOutput = outputStream.toString();
-        String expectedOutput = "Introduction to Programming" + System.lineSeparator() +
-                "The Pragmatic Programmer" + System.lineSeparator() +
-                "Harry Potter and the Philosopher's Stone" + System.lineSeparator();
-
-        assertThat(actualOutput, is(expectedOutput));
-    }
-
-    @Test
     public void testPrintListOfBooksUsingStubs() throws Exception {
-        BookDataReader bookDataReaderStub = mock(BookDataReader.class);
+        Library libraryStub = mock(Library.class);
         ArrayList<String> bookList = new ArrayList<>();
         bookList.add("First book");
         bookList.add("Second book");
         bookList.add("Third book");
-        when(bookDataReaderStub.getListOfBooks()).
+        when(libraryStub.getAvailableBooks()).
                 thenReturn(bookList);
-        Library library = new Library();
-        library.initialize(bookDataReaderStub.getListOfBooks());
+
         Console console = new Console();
-        console.printListOfBooks(library.getAvailableBooks());
+        console.printListOfBooks(libraryStub.getAvailableBooks());
 
         String actualOutput = outputStream.toString();
         String expectedOutput = "First book" + System.lineSeparator() +

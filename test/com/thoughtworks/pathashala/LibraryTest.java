@@ -21,8 +21,7 @@ public class LibraryTest {
         String filePath = projectRoot + File.separator + "BookList.txt";
         BookDataReader bookDataReader = new BookDataReader(filePath);
         ArrayList<String> listOfBooksRead = bookDataReader.getListOfBooks();
-        Library library = new Library();
-        library.initialize(listOfBooksRead);
+        Library library = new Library(listOfBooksRead);
 
         assertThat(library.getAvailableBooks(), is(notNullValue()));
         assertThat(library.getAvailableBooks(), is(not(empty())));
@@ -34,8 +33,7 @@ public class LibraryTest {
         String filePath = projectRoot + File.separator + "BookList.txt";
         BookDataReader bookDataReader = new BookDataReader(filePath);
         ArrayList<String> listOfBooksRead = bookDataReader.getListOfBooks();
-        Library library = new Library();
-        library.initialize(listOfBooksRead);
+        Library library = new Library(listOfBooksRead);
 
         List<String> listOfBooksInLibrary = library.getAvailableBooks();
         listOfBooksInLibrary.add("Sample Book");
