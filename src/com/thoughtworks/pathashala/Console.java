@@ -1,7 +1,5 @@
 package com.thoughtworks.pathashala;
 
-import java.util.List;
-
 // Handles all I/O to and from console
 public class Console {
 
@@ -9,9 +7,7 @@ public class Console {
         System.out.println("Welcome");
     }
 
-    public void printListOfBooks(List<Book> bookList) {
-        for(Book book : bookList) {
-            System.out.println(book);
-        }
+    public void printListOfBooks(Books books) {
+        System.out.println(books);
     }
 }
