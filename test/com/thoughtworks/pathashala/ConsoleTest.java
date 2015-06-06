@@ -1,14 +1,12 @@
 package com.thoughtworks.pathashala;
 
-import com.thoughtworks.pathashala.helper.BookDataReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.print.Book;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.ListResourceBundle;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -43,7 +41,6 @@ public class ConsoleTest {
         bookList.add("Third book");
         when(libraryStub.getAvailableBooks()).
                 thenReturn(bookList);
-
         Console console = new Console();
         console.printListOfBooks(libraryStub.getAvailableBooks());
 
