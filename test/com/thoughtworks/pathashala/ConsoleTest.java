@@ -44,9 +44,12 @@ public class ConsoleTest {
         console.printListOfBooks(books);
 
         String actualOutput = outputStream.toString();
-        String expectedOutput = "First book Author 1 1000" + System.lineSeparator() +
-                "Second book Author 2 1500" + System.lineSeparator() +
-                "Third book Author 3 2000" + System.lineSeparator() + System.lineSeparator();
+        String expectedOutput = "First book                                        " +
+                "Author 1                      1000      " + System.lineSeparator() +
+                "Second book                                       " +
+                "Author 2                      1500      " + System.lineSeparator() +
+                "Third book                                        " +
+                "Author 3                      2000      " + System.lineSeparator() + System.lineSeparator();
 
         assertEquals(actualOutput, expectedOutput);
     }
