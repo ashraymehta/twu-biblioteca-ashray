@@ -12,7 +12,7 @@ public class Book {
 
     @Override
     public String toString() {
-        final String SPACE = " ";
-        return title + SPACE + author + SPACE + yearPublished;
+        return String.format("%-50s", title) + String.format("%-30s", author)
+                + String.format("%-10s", yearPublished);
     }
 }

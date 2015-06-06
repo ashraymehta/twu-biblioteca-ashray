@@ -14,7 +14,8 @@ public class BookTest {
         Book book = new Book(title, author, yearPublished);
 
         String actualString = book.toString();
-        String expectedString = "Harry Potter and the Philosopher's Stone JK Rowling 1997";
+        String expectedString = "Harry Potter and the Philosopher's Stone          " +
+                "JK Rowling                    " + "1997      ";
 
         assertEquals(actualString, expectedString);
     }
