@@ -12,9 +12,8 @@ import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-public class ConsoleTest {
+public class ConsoleOutTest {
 
     private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -25,8 +24,8 @@ public class ConsoleTest {
 
     @Test
     public void testPrintWelcomeMessage() throws Exception {
-        Console console = new Console();
-        console.printWelcomeMessage();
+        ConsoleOut consoleOut = new ConsoleOut();
+        consoleOut.printWelcomeMessage();
 
         String actualOutput = outputStream.toString();
 
@@ -40,8 +39,8 @@ public class ConsoleTest {
         bookList.add(new Book("Second book", "Author 2", 1500));
         bookList.add(new Book("Third book", "Author 3", 2000));
         Books books = new Books(bookList);
-        Console console = new Console();
-        console.printListOfBooks(books);
+        ConsoleOut consoleOut = new ConsoleOut();
+        consoleOut.printListOfBooks(books);
 
         String actualOutput = outputStream.toString();
         String expectedOutput = "First book                                        " +
@@ -52,6 +51,17 @@ public class ConsoleTest {
                 "Author 3                      2000      " + System.lineSeparator() + System.lineSeparator();
 
         assertEquals(actualOutput, expectedOutput);
+    }
+
+    @Test
+    public void testPrintMainMenu() throws Exception {
+        ConsoleOut consoleOut = new ConsoleOut();
+        consoleOut.printMainMenu();
+
+        String actualOutput = outputStream.toString();
+        String expectedOutput = "1. List books" + System.lineSeparator();
+
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @After

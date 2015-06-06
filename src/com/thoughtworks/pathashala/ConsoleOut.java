@@ -1,7 +1,7 @@
 package com.thoughtworks.pathashala;
 
-// Handles all I/O to and from console
-public class Console {
+// Handles all output to console
+public class ConsoleOut {
 
     public void printWelcomeMessage() {
         System.out.println("Welcome");
@@ -9,5 +9,9 @@ public class Console {
 
     public void printListOfBooks(Books books) {
         System.out.println(books);
+    }
+
+    public void printMainMenu() {
+        System.out.println("1. List books");
     }
 }
