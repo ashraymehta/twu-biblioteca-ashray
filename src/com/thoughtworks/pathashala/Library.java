@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Library {
-    private ArrayList<String> availableBooks;
+    private ArrayList<Book> availableBooks;
 
-    public Library(ArrayList<String> availableBooks) {
+    public Library(ArrayList<Book> availableBooks) {
         this.availableBooks = availableBooks;
     }
 
-    public List<String> getAvailableBooks() {
+    public List<Book> getAvailableBooks() {
         return Collections.unmodifiableList(availableBooks);
     }
 }

@@ -9,13 +9,13 @@ public class LibraryTest {
 
     @Test(expected = UnsupportedOperationException.class)
     public void testAvailableLibraryBooksAreNotModifiable() {
-        ArrayList<String> listOfBooks = new ArrayList<>();
-        listOfBooks.add("Book 1");
-        listOfBooks.add("Book 2");
-        listOfBooks.add("Book 3");
+        ArrayList<Book> listOfBooks = new ArrayList<>();
+        listOfBooks.add(new Book("Book 1", "Author 1", 1000));
+        listOfBooks.add(new Book("Book 2", "Author 2", 1500));
+        listOfBooks.add(new Book("Book 3", "Author 3", 2000));
         Library library = new Library(listOfBooks);
 
-        List<String> listOfBooksInLibrary = library.getAvailableBooks();
-        listOfBooksInLibrary.add("Sample Book");
+        List<Book> listOfBooksInLibrary = library.getAvailableBooks();
+        listOfBooksInLibrary.add(new Book("Sample Book", "Sample Author", 1800));
     }
 }

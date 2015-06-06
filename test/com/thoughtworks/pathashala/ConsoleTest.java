@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -35,21 +36,21 @@ public class ConsoleTest {
     @Test
     public void testPrintListOfBooksUsingStubs() throws Exception {
         Library libraryStub = mock(Library.class);
-        ArrayList<String> bookList = new ArrayList<>();
-        bookList.add("First book");
-        bookList.add("Second book");
-        bookList.add("Third book");
+        ArrayList<Book> bookList = new ArrayList<>();
+        bookList.add(new Book("First book", "Author 1", 1000));
+        bookList.add(new Book("Second book", "Author 2", 1500));
+        bookList.add(new Book("Third book", "Author 3", 2000));
         when(libraryStub.getAvailableBooks()).
                 thenReturn(bookList);
         Console console = new Console();
         console.printListOfBooks(libraryStub.getAvailableBooks());
 
         String actualOutput = outputStream.toString();
-        String expectedOutput = "First book" + System.lineSeparator() +
-                "Second book" + System.lineSeparator() +
-                "Third book" + System.lineSeparator();
+        String expectedOutput = "First book Author 1 1000" + System.lineSeparator() +
+                "Second book Author 2 1500" + System.lineSeparator() +
+                "Third book Author 3 2000" + System.lineSeparator();
 
-        assertThat(actualOutput, is(expectedOutput));
+        assertEquals(actualOutput, expectedOutput);
     }
 
     @After

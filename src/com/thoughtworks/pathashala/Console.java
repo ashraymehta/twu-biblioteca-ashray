@@ -9,8 +9,8 @@ public class Console {
         System.out.println("Welcome");
     }
 
-    public void printListOfBooks(List<String> bookList) {
-        for(String book : bookList) {
+    public void printListOfBooks(List<Book> bookList) {
+        for(Book book : bookList) {
             System.out.println(book);
         }
     }
