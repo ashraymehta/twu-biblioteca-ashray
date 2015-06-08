@@ -12,7 +12,7 @@ public class Books {
     @Override
     public String toString() {
         String listOfBooksAsString = "";
-        for(Book book : listOfBooks)
+        for (Book book : listOfBooks)
             listOfBooksAsString += book + System.lineSeparator();
         return listOfBooksAsString;
     }
