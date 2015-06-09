@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockingDetails;
@@ -41,5 +42,15 @@ public class MenuTest {
         boolean actualAction = menu.hasActionAtPosition(1);
 
         assertTrue(actualAction);
+    }
+
+    @Test
+    public void shouldVerifyThatMenuOptionExistsOnInvalidInput() throws Exception {
+        BooksView booksViewStub = mock(BooksView.class);
+        Menu menu = new Menu(booksViewStub);
+
+        boolean actualAction = menu.hasActionAtPosition(-1);
+
+        assertFalse(actualAction);
     }
 }
