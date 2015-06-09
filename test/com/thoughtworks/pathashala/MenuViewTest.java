@@ -40,4 +40,16 @@ public class MenuViewTest {
 
         assertEquals(expectedInput, actualInput);
     }
+
+    @Test
+    public void shouldPrintInvalidSelectionMessage() throws Exception {
+        System.setOut(new PrintStream(outputStream));
+        Menu menu = mock(Menu.class);
+        MenuView menuView = new MenuView(menu);
+        menuView.printInvalidSelectionMessage();
+        String actualOutput = outputStream.toString();
+        String expectedOutput = "Select a valid option!" + System.lineSeparator();
+
+        assertEquals(expectedOutput, actualOutput);
+    }
 }

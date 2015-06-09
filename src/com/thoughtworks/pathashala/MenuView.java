@@ -29,4 +29,8 @@ public class MenuView {
         int selection = getSelection();
         menu.performActionForInput(selection);
     }
+
+    public void printInvalidSelectionMessage() {
+        System.out.println("Select a valid option!");
+    }
 }
