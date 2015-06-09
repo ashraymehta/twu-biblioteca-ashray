@@ -52,7 +52,7 @@ public class ConsoleOutTest {
 
         assertEquals(actualOutput, expectedOutput);
     }
-    
+
     @After
     public void tearDown() throws Exception {
         System.setOut(null);

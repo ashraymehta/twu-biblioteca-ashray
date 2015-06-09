@@ -21,19 +21,7 @@ public class ConsoleInTest {
 
         assertEquals(expectedInput, actualInput);
     }
-
-    @Test
-    public void shouldHandleInvalidInputFromConsole() throws Exception {
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Five".getBytes());
-        System.setIn(byteArrayInputStream);
-
-        ConsoleIn consoleIn = new ConsoleIn();
-        int actualInput = consoleIn.readInt();
-        int expectedInput = -1;
-
-        assertEquals(expectedInput, actualInput);
-    }
-
+    
     @After
     public void tearDown() throws Exception {
         System.setIn(null);

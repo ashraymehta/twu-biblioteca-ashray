@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -27,6 +28,18 @@ public class MenuViewTest {
         String expectedOutput = "1. List books" + System.lineSeparator();
 
         assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void shouldGetIntegerFromConsole() throws Exception {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
+        System.setIn(byteArrayInputStream);
+        MenuView menuView = new MenuView();
+
+        int actualInput = menuView.getSelection();
+        int expectedInput = 5;
+
+        assertEquals(expectedInput, actualInput);
     }
 
     @After
