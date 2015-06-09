@@ -23,7 +23,7 @@ public class ConsoleOutTest {
     }
 
     @Test
-    public void testPrintWelcomeMessage() throws Exception {
+    public void shouldPrintWelcomeMessage() throws Exception {
         ConsoleOut consoleOut = new ConsoleOut();
         consoleOut.printWelcomeMessage();
 
@@ -33,7 +33,7 @@ public class ConsoleOutTest {
     }
 
     @Test
-    public void testPrintListOfBooks() throws Exception {
+    public void shouldPrintListOfBooks() throws Exception {
         ArrayList<Book> bookList = new ArrayList<>();
         bookList.add(new Book("First book", "Author 1", 1000));
         bookList.add(new Book("Second book", "Author 2", 1500));
@@ -54,7 +54,7 @@ public class ConsoleOutTest {
     }
 
     @Test
-    public void testPrintMainMenu() throws Exception {
+    public void shouldPrintMainMenu() throws Exception {
         ConsoleOut consoleOut = new ConsoleOut();
         consoleOut.printMainMenu();
 

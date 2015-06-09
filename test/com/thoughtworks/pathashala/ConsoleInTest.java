@@ -11,7 +11,7 @@ import static junit.framework.Assert.assertEquals;
 public class ConsoleInTest {
 
     @Test
-    public void testIntegerInputFromConsole() throws Exception {
+    public void shouldGetIntegerFromConsole() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -23,7 +23,7 @@ public class ConsoleInTest {
     }
 
     @Test
-    public void testIntegerInputFromConsoleWithInvalidInput() throws Exception {
+    public void shouldHandleInvalidInputFromConsole() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Five".getBytes());
         System.setIn(byteArrayInputStream);
 
