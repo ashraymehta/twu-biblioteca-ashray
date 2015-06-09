@@ -1,7 +1,5 @@
 package com.thoughtworks.pathashala;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,20 +7,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class MenuViewTest {
 
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-    @Before
-    public void setUp() throws Exception {
-        System.setOut(new PrintStream(outputStream));
-    }
-
     @Test
     public void shouldPrintMainMenu() throws Exception {
+        System.setOut(new PrintStream(outputStream));
         MenuView menuView = new MenuView();
-        menuView.printMainMenu();
+        Menu menuStub = mock(Menu.class);
+        when(menuStub.toString()).thenReturn("1. List books");
+        menuView.printMainMenu(menuStub.toString());
 
         String actualOutput = outputStream.toString();
         String expectedOutput = "1. List books" + System.lineSeparator();
@@ -40,10 +38,5 @@ public class MenuViewTest {
         int expectedInput = 5;
 
         assertEquals(expectedInput, actualInput);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        System.setOut(null);
     }
 }
