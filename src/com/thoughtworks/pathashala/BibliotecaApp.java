@@ -16,14 +16,19 @@ public class BibliotecaApp {
         arrayList.add(new Book("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997));
         arrayList.add(new Book("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998));
         booksView = new BooksView(new Books(arrayList));
-
     }
 
     private void start() {
         ConsoleOut consoleOut = new ConsoleOut();
         consoleOut.printWelcomeMessage();
+        loopUntilQuit();
+    }
+
+    private void loopUntilQuit() {
         MenuView menuView = new MenuView(new Menu(booksView));
-        menuView.printMainMenu();
-        menuView.performActionUponSelection();
+        while (true) {
+            menuView.printMainMenu();
+            menuView.performActionUponSelection();
+        }
     }
 }
