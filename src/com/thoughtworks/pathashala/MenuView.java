@@ -5,14 +5,16 @@ import java.util.Scanner;
 
 public class MenuView {
 
+    private Menu menu;
     private Scanner scanner;
 
-    public MenuView() {
+    public MenuView(Menu menu) {
+        this.menu = menu;
         scanner = new Scanner(System.in);
     }
 
-    public void printMainMenu(String mainMenuAsString) {
-        System.out.println(mainMenuAsString);
+    public void printMainMenu() {
+        System.out.println(menu.toString());
     }
 
     public int getSelection() {
@@ -21,5 +23,10 @@ public class MenuView {
         } catch (InputMismatchException e) {
             return -1;
         }
+    }
+
+    public void performActionUponSelection() {
+        int selection = getSelection();
+        menu.performActionForInput(selection);
     }
 }

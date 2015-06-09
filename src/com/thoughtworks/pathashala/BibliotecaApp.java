@@ -8,9 +8,8 @@ public class BibliotecaApp {
     private static void start() {
         ConsoleOut consoleOut = new ConsoleOut();
         consoleOut.printWelcomeMessage();
-        MenuView menuView = new MenuView();
-        Menu menu = new Menu();
-        menuView.printMainMenu(menu.toString());
-        menu.performActionForInput(menuView.getSelection());
+        MenuView menuView = new MenuView(new Menu());
+        menuView.printMainMenu();
+        menuView.performActionUponSelection();
     }
 }

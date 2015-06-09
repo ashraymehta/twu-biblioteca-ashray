@@ -17,10 +17,10 @@ public class MenuViewTest {
     @Test
     public void shouldPrintMainMenu() throws Exception {
         System.setOut(new PrintStream(outputStream));
-        MenuView menuView = new MenuView();
         Menu menuStub = mock(Menu.class);
         when(menuStub.toString()).thenReturn("1. List books");
-        menuView.printMainMenu(menuStub.toString());
+        MenuView menuView = new MenuView(menuStub);
+        menuView.printMainMenu();
 
         String actualOutput = outputStream.toString();
         String expectedOutput = "1. List books" + System.lineSeparator();
@@ -32,7 +32,7 @@ public class MenuViewTest {
     public void shouldGetIntegerFromConsole() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         System.setIn(byteArrayInputStream);
-        MenuView menuView = new MenuView();
+        MenuView menuView = new MenuView(new Menu());
 
         int actualInput = menuView.getSelection();
         int expectedInput = 5;
