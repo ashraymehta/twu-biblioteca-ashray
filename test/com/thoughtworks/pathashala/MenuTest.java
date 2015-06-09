@@ -15,7 +15,8 @@ public class MenuTest {
         Menu menu = new Menu(booksView);
 
         String actualString = menu.toString();
-        String expectedString = "1. List books" + System.lineSeparator();
+        String expectedString = "1. List books" + System.lineSeparator() +
+                "2. Quit" + System.lineSeparator();
 
         assertEquals(expectedString, actualString);
     }
