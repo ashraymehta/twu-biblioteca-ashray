@@ -32,7 +32,8 @@ public class MenuViewTest {
     public void shouldGetIntegerFromConsole() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         System.setIn(byteArrayInputStream);
-        MenuView menuView = new MenuView(new Menu());
+        BooksView booksViewStub = mock(BooksView.class);
+        MenuView menuView = new MenuView(new Menu(booksViewStub));
 
         int actualInput = menuView.getSelection();
         int expectedInput = 5;
