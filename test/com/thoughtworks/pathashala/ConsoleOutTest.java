@@ -52,18 +52,7 @@ public class ConsoleOutTest {
 
         assertEquals(actualOutput, expectedOutput);
     }
-
-    @Test
-    public void shouldPrintMainMenu() throws Exception {
-        ConsoleOut consoleOut = new ConsoleOut();
-        consoleOut.printMainMenu();
-
-        String actualOutput = outputStream.toString();
-        String expectedOutput = "1. List books" + System.lineSeparator();
-
-        assertEquals(expectedOutput, actualOutput);
-    }
-
+    
     @After
     public void tearDown() throws Exception {
         System.setOut(null);
