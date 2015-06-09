@@ -1,6 +1,7 @@
 package com.thoughtworks.pathashala;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -47,6 +48,7 @@ public class MenuViewTest {
         Menu menu = mock(Menu.class);
         MenuView menuView = new MenuView(menu);
         menuView.printInvalidSelectionMessage();
+
         String actualOutput = outputStream.toString();
         String expectedOutput = "Select a valid option!" + System.lineSeparator();
 

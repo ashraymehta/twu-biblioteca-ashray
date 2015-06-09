@@ -7,7 +7,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.when;
 
 public class MenuTest {
@@ -24,12 +26,20 @@ public class MenuTest {
 
     @Test
     public void shouldPrintListOfBooksOnOneInput() throws Exception {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        BooksView booksView = mock(BooksView.class);
-        Menu menu = new Menu(booksView);
+        BooksView booksViewStub = mock(BooksView.class);
+        Menu menu = new Menu(booksViewStub);
         menu.performActionForInput(1);
 
-        Mockito.verify(booksView).printListOfBooks();
+        Mockito.verify(booksViewStub).printListOfBooks();
+    }
+
+    @Test
+    public void shouldVerifyThatMenuOptionExistsOnValidInput() throws Exception {
+        BooksView booksViewStub = mock(BooksView.class);
+        Menu menu = new Menu(booksViewStub);
+
+        boolean actualAction = menu.hasActionAtPosition(1);
+
+        assertTrue(actualAction);
     }
 }

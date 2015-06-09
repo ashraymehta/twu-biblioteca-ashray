@@ -18,6 +18,10 @@ public class Menu {
         menuItemsMappedToMenuAction.get(userInput).perform();
     }
 
+    public boolean hasActionAtPosition(int position) {
+        return position > 0 && position <= menuItemsMappedToSerials.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
