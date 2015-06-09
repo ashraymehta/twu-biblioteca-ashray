@@ -27,7 +27,7 @@ public class MenuView {
 
     public void performActionUponSelection() {
         int selection = getSelection();
-        if(menu.hasActionAtPosition(selection))
+        if (menu.hasActionAtPosition(selection))
             menu.performActionForInput(selection);
         else
             printInvalidSelectionMessage();

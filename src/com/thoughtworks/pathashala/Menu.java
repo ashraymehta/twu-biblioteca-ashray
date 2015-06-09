@@ -12,6 +12,8 @@ public class Menu {
         menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
         menuItemsMappedToMenuAction.put(1, new ListBooksAction(booksView));
+        menuItemsMappedToSerials.put(2, "Quit");
+        menuItemsMappedToMenuAction.put(2, new QuitAction());
     }
 
     public void performActionForInput(int userInput) {

@@ -1,6 +1,6 @@
 package com.thoughtworks.pathashala;
 
-public class ListBooksAction implements MenuAction{
+public class ListBooksAction implements MenuAction {
 
     private final BooksView booksView;
 

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
 
 public class ConsoleOutTest {
 

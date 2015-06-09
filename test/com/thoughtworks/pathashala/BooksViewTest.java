@@ -5,9 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -28,7 +26,7 @@ public class BooksViewTest {
     public void shouldPrintListOfBooks() throws Exception {
         Books booksStub = mock(Books.class);
         when(booksStub.toString()).thenReturn("First book   Author 1   1000" + System.lineSeparator()
-                                            + "Second book   Author 2   1500");
+                + "Second book   Author 2   1500");
         BooksView booksView = new BooksView(booksStub);
         booksView.printListOfBooks();
 
