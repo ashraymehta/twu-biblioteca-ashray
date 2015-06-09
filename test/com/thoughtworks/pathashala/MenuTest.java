@@ -25,9 +25,9 @@ public class MenuTest {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
         Menu menu = new Menu();
-        ConsoleIn consoleInStub = mock(ConsoleIn.class);
-        when(consoleInStub.readInt()).thenReturn(1);
-        menu.performActionForInput(consoleInStub.readInt());
+        MenuView menuViewStub = mock(MenuView.class);
+        when(menuViewStub.getSelection()).thenReturn(1);
+        menu.performActionForInput(menuViewStub.getSelection());
 
         String actualOutput = byteArrayOutputStream.toString();
         String expectedOutput = "Harry Potter and the Philosopher's Stone          " +
