@@ -10,8 +10,4 @@ public class ConsoleOut {
     public void printListOfBooks(Books books) {
         System.out.println(books);
     }
-
-    public void printMainMenu() {
-        System.out.println("1. List books");
-    }
 }
