@@ -31,27 +31,6 @@ public class ConsoleOutTest {
         assertThat(actualOutput, is("Welcome" + System.lineSeparator()));
     }
 
-    @Test
-    public void shouldPrintListOfBooks() throws Exception {
-        ArrayList<Book> bookList = new ArrayList<>();
-        bookList.add(new Book("First book", "Author 1", 1000));
-        bookList.add(new Book("Second book", "Author 2", 1500));
-        bookList.add(new Book("Third book", "Author 3", 2000));
-        Books books = new Books(bookList);
-        ConsoleOut consoleOut = new ConsoleOut();
-        consoleOut.printListOfBooks(books);
-
-        String actualOutput = outputStream.toString();
-        String expectedOutput = "First book                                        " +
-                "Author 1                      1000      " + System.lineSeparator() +
-                "Second book                                       " +
-                "Author 2                      1500      " + System.lineSeparator() +
-                "Third book                                        " +
-                "Author 3                      2000      " + System.lineSeparator() + System.lineSeparator();
-
-        assertEquals(actualOutput, expectedOutput);
-    }
-
     @After
     public void tearDown() throws Exception {
         System.setOut(null);
