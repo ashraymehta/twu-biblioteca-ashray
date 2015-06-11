@@ -28,4 +28,8 @@ public class CheckoutBookView {
         String booksString = books.getBooksWithSerialsAsString();
         printStream.println(booksString);
     }
+
+    public void printSuccessfulCheckoutMessage() {
+        printStream.println("Thank you! Enjoy the book");
+    }
 }

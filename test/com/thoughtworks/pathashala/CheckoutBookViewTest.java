@@ -55,4 +55,17 @@ public class CheckoutBookViewTest {
 
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void shouldDisplaySuccessfulMessage() throws Exception {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, printStream);
+        checkoutBookView.printSuccessfulCheckoutMessage();
+
+        String actualOutput = outputStream.toString();
+        String expectedOutput = "Thank you! Enjoy the book" + System.lineSeparator();
+
+        assertEquals(expectedOutput, actualOutput);
+    }
 }
