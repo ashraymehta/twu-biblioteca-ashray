@@ -1,9 +1,17 @@
 package com.thoughtworks.pathashala;
 
+import java.io.PrintStream;
+
 // Handles all output to console
 public class ConsoleOut {
 
+    private PrintStream printStream;
+
+    public ConsoleOut(PrintStream printStream) {
+        this.printStream = printStream;
+    }
+
     public void printWelcomeMessage() {
-        System.out.println("Welcome");
+        printStream.println("Welcome");
     }
 }

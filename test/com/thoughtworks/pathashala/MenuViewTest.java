@@ -4,7 +4,10 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Scanner;
 
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -16,10 +19,10 @@ public class MenuViewTest {
 
     @Test
     public void shouldPrintMainMenu() throws Exception {
-        System.setOut(new PrintStream(outputStream));
+        InputStream inputStream = mock(InputStream.class);
         Menu menuStub = mock(Menu.class);
         when(menuStub.toString()).thenReturn("1. List books");
-        MenuView menuView = new MenuView(menuStub);
+        MenuView menuView = new MenuView(menuStub, new Scanner(inputStream), new PrintStream(outputStream));
         menuView.printMainMenu();
 
         String actualOutput = outputStream.toString();
@@ -32,8 +35,11 @@ public class MenuViewTest {
     public void shouldGetIntegerFromConsole() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         System.setIn(byteArrayInputStream);
-        BooksView booksViewStub = mock(BooksView.class);
-        MenuView menuView = new MenuView(new Menu(booksViewStub));
+        HashMap<Integer, MenuAction> menuItemsMappedToMenuAction = new HashMap<>();
+        HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
+        MenuView menuView = new MenuView(menu, scanner, new PrintStream(outputStream));
 
         int actualInput = menuView.getSelection();
         int expectedInput = 5;
@@ -45,7 +51,8 @@ public class MenuViewTest {
     public void shouldPrintInvalidSelectionMessage() throws Exception {
         System.setOut(new PrintStream(outputStream));
         Menu menu = mock(Menu.class);
-        MenuView menuView = new MenuView(menu);
+        Scanner scanner = new Scanner(System.in);
+        MenuView menuView = new MenuView(menu, scanner, new PrintStream(outputStream));
         menuView.printInvalidSelectionMessage();
 
         String actualOutput = outputStream.toString();

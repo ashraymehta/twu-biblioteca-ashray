@@ -1,8 +1,11 @@
 package com.thoughtworks.pathashala.helper;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 import static org.hamcrest.collection.IsEmptyCollection.empty;
@@ -13,12 +16,22 @@ import static org.junit.Assert.assertThat;
 
 public class BookDataRepositoryTest {
 
-    private final String PROJECT_ROOT = System.getProperty("user.dir");
-    private final String FILE_PATH = PROJECT_ROOT + File.separator + "BookList.txt";
+    private BufferedReader bufferedReader;
+    private File file;
+
+    @Before
+    public void setUp() throws Exception {
+        String PROJECT_ROOT = System.getProperty("user.dir");
+        String FILE_PATH = PROJECT_ROOT + File.separator + "BookList.txt";
+
+        FileReader fileReader = new FileReader(FILE_PATH);
+        bufferedReader = new BufferedReader(fileReader);
+        file = new File(FILE_PATH);
+    }
 
     @Test
     public void testListOfBooksReadIsNotNullOrEmpty() throws Exception {
-        BookDataRepository bookDataRepository = new BookDataRepository(FILE_PATH);
+        BookDataRepository bookDataRepository = new BookDataRepository(file, bufferedReader);
 
         ArrayList<String> actualListOfBooks = bookDataRepository.getListOfBooks();
 
@@ -28,7 +41,7 @@ public class BookDataRepositoryTest {
 
     @Test
     public void testListOfBooksReadContainsTheSameBooksAsTheFile() throws Exception {
-        BookDataRepository bookDataRepository = new BookDataRepository(FILE_PATH);
+        BookDataRepository bookDataRepository = new BookDataRepository(file, bufferedReader);
 
         ArrayList<String> actualListOfBooks = bookDataRepository.getListOfBooks();
         ArrayList<String> expectedListOfBooks = new ArrayList<>();
@@ -43,7 +56,8 @@ public class BookDataRepositoryTest {
 
     @Test
     public void testListOfBooksIsEmptyIfFileDoesntExist() {
-        BookDataRepository bookDataRepository = new BookDataRepository("Something.txt");
+        File file = new File("random.txt");
+        BookDataRepository bookDataRepository = new BookDataRepository(file, bufferedReader);
 
         ArrayList<String> actualListOfBooks = bookDataRepository.getListOfBooks();
 

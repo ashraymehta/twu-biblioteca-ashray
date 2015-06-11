@@ -1,13 +1,17 @@
 package com.thoughtworks.pathashala;
 
+import java.io.PrintStream;
+
 public class BooksView {
     private Books books;
+    private PrintStream printStream;
 
-    public BooksView(Books books) {
+    public BooksView(Books books, PrintStream printStream) {
         this.books = books;
+        this.printStream = printStream;
     }
 
     public void printListOfBooks() {
-        System.out.println(books);
+        printStream.println(books);
     }
 }

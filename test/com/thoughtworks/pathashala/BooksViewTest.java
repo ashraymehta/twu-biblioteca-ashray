@@ -27,7 +27,7 @@ public class BooksViewTest {
         Books booksStub = mock(Books.class);
         when(booksStub.toString()).thenReturn("First book   Author 1   1000" + System.lineSeparator()
                 + "Second book   Author 2   1500");
-        BooksView booksView = new BooksView(booksStub);
+        BooksView booksView = new BooksView(booksStub, new PrintStream(outputStream));
         booksView.printListOfBooks();
 
         String actualOutput = outputStream.toString();

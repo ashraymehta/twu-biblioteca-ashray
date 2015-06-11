@@ -7,17 +7,15 @@ public class Menu {
     private HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
     private HashMap<Integer, String> menuItemsMappedToSerials;
 
-    public Menu(BooksView booksView) {
-        menuItemsMappedToSerials = new HashMap<>();
-        menuItemsMappedToMenuAction = new HashMap<>();
-        menuItemsMappedToSerials.put(1, "List books");
-        menuItemsMappedToMenuAction.put(1, new ListBooksAction(booksView));
-        menuItemsMappedToSerials.put(2, "Quit");
-        menuItemsMappedToMenuAction.put(2, new QuitAction());
+    public Menu(HashMap<Integer, MenuAction> menuItemsMappedToMenuAction, HashMap<Integer, String> menuItemsMappedToSerials) {
+        this.menuItemsMappedToMenuAction = menuItemsMappedToMenuAction;
+        this.menuItemsMappedToSerials = menuItemsMappedToSerials;
     }
 
-    public void performActionForInput(int userInput) {
-        menuItemsMappedToMenuAction.get(userInput).perform();
+    public MenuAction performActionForInput(int userInput) {
+        MenuAction menuAction = menuItemsMappedToMenuAction.get(userInput);
+        menuAction.perform();
+        return menuAction;
     }
 
     public boolean hasActionAtPosition(int position) {

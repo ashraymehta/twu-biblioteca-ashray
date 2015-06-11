@@ -1,5 +1,7 @@
 package com.thoughtworks.pathashala;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,14 +9,16 @@ public class MenuView {
 
     private Menu menu;
     private Scanner scanner;
+    private PrintStream printStream;
 
-    public MenuView(Menu menu) {
+    public MenuView(Menu menu, Scanner scanner, PrintStream printStream) {
         this.menu = menu;
-        scanner = new Scanner(System.in);
+        this.scanner = scanner;
+        this.printStream = printStream;
     }
 
     public void printMainMenu() {
-        System.out.println(menu.toString());
+        printStream.println(menu.toString());
     }
 
     public int getSelection() {
@@ -25,15 +29,16 @@ public class MenuView {
         }
     }
 
-    public void performActionUponSelection() {
+    public MenuAction performActionUponSelection() {
         int selection = getSelection();
         if (menu.hasActionAtPosition(selection))
-            menu.performActionForInput(selection);
+            return menu.performActionForInput(selection);
         else
             printInvalidSelectionMessage();
+        return null;
     }
 
     public void printInvalidSelectionMessage() {
-        System.out.println("Select a valid option!");
+        printStream.println("Select a valid option!");
     }
 }

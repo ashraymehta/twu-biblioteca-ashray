@@ -8,28 +8,26 @@ import java.util.ArrayList;
 
 public class BookDataRepository {
 
-    private String filePath;
+    private BufferedReader bufferedReader;
+    private File file;
 
-    public BookDataRepository(String file_path) {
-        this.filePath = file_path;
+    public BookDataRepository(File file, BufferedReader bufferedReader) {
+        this.bufferedReader = bufferedReader;
+        this.file = file;
     }
 
     public ArrayList<String> getListOfBooks() {
         ArrayList<String> listOfBooks = new ArrayList<>();
-        File file = new File(filePath);
         if (file.exists()) {
-            readBookDataFromFile(listOfBooks, file);
+            readBookDataFromFile(listOfBooks);
 
         }
         return listOfBooks;
     }
 
-    private void readBookDataFromFile(ArrayList<String> listOfBooks, File file) {
+    private void readBookDataFromFile(ArrayList<String> listOfBooks) {
         try {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
             String readLine;
-
             while ((readLine = bufferedReader.readLine()) != null) {
                 listOfBooks.add(readLine.trim());
             }
