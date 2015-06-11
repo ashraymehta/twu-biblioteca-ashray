@@ -20,14 +20,22 @@ public class BibliotecaApp {
         arrayList.add(new Book("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997));
         arrayList.add(new Book("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998));
         PrintStream consoleOutStream = new PrintStream(System.out);
-        BooksView booksView = new BooksView(new Books(arrayList), consoleOutStream);
+        Books books = new Books(arrayList);
+        BooksView booksView = new BooksView(books, consoleOutStream);
+        Scanner scanner = new Scanner(System.in);
+        CheckoutView checkoutView = new CheckoutView(books, scanner, consoleOutStream);
+        Library library = new Library(arrayList, new ArrayList<Book>());
+        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutView, library);
+
         HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();
         HashMap<Integer, MenuAction> menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
         menuItemsMappedToMenuAction.put(1, new ListBooksAction(booksView));
-        menuItemsMappedToSerials.put(2, "Quit");
-        menuItemsMappedToMenuAction.put(2, new QuitAction());
-        Scanner scanner = new Scanner(System.in);
+        menuItemsMappedToSerials.put(2, "Checkout Book");
+        menuItemsMappedToMenuAction.put(2, checkoutBookAction);
+        menuItemsMappedToSerials.put(3, "Quit");
+        menuItemsMappedToMenuAction.put(3, new QuitAction());
+
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
         MenuView menuView = new MenuView(menu, scanner, consoleOutStream);
         ConsoleOut consoleOut = new ConsoleOut(consoleOutStream);

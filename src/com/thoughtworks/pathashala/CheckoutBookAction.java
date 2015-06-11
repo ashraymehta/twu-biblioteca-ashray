@@ -13,7 +13,7 @@ public class CheckoutBookAction implements MenuAction {
     @Override
     public void perform() {
         checkoutView.printListOfBooks();
-        int selection = checkoutView.getSelection();
+        int selection = checkoutView.getSelection() - 1;
         library.checkoutBook(selection);
     }
 }
