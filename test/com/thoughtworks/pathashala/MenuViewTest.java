@@ -1,5 +1,6 @@
 package com.thoughtworks.pathashala;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -15,7 +16,12 @@ import static org.mockito.Mockito.when;
 
 public class MenuViewTest {
 
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    ByteArrayOutputStream outputStream;
+
+    @Before
+    public void setUp() throws Exception {
+        outputStream = new ByteArrayOutputStream();
+    }
 
     @Test
     public void shouldPrintMainMenu() throws Exception {
