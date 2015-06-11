@@ -1,14 +1,19 @@
 package com.thoughtworks.pathashala;
 
+import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CheckoutView {
 
-    private Scanner scanner;
+    private final Books books;
+    private final Scanner scanner;
+    private final PrintStream printStream;
 
-    public CheckoutView(Scanner scanner) {
+    public CheckoutView(Books books, Scanner scanner, PrintStream printStream) {
+        this.books = books;
         this.scanner = scanner;
+        this.printStream = printStream;
     }
 
     public int getSelection() {
@@ -17,5 +22,10 @@ public class CheckoutView {
         } catch (InputMismatchException e) {
             return -1;
         }
+    }
+
+    public void printListOfBooks() {
+        String booksString = books.getBooksWithSerialsAsString();
+        printStream.println(booksString);
     }
 }
