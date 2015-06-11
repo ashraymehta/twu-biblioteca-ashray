@@ -4,13 +4,13 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class CheckoutView {
+public class CheckoutBookView {
 
     private final Books books;
     private final Scanner scanner;
     private final PrintStream printStream;
 
-    public CheckoutView(Books books, Scanner scanner, PrintStream printStream) {
+    public CheckoutBookView(Books books, Scanner scanner, PrintStream printStream) {
         this.books = books;
         this.scanner = scanner;
         this.printStream = printStream;

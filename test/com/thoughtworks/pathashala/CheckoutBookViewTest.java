@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CheckoutViewTest {
+public class CheckoutBookViewTest {
 
     private ByteArrayOutputStream outputStream;
 
@@ -34,9 +34,9 @@ public class CheckoutViewTest {
     public void shouldGetIntegerFromConsole() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         Scanner scanner = new Scanner(byteArrayInputStream);
-        CheckoutView checkoutView = new CheckoutView(books, scanner, printStream);
+        CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, printStream);
 
-        int actualInput = checkoutView.getSelection();
+        int actualInput = checkoutBookView.getSelection();
         int expectedInput = 5;
 
         assertEquals(expectedInput, actualInput);
@@ -47,8 +47,8 @@ public class CheckoutViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         when(books.getBooksWithSerialsAsString()).thenReturn("1. Title Author Year");
         Scanner scanner = new Scanner(byteArrayInputStream);
-        CheckoutView checkoutView = new CheckoutView(books, scanner, printStream);
-        checkoutView.printListOfBooks();
+        CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, printStream);
+        checkoutBookView.printListOfBooks();
 
         String actualOutput = outputStream.toString();
         String expectedOutput = "1. Title Author Year" + System.lineSeparator();

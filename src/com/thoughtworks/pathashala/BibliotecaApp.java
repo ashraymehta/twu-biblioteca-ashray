@@ -23,9 +23,9 @@ public class BibliotecaApp {
         Books books = new Books(arrayList);
         BooksView booksView = new BooksView(books, consoleOutStream);
         Scanner scanner = new Scanner(System.in);
-        CheckoutView checkoutView = new CheckoutView(books, scanner, consoleOutStream);
+        CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, consoleOutStream);
         Library library = new Library(arrayList, new ArrayList<Book>());
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutView, library);
+        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
 
         HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();
         HashMap<Integer, MenuAction> menuItemsMappedToMenuAction = new HashMap<>();

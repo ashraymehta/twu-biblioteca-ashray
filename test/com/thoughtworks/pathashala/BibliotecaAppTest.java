@@ -32,7 +32,7 @@ public class BibliotecaAppTest {
         menuItemsMappedToSerials.put(1, "List books");
         menuItemsMappedToMenuAction.put(1, new ListBooksAction(mock(BooksView.class)));
         menuItemsMappedToSerials.put(2, "Checkout books");
-        menuItemsMappedToMenuAction.put(2, new CheckoutBookAction(mock(CheckoutView.class), mock(Library.class)));
+        menuItemsMappedToMenuAction.put(2, new CheckoutBookAction(mock(CheckoutBookView.class), mock(Library.class)));
         menuItemsMappedToSerials.put(2, "Quit");
         menuItemsMappedToMenuAction.put(2, new QuitAction());
     }

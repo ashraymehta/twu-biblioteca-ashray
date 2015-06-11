@@ -2,18 +2,18 @@ package com.thoughtworks.pathashala;
 
 public class CheckoutBookAction implements MenuAction {
 
-    private CheckoutView checkoutView;
+    private CheckoutBookView checkoutBookView;
     private Library library;
 
-    public CheckoutBookAction(CheckoutView checkoutView, Library library) {
-        this.checkoutView = checkoutView;
+    public CheckoutBookAction(CheckoutBookView checkoutBookView, Library library) {
+        this.checkoutBookView = checkoutBookView;
         this.library = library;
     }
 
     @Override
     public void perform() {
-        checkoutView.printListOfBooks();
-        int selection = checkoutView.getSelection() - 1;
+        checkoutBookView.printListOfBooks();
+        int selection = checkoutBookView.getSelection() - 1;
         library.checkoutBook(selection);
     }
 }

@@ -12,10 +12,13 @@ public class Library {
         this.checkedOutBooks = checkedOutBooks;
     }
 
-    public void checkoutBook(int bookIndex) {
-        Book checkedOutBook = availableBooks.get(bookIndex);
-        availableBooks.remove(bookIndex);
-        checkedOutBooks.add(checkedOutBook);
+    public boolean checkoutBook(int bookIndex) {
+        try {
+            Book checkedOutBook = availableBooks.remove(bookIndex);
+            return checkedOutBooks.add(checkedOutBook);
+        } catch (IndexOutOfBoundsException ex) {
+            return false;
+        }
     }
 
     public String getListOfAvailableBooksAsString() {
