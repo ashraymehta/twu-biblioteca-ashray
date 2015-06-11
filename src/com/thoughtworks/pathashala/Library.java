@@ -12,8 +12,10 @@ public class Library {
         this.checkedOutBooks = checkedOutBooks;
     }
 
-    public void checkoutBook(int book) {
-        availableBooks.remove(book);
+    public void checkoutBook(int bookIndex) {
+        Book checkedOutBook = availableBooks.get(bookIndex);
+        availableBooks.remove(bookIndex);
+        checkedOutBooks.add(checkedOutBook);
     }
 
     public String getListOfAvailableBooksAsString() {
