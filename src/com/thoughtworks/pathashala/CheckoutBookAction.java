@@ -15,5 +15,7 @@ public class CheckoutBookAction implements MenuAction {
         checkoutBookView.printListOfBooks();
         int selection = checkoutBookView.getSelection() - 1;
         boolean isSuccessful = library.checkoutBook(selection);
+        if(isSuccessful)
+            checkoutBookView.printSuccessfulCheckoutMessage();
     }
 }

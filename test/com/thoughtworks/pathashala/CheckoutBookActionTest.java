@@ -16,7 +16,7 @@ public class CheckoutBookActionTest {
     }
 
     @Test
-    public void shouldBeAbleToDisplayList() throws Exception {
+    public void shouldDisplayListOfBooks() throws Exception {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
@@ -25,7 +25,7 @@ public class CheckoutBookActionTest {
     }
 
     @Test
-    public void shouldBeAbleToTakeInput() throws Exception {
+    public void shouldTakeInput() throws Exception {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
@@ -34,12 +34,23 @@ public class CheckoutBookActionTest {
     }
 
     @Test
-    public void shouldBeAbleToCheckoutBookAfterGettingSelection() throws Exception {
+    public void shouldCheckoutBookAfterGettingSelection() throws Exception {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         when(checkoutBookView.getSelection()).thenReturn(1);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
 
-        Mockito.verify(library).checkoutBook(1);
+        Mockito.verify(library).checkoutBook(0);
+    }
+
+    @Test
+    public void shouldPrintSuccessMessageAfterSuccessfulCheckout() throws Exception {
+        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
+        when(checkoutBookView.getSelection()).thenReturn(1);
+        when(library.checkoutBook(0)).thenReturn(true);
+        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
+        checkoutBookAction.perform();
+
+        Mockito.verify(checkoutBookView).printSuccessfulCheckoutMessage();
     }
 }
