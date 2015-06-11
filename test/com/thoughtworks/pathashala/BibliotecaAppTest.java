@@ -1,0 +1,48 @@
+package com.thoughtworks.pathashala;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.io.ByteArrayInputStream;
+import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import static org.mockito.Mockito.mock;
+
+@RunWith(MockitoJUnitRunner.class)
+public class BibliotecaAppTest {
+
+    @Mock
+    ConsoleOut consoleOut;
+
+    private HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
+    private HashMap<Integer, String> menuItemsMappedToSerials;
+
+    @Before
+    public void setUp() throws Exception {
+        menuItemsMappedToSerials = new HashMap<>();
+        menuItemsMappedToMenuAction = new HashMap<>();
+        menuItemsMappedToSerials.put(1, "List books");
+        menuItemsMappedToMenuAction.put(1, new ListBooksAction(mock(BooksView.class)));
+        menuItemsMappedToSerials.put(2, "Quit");
+        menuItemsMappedToMenuAction.put(2, new QuitAction());
+    }
+
+    @Test
+    public void shouldPrintWelcomeMessage() throws Exception {
+        String command = "2";
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(command.getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
+        MenuView menuView = new MenuView(menu, scanner, mock(PrintStream.class));
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView);
+        bibliotecaApp.start();
+
+        Mockito.verify(consoleOut).printWelcomeMessage();
+    }
+}
