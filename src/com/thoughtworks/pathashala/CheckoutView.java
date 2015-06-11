@@ -18,5 +18,4 @@ public class CheckoutView {
             return -1;
         }
     }
-
 }
