@@ -53,4 +53,15 @@ public class CheckoutBookActionTest {
 
         Mockito.verify(checkoutBookView).printSuccessfulCheckoutMessage();
     }
+
+    @Test
+    public void shouldPrintUnsuccessfulMessageAfterUnsuccessfulCheckout() throws Exception {
+        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
+        when(checkoutBookView.getSelection()).thenReturn(1);
+        when(library.checkoutBook(0)).thenReturn(false);
+        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
+        checkoutBookAction.perform();
+
+        Mockito.verify(checkoutBookView).printUnsuccessfulCheckoutMessage();
+    }
 }
