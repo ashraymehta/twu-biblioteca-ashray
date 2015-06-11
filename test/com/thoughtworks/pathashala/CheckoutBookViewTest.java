@@ -68,4 +68,17 @@ public class CheckoutBookViewTest {
 
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void shouldDisplayUnsuccessfulMessage() throws Exception {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, printStream);
+        checkoutBookView.printUnsuccessfulCheckoutMessage();
+
+        String actualOutput = outputStream.toString();
+        String expectedOutput = "That book is not available." + System.lineSeparator();
+
+        assertEquals(expectedOutput, actualOutput);
+    }
 }
