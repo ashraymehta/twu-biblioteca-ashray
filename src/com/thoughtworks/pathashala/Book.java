@@ -1,21 +1,18 @@
 package com.thoughtworks.pathashala;
 
 public class Book {
+    private String title, author;
+    private int yearPublished;
 
-    public String title;
-    public final String author;
-    public final int yearOfPublication;
-
-    public Book(String title, String author, int yearOfPublication) {
-        if (title == null || title.length() > 0)
-            throw new IllegalArgumentException("Title cannot be null or empty");
-        if (author == null || author.length() > 0)
-            throw new IllegalArgumentException("Author cannot be null or empty");
-        if (yearOfPublication < 1)
-            throw new IllegalArgumentException("Year of publication cannot be negative");
-
+    public Book(String title, String author, int yearPublished) {
         this.title = title;
         this.author = author;
-        this.yearOfPublication = yearOfPublication;
+        this.yearPublished = yearPublished;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-50s", title) + String.format("%-30s", author)
+                + String.format("%-10s", yearPublished);
     }
 }

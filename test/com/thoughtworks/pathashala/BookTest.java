@@ -2,35 +2,21 @@ package com.thoughtworks.pathashala;
 
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertThat;
+import static junit.framework.Assert.assertEquals;
 
 public class BookTest {
 
     @Test
-    public void testAuthorIsNotNullOrEmpty() {
-        String title = "Big Book of Books";
-        int yearPublication = 1990;
-        String author = "Author";
-        Book book = new Book(title, author, yearPublication);
-
-        assertThat(book.author, not(isEmptyOrNullString()));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testTitleIsNotNullOrEmpty() {
-        String title = "";
-        int yearPublication = 1990;
-        String author = "Author";
-        Book book = new Book(title, author, yearPublication);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testYearPublishedIsPositive() {
-        String title = "Big Book of Books";
-        int yearPublished = -100;
-        String author = "Author";
+    public void shouldPresentDetailsOfBookAsString() throws Exception {
+        String title = "Harry Potter and the Philosopher's Stone";
+        String author = "JK Rowling";
+        int yearPublished = 1997;
         Book book = new Book(title, author, yearPublished);
+
+        String actualString = book.toString();
+        String expectedString = "Harry Potter and the Philosopher's Stone          " +
+                "JK Rowling                    " + "1997      ";
+
+        assertEquals(actualString, expectedString);
     }
 }
