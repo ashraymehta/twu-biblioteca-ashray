@@ -14,4 +14,13 @@ public class CheckoutBookActionTest {
 
         Mockito.verify(checkoutView).printListOfBooks();
     }
+
+    @Test
+    public void shouldBeAbleToTakeInput() throws Exception {
+        CheckoutView checkoutView = mock(CheckoutView.class);
+        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutView);
+        checkoutBookAction.perform();
+
+        Mockito.verify(checkoutView).getSelection();
+    }
 }
