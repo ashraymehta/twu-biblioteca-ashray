@@ -1,5 +1,6 @@
 package com.twu;
 
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -64,7 +65,21 @@ public class LibraryTest {
     }
 
     @Test
+    public void shouldReturnFalseWhenBookIsNotAvailableAtTheIndex() throws Exception {
+        boolean actualResult = library.checkoutBook(-5);
+
+        assertFalse(actualResult);
+    }
+
+    @Test
     public void shouldBeAbleToTakeBackBook() throws Exception {
+        library.returnBook(0);
+
+        assertFalse(checkedOutBooks.contains(checkoutOutBookOne));
+    }
+
+    @Test
+    public void shouldAddReturnedBookToListOfAvailableBooks() throws Exception {
         library.returnBook(0);
 
         assertTrue(bookArrayList.contains(checkoutOutBookOne));
