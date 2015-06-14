@@ -36,4 +36,16 @@ public class ReturnBookViewTest {
         assertEquals(expectedInput, actualInput);
     }
 
+    @Test
+    public void shouldReturnMinusOneForInvalidInputConsole() throws Exception {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("hi!".getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        ReturnBookView returnBookView = new ReturnBookView(books, scanner, printStream);
+
+        int actualInput = returnBookView.getSelection();
+        int expectedInput = -1;
+
+        assertEquals(expectedInput, actualInput);
+    }
+
 }

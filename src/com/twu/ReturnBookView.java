@@ -1,6 +1,7 @@
 package com.twu;
 
 import java.io.PrintStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ReturnBookView {
@@ -15,6 +16,10 @@ public class ReturnBookView {
     }
 
     public int getSelection() {
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException ex) {
+            return -1;
+        }
     }
 }
