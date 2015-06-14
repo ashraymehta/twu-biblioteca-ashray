@@ -27,4 +27,8 @@ public class ReturnBookView {
         String booksString = books.getBooksWithSerialsAsString();
         printStream.println(booksString);
     }
+
+    public void printSuccessfulReturnMessage() {
+        printStream.println("Thank you for returning the book.");
+    }
 }
