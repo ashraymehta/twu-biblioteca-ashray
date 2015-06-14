@@ -4,6 +4,9 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.twu.Messages.*;
+import static com.twu.Messages.SUCCESSFUL_CHECKOUT_MESSAGE;
+
 public class CheckoutBookView {
 
     private final Books books;
@@ -30,10 +33,10 @@ public class CheckoutBookView {
     }
 
     public void printSuccessfulCheckoutMessage() {
-        printStream.println("Thank you! Enjoy the book");
+        printStream.println(SUCCESSFUL_CHECKOUT_MESSAGE);
     }
 
     public void printUnsuccessfulCheckoutMessage() {
-        printStream.println("That book is not available.");
+        printStream.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
     }
 }

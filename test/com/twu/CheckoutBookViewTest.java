@@ -62,7 +62,7 @@ public class CheckoutBookViewTest {
         checkoutBookView.printSuccessfulCheckoutMessage();
 
         String actualOutput = outputStream.toString();
-        String expectedOutput = "Thank you! Enjoy the book" + System.lineSeparator();
+        String expectedOutput = "Thank you! Enjoy the book." + System.lineSeparator();
 
         assertEquals(expectedOutput, actualOutput);
     }

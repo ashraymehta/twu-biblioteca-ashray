@@ -2,7 +2,9 @@ package com.twu;
 
 import java.io.PrintStream;
 
-// Handles all output to console
+import static com.twu.Messages.WELCOME_MESSAGE;
+
+// Handles output to console
 public class ConsoleOut {
 
     private PrintStream printStream;
@@ -12,6 +14,6 @@ public class ConsoleOut {
     }
 
     public void printWelcomeMessage() {
-        printStream.println("Welcome");
+        printStream.println(WELCOME_MESSAGE);
     }
 }
