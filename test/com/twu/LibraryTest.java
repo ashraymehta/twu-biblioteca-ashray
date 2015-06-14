@@ -84,4 +84,11 @@ public class LibraryTest {
 
         assertTrue(bookArrayList.contains(checkoutOutBookOne));
     }
+
+    @Test
+    public void shouldReturnFalseWhenCheckedOutBookIsNotAvailableAtTheIndex() throws Exception {
+        boolean actualResult = library.returnBook(-5);
+
+        assertFalse(actualResult);
+    }
 }

@@ -29,7 +29,11 @@ public class Library {
     }
 
     public boolean returnBook(int bookIndex) {
-        Book checkoutOutBook = checkedOutBooks.remove(bookIndex);
-        return availableBooks.add(checkoutOutBook);
+        try {
+            Book checkoutOutBook = checkedOutBooks.remove(bookIndex);
+            return availableBooks.add(checkoutOutBook);
+        } catch (IndexOutOfBoundsException ex) {
+            return false;
+        }
     }
 }
