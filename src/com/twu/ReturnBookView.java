@@ -1,0 +1,20 @@
+package com.twu;
+
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class ReturnBookView {
+    private Books books;
+    private Scanner scanner;
+    private PrintStream printStream;
+
+    public ReturnBookView(Books books, Scanner scanner, PrintStream printStream) {
+        this.books = books;
+        this.scanner = scanner;
+        this.printStream = printStream;
+    }
+
+    public int getSelection() {
+        return scanner.nextInt();
+    }
+}
