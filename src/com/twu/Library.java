@@ -14,8 +14,8 @@ public class Library {
 
     public boolean checkoutBook(int bookIndex) {
         try {
-            Book checkedOutBook = availableBooks.remove(bookIndex);
-            return checkedOutBooks.add(checkedOutBook);
+            Book toBeCheckedOut = availableBooks.remove(bookIndex);
+            return checkedOutBooks.add(toBeCheckedOut);
         } catch (IndexOutOfBoundsException ex) {
             return false;
         }
@@ -26,5 +26,10 @@ public class Library {
         for (Book book : availableBooks)
             listOfBooksAsString += book + System.lineSeparator();
         return listOfBooksAsString;
+    }
+
+    public boolean returnBook(int bookIndex) {
+        Book checkoutOutBook = checkedOutBooks.remove(bookIndex);
+        return availableBooks.add(checkoutOutBook);
     }
 }

@@ -14,6 +14,8 @@ public class LibraryTest {
     private ArrayList<Book> bookArrayList;
     private ArrayList<Book> checkedOutBooks;
     private Book bookOne;
+    private Book bookTwo;
+    private Book checkoutOutBookOne;
     private Library library;
 
     @Before
@@ -21,8 +23,11 @@ public class LibraryTest {
         bookArrayList = new ArrayList<>();
         bookOne = new Book("Title 1", "Author 1", 1000);
         bookArrayList.add(bookOne);
-        bookArrayList.add(new Book("Title 2", "Author 2", 1500));
+        bookTwo = new Book("Title 2", "Author 2", 1500);
+        bookArrayList.add(bookTwo);
         checkedOutBooks = new ArrayList<>();
+        checkoutOutBookOne = new Book("Title 3", "Author 3", 2000);
+        checkedOutBooks.add(checkoutOutBookOne);
         library = new Library(bookArrayList, checkedOutBooks);
     }
 
@@ -56,5 +61,12 @@ public class LibraryTest {
         boolean actualResult = library.checkoutBook(5);
 
         assertFalse(actualResult);
+    }
+
+    @Test
+    public void shouldBeAbleToTakeBackBook() throws Exception {
+        library.returnBook(0);
+
+        assertTrue(bookArrayList.contains(checkoutOutBookOne));
     }
 }
