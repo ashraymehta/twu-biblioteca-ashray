@@ -16,15 +16,18 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) {
-        ArrayList<Book> arrayList = new ArrayList<>();
-        arrayList.add(new Book("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997));
-        arrayList.add(new Book("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998));
-        PrintStream consoleOutStream = new PrintStream(System.out);
-        Books books = new Books(arrayList);
-        BooksView booksView = new BooksView(books, consoleOutStream);
         Scanner scanner = new Scanner(System.in);
-        CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, consoleOutStream);
-        Library library = new Library(arrayList, new ArrayList<Book>());
+        ArrayList<Book> listOfAvailableBooks = new ArrayList<>();
+        listOfAvailableBooks.add(new Book("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997));
+        listOfAvailableBooks.add(new Book("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998));
+        PrintStream consoleOutStream = new PrintStream(System.out);
+        Books availableBooks = new Books(listOfAvailableBooks);
+        ArrayList<Book> listOfCheckedOutBooks = new ArrayList<>();
+        Books checkedOutBooks = new Books(listOfCheckedOutBooks);
+        BooksView booksView = new BooksView(availableBooks, consoleOutStream);
+        ReturnBookView returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
+        CheckoutBookView checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
+        Library library = new Library(listOfAvailableBooks, listOfCheckedOutBooks);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
 
         HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();
@@ -33,8 +36,11 @@ public class BibliotecaApp {
         menuItemsMappedToMenuAction.put(1, new ListBooksAction(booksView));
         menuItemsMappedToSerials.put(2, "Checkout Book");
         menuItemsMappedToMenuAction.put(2, checkoutBookAction);
-        menuItemsMappedToSerials.put(3, "Quit");
-        menuItemsMappedToMenuAction.put(3, new QuitAction());
+        menuItemsMappedToSerials.put(3, "Return Book");
+        MenuAction returnBookAction = new ReturnBookAction(returnBookView, library);
+        menuItemsMappedToMenuAction.put(3, returnBookAction);
+        menuItemsMappedToSerials.put(4, "Quit");
+        menuItemsMappedToMenuAction.put(4, new QuitAction());
 
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
         MenuView menuView = new MenuView(menu, scanner, consoleOutStream);
