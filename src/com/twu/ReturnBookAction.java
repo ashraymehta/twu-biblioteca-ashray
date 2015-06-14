@@ -13,6 +13,7 @@ public class ReturnBookAction implements MenuAction {
     @Override
     public void perform() {
         returnBookView.printListOfBooks();
-        returnBookView.getSelection();
+        int selection = returnBookView.getSelection();
+        library.returnBook(selection - 1);
     }
 }

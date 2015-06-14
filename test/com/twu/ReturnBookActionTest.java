@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ReturnBookActionTest {
     private Library library;
@@ -30,5 +31,15 @@ public class ReturnBookActionTest {
         returnBookAction.perform();
 
         Mockito.verify(returnBookView).getSelection();
+    }
+
+    @Test
+    public void shouldReturnBookAfterGettingSelection() throws Exception {
+        ReturnBookView returnBookView = mock(ReturnBookView.class);
+        when(returnBookView.getSelection()).thenReturn(1);
+        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
+        returnBookAction.perform();
+
+        Mockito.verify(library).returnBook(0);
     }
 }
