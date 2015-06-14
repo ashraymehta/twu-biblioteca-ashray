@@ -65,6 +65,4 @@ public class ReturnBookViewTest {
 
         assertEquals(expectedOutput, actualOutput);
     }
-
-
 }
