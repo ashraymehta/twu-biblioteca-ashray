@@ -42,4 +42,26 @@ public class ReturnBookActionTest {
 
         Mockito.verify(library).returnBook(0);
     }
+
+    @Test
+    public void shouldPrintSuccessMessageAfterSuccessfulReturn() throws Exception {
+        ReturnBookView returnBookView = mock(ReturnBookView.class);
+        when(returnBookView.getSelection()).thenReturn(1);
+        when(library.returnBook(0)).thenReturn(true);
+        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
+        returnBookAction.perform();
+
+        Mockito.verify(returnBookView).printSuccessfulReturnMessage();
+    }
+
+    @Test
+    public void shouldPrintUnsuccessfulMessageAfterUnsuccessfulReturn() throws Exception {
+        ReturnBookView returnBookView = mock(ReturnBookView.class);
+        when(returnBookView.getSelection()).thenReturn(1);
+        when(library.returnBook(0)).thenReturn(false);
+        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
+        returnBookAction.perform();
+
+        Mockito.verify(returnBookView).printUnsuccessfulReturnMessage();
+    }
 }

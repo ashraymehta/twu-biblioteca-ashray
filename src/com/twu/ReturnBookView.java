@@ -32,7 +32,7 @@ public class ReturnBookView {
         printStream.println("Thank you for returning the book.");
     }
 
-    public void printUnsuccessfulCheckoutMessage() {
+    public void printUnsuccessfulReturnMessage() {
         printStream.println("That is not a valid book to return.");
     }
 }

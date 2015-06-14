@@ -84,7 +84,7 @@ public class ReturnBookViewTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         Scanner scanner = new Scanner(byteArrayInputStream);
         ReturnBookView returnBookView = new ReturnBookView(books, scanner, printStream);
-        returnBookView.printUnsuccessfulCheckoutMessage();
+        returnBookView.printUnsuccessfulReturnMessage();
 
         String actualOutput = outputStream.toString();
         String expectedOutput = "That is not a valid book to return." + System.lineSeparator();
