@@ -22,4 +22,9 @@ public class ReturnBookView {
             return -1;
         }
     }
+
+    public void printListOfBooks() {
+        String booksString = books.getBooksWithSerialsAsString();
+        printStream.println(booksString);
+    }
 }
