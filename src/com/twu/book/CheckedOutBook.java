@@ -8,7 +8,7 @@ public class CheckedOutBook extends Book {
     }
 
     @Override
-    public void addToListIfAvailable(List<AvailableBook> availableList) {
+    public void addToListIfAvailable(List<Book> availableList) {
 
     }
 }

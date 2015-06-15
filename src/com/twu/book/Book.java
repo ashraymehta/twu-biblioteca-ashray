@@ -20,5 +20,5 @@ public abstract class Book {
                 + String.format("%-10s", yearPublished);
     }
 
-    public abstract void addToListIfAvailable(List<AvailableBook> availableList);
+    public abstract void addToListIfAvailable(List<Book> availableList);
 }
