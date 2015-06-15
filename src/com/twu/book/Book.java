@@ -36,4 +36,6 @@ public abstract class Book {
     public int hashCode() {
         return id;
     }
+
+    public abstract void addToListIfTitleMatches(List<Book> books, String titleToMatch);
 }

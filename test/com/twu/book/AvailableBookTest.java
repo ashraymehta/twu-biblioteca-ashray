@@ -47,4 +47,16 @@ public class AvailableBookTest {
 
         assertTrue(newBook instanceof CheckedOutBook);
     }
+
+    @Test
+    public void shouldAddItselfIfTitleMatchesGivenString() throws Exception {
+        String title = "Harry Potter and the Philosopher's Stone";
+        String author = "JK Rowling";
+        int yearPublished = 1997;
+        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        List<Book> matchingList = new ArrayList<>();
+        book.addToListIfTitleMatches(matchingList, "Harry Potter and the Philosopher's Stone");
+
+        assertTrue(matchingList.contains(book));
+    }
 }

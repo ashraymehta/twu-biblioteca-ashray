@@ -16,4 +16,9 @@ public class CheckedOutBook extends Book {
     public void addToListIfAvailable(List<Book> availableList) {
 
     }
+
+    @Override
+    public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
+
+    }
 }
