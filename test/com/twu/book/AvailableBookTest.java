@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class AvailableBookTest {
     @Test
@@ -28,10 +28,23 @@ public class AvailableBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
         List<Book> availableList = new ArrayList<>();
         book.addToListIfAvailable(availableList);
 
-        assertFalse(availableList.contains(book));
+        assertTrue(availableList.contains(book));
+    }
+
+    @Test
+    public void shouldBeAbleToCheckItselfOut() throws Exception {
+        String title = "Harry Potter and the Philosopher's Stone";
+        String author = "JK Rowling";
+        int yearPublished = 1997;
+        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        List<Book> allBooks = new ArrayList<>();
+        book.checkout(allBooks);
+        Book newBook = allBooks.get(0);
+
+        assertTrue(newBook instanceof CheckedOutBook);
     }
 }

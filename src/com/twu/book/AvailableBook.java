@@ -7,13 +7,18 @@ public class AvailableBook extends Book {
         super(title, author, yearPublished, id);
     }
 
-    @Override
-    public void addToListIfAvailable(List<Book> availableList) {
-        availableList.add(this);
-    }
-
     public static AvailableBook create(CheckedOutBook checkedOutBook) {
         return new AvailableBook(checkedOutBook.title, checkedOutBook.author,
                 checkedOutBook.yearPublished, checkedOutBook.id);
+    }
+
+    public void checkout(List<Book> allBooks) {
+        allBooks.remove(this);
+        allBooks.add(CheckedOutBook.create(this));
+    }
+
+    @Override
+    public void addToListIfAvailable(List<Book> availableList) {
+        availableList.add(this);
     }
 }
