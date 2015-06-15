@@ -1,12 +1,10 @@
 package com.twu;
 
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -30,17 +28,6 @@ public class LibraryTest {
         checkoutOutBookOne = new Book("Title 3", "Author 3", 2000);
         checkedOutBooks.add(checkoutOutBookOne);
         library = new Library(bookArrayList, checkedOutBooks);
-    }
-
-    @Test
-    public void shouldGetListOfAvailableBooksAsString() throws Exception {
-        String actualString = library.getListOfAvailableBooksAsString();
-        String expectedString = "Title 1                                           " +
-                "Author 1                      " + "1000      " + System.lineSeparator() +
-                "Title 2                                           " +
-                "Author 2                      " + "1500      " + System.lineSeparator();
-
-        assertEquals(expectedString, actualString);
     }
 
     @Test

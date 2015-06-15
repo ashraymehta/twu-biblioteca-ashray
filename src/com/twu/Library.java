@@ -21,13 +21,6 @@ public class Library {
         }
     }
 
-    public String getListOfAvailableBooksAsString() {
-        String listOfBooksAsString = "";
-        for (Book book : availableBooks)
-            listOfBooksAsString += book + System.lineSeparator();
-        return listOfBooksAsString;
-    }
-
     public boolean returnBook(int bookIndex) {
         try {
             Book checkoutOutBook = checkedOutBooks.remove(bookIndex);

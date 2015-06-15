@@ -11,12 +11,12 @@
 
     <target name="compile">
         <mkdir dir="out/src/classes" />
-        <javac srcdir="src" destdir="out/src/classes" />
+        <javac includeantruntime="false" srcdir="src" destdir="out/src/classes" />
     </target>
 
     <target name="compileTests">
         <mkdir dir="out/test/classes" />
-        <javac srcdir="test" destdir="out/test/classes" classpathref="classpath" classpath="out/src/classes"/>
+        <javac includeantruntime="false" srcdir="test" destdir="out/test/classes" classpathref="classpath" classpath="out/src/classes"/>
     </target>
 
     <target name="test" depends="compile,compileTests" >
@@ -36,6 +36,6 @@
     </target>
 
     <target name="run" depends="compile" description="run the project">
-        <java classpath="out/src/classes/" classname="EntryPoint"/>
+        <java classpath="out/src/classes/" classname="com.twu.EntryPoint"/>
     </target>
 </project>
