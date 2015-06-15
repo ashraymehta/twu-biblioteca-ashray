@@ -2,6 +2,7 @@ package com.twu;
 
 import java.io.PrintStream;
 
+// Prints list of books
 public class BooksView {
     private Books books;
     private PrintStream printStream;

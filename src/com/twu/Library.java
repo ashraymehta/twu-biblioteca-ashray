@@ -2,6 +2,7 @@ package com.twu;
 
 import java.util.ArrayList;
 
+// Holds the available and the checked out books; provides APIs to checkout and return a book
 public class Library {
 
     private final ArrayList<Book> availableBooks;

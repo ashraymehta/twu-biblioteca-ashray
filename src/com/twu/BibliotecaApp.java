@@ -1,5 +1,6 @@
 package com.twu;
 
+// Invokes printing of welcome message, main menu and asks main menu to perform action upon selection
 public class BibliotecaApp {
 
     private ConsoleOut consoleOut;

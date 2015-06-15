@@ -4,7 +4,7 @@ import java.io.PrintStream;
 
 import static com.twu.Messages.WELCOME_MESSAGE;
 
-// Handles output to console
+// Handles output of individual messages to console
 public class ConsoleOut {
 
     private PrintStream printStream;

@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Prints list of books that are checked out, gets user selection and feedback of successful or unsuccessful return
 public class ReturnBookView {
     private Books books;
     private Scanner scanner;

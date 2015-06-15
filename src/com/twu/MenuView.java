@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Handles all the I/O to and from the MainMenu
 public class MenuView {
 
     private Menu menu;

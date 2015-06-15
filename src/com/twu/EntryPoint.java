@@ -1,13 +1,14 @@
 package com.twu;
 
-import com.twu.*;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class EntryPoint {
+
+    private static List<Book> checkedOutBooks;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -51,8 +52,8 @@ public class EntryPoint {
 
     private static ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> listOfAvailableBooks = new ArrayList<>();
-        listOfAvailableBooks.add(new Book("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998));
+        listOfAvailableBooks.add(new Book("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997, 1));
+        listOfAvailableBooks.add(new Book("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998, 2));
         return listOfAvailableBooks;
     }
 }

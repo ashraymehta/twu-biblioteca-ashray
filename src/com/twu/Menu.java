@@ -2,6 +2,7 @@ package com.twu;
 
 import java.util.HashMap;
 
+// Performs different actions based on user input on the main menu
 public class Menu {
 
     private HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;

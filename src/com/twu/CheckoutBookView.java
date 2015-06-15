@@ -7,6 +7,7 @@ import java.util.Scanner;
 import static com.twu.Messages.*;
 import static com.twu.Messages.SUCCESSFUL_CHECKOUT_MESSAGE;
 
+// Prints list of available books, gets user selection and feedback on successful or unsuccessful checkout
 public class CheckoutBookView {
 
     private final Books books;

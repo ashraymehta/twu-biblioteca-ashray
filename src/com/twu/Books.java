@@ -3,6 +3,7 @@ package com.twu;
 import java.util.ArrayList;
 import java.util.List;
 
+// Holds a collection of books and a string representation for a collection of books
 public class Books {
     private List<Book> listOfBooks;
 
