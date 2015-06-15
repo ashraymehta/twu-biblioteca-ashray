@@ -1,5 +1,7 @@
 package com.twu.book;
 
+import java.util.List;
+
 public abstract class Book {
     private String title, author;
     private int yearPublished;
@@ -17,4 +19,6 @@ public abstract class Book {
         return String.format("%-5d", id) + String.format("%-50s", title) + String.format("%-30s", author)
                 + String.format("%-10s", yearPublished);
     }
+
+    public abstract void addToListIfAvailable(List<AvailableBook> availableList);
 }
