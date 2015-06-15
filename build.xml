@@ -34,4 +34,8 @@
             </batchtest>
         </junit>
     </target>
+
+    <target name="run" depends="compile" description="run the project">
+        <java classpath="out/src/classes/" classname="EntryPoint"/>
+    </target>
 </project>
