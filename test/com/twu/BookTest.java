@@ -2,6 +2,7 @@ package com.twu;
 
 import com.twu.book.AvailableBook;
 import com.twu.book.Book;
+import com.twu.book.CheckedOutBook;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +10,6 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 public class BookTest {
-
     private Book firstBook;
     private Book secondBook;
     private Book thirdBook;
@@ -17,7 +17,7 @@ public class BookTest {
     @Before
     public void setUp() throws Exception {
         firstBook = new AvailableBook("Title", "Author", 1000, 1);
-        secondBook = new AvailableBook("Title", "Author", 1000, 1);
+        secondBook = new CheckedOutBook("Title", "Author", 1000, 1);
         thirdBook = new AvailableBook("Title", "Author", 1000, 1);
     }
 
