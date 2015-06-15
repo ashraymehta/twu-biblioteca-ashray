@@ -29,7 +29,8 @@ public class LibraryTest {
         checkedOutBooks = new ArrayList<>();
         checkoutOutBookOne = new AvailableBook("Title 3", "Author 3", 2000, 3);
         checkedOutBooks.add(checkoutOutBookOne);
-        library = new Library(bookArrayList, checkedOutBooks);
+        ArrayList<Book> allBooks = new ArrayList<>();
+        library = new Library(bookArrayList, checkedOutBooks, allBooks);
     }
 
     @Test

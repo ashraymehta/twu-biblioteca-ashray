@@ -9,10 +9,12 @@ public class Library {
 
     private final ArrayList<Book> availableBooks;
     private final ArrayList<Book> checkedOutBooks;
+    public final ArrayList<Book> allBooks;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> checkedOutBooks) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> checkedOutBooks, ArrayList<Book> allBooks) {
         this.availableBooks = availableBooks;
         this.checkedOutBooks = checkedOutBooks;
+        this.allBooks = allBooks;
     }
 
     public boolean checkoutBook(int bookIndex) {
