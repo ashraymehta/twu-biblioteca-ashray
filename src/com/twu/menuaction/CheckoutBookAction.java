@@ -1,4 +1,7 @@
-package com.twu;
+package com.twu.menuaction;
+
+import com.twu.CheckoutBookView;
+import com.twu.Library;
 
 // Invokes printing of books, checkout of book and print successful or unsuccessful messages
 public class CheckoutBookAction implements MenuAction {

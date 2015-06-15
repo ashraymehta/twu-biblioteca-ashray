@@ -1,23 +1,12 @@
 package com.twu;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
 public class BooksTest {
-
-    private boolean isCheckedOut;
-    private List<Book> checkedOutBooks;
-
-    @Before
-    public void setUp() throws Exception {
-        isCheckedOut = true;
-        checkedOutBooks = new ArrayList<>();
-    }
 
     @Test
     public void shouldPresentDetailsOfAllBooksAsString() throws Exception {

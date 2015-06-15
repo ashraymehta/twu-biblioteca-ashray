@@ -1,5 +1,7 @@
 package com.twu;
 
+import com.twu.menuaction.MenuAction;
+
 import java.util.HashMap;
 
 // Performs different actions based on user input on the main menu

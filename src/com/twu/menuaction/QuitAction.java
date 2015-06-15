@@ -1,4 +1,4 @@
-package com.twu;
+package com.twu.menuaction;
 
 public class QuitAction implements MenuAction {
     @Override

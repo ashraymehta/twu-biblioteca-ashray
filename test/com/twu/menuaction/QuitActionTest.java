@@ -1,5 +1,6 @@
-package com.twu;
+package com.twu.menuaction;
 
+import com.twu.menuaction.QuitAction;
 import org.junit.Test;
 
 public class QuitActionTest {
