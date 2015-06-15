@@ -1,7 +1,6 @@
-package com.twu;
+package com.twu.book;
 
-// Holds the book attributes and provides a string representation of a book
-public class Book {
+public abstract class Book {
     private String title, author;
     private int yearPublished;
     private int id;

@@ -1,5 +1,7 @@
 package com.twu;
 
+import com.twu.book.AvailableBook;
+import com.twu.book.Book;
 import com.twu.menuaction.*;
 
 import java.io.PrintStream;
@@ -54,8 +56,8 @@ public class EntryPoint {
 
     private static ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> listOfAvailableBooks = new ArrayList<>();
-        listOfAvailableBooks.add(new Book("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997, 1));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998, 2));
+        listOfAvailableBooks.add(new AvailableBook("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997, 1));
+        listOfAvailableBooks.add(new AvailableBook("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998, 2));
         return listOfAvailableBooks;
     }
 }

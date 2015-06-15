@@ -1,5 +1,7 @@
 package com.twu;
 
+import com.twu.book.AvailableBook;
+import com.twu.book.Book;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,12 +22,12 @@ public class LibraryTest {
     @Before
     public void setUp() throws Exception {
         bookArrayList = new ArrayList<>();
-        bookOne = new Book("Title 1", "Author 1", 1000, 1);
+        bookOne = new AvailableBook("Title 1", "Author 1", 1000, 1);
         bookArrayList.add(bookOne);
-        bookTwo = new Book("Title 2", "Author 2", 1500, 2);
+        bookTwo = new AvailableBook("Title 2", "Author 2", 1500, 2);
         bookArrayList.add(bookTwo);
         checkedOutBooks = new ArrayList<>();
-        checkoutOutBookOne = new Book("Title 3", "Author 3", 2000, 3);
+        checkoutOutBookOne = new AvailableBook("Title 3", "Author 3", 2000, 3);
         checkedOutBooks.add(checkoutOutBookOne);
         library = new Library(bookArrayList, checkedOutBooks);
     }

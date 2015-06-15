@@ -1,5 +1,7 @@
 package com.twu;
 
+import com.twu.book.Book;
+
 import java.util.ArrayList;
 
 // Holds the available and the checked out books; provides APIs to checkout and return a book
