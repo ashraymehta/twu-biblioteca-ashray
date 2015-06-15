@@ -11,4 +11,9 @@ public class AvailableBook extends Book {
     public void addToListIfAvailable(List<Book> availableList) {
         availableList.add(this);
     }
+
+    public static AvailableBook create(CheckedOutBook checkedOutBook) {
+        return new AvailableBook(checkedOutBook.title, checkedOutBook.author,
+                checkedOutBook.yearPublished, checkedOutBook.id);
+    }
 }
