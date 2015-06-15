@@ -7,12 +7,9 @@ import com.twu.menuaction.*;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class EntryPoint {
-
-    private static List<Book> checkedOutBooks;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

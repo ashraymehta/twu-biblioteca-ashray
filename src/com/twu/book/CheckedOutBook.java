@@ -7,6 +7,10 @@ public class CheckedOutBook extends Book {
         super(title, author, yearPublished, id);
     }
 
+    public CheckedOutBook(AvailableBook availableBook) {
+        super(availableBook.title, availableBook.author, availableBook.yearPublished, availableBook.id);
+    }
+
     @Override
     public void addToListIfAvailable(List<Book> availableList) {
 
