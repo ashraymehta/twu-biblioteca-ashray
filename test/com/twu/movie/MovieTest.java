@@ -13,9 +13,9 @@ public class MovieTest {
 
     @Before
     public void setUp() throws Exception {
-        firstMovie = new Movie("Batman Begins", "Christopher Nolan", 2005, 9);
-        secondMovie = new Movie("Batman Begins", "Christopher Nolan", 2005, 9);
-        thirdMovie = new Movie("Batman Begins", "Christopher Nolan", 2005, 9);
+        firstMovie = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
+        secondMovie = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
+        thirdMovie = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class MovieTest {
         String director = "Christopher Nolan";
         int year = 2005;
         int movieRating = 9;
-        Movie movie = new Movie(name, director, year, movieRating);
+        Movie movie = new AvailableMovie(name, director, year, movieRating);
 
         String actualString = movie.toString();
         String expectedString = "Batman Begins                                     " +

@@ -1,7 +1,7 @@
 package com.twu.movie;
 
 // Represents a Movie with comparison checks for the object as well as some properties
-public class Movie {
+public abstract class Movie {
     private String name;
     private int year;
     private String director;

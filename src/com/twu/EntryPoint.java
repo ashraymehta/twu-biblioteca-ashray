@@ -4,6 +4,7 @@ import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 import com.twu.book.NullBook;
 import com.twu.menuaction.*;
+import com.twu.movie.AvailableMovie;
 import com.twu.movie.Movie;
 import com.twu.view.*;
 
@@ -50,8 +51,8 @@ public class EntryPoint {
 
     private static void initializeListOfMovies() {
         allMovies = new ArrayList<>();
-        allMovies.add(new Movie("Batman Begins", "Christopher Nolan", 2005, 9));
-        allMovies.add(new Movie("The Dark Knight", "Christopher Nolan", 2008, 9));
+        allMovies.add(new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9));
+        allMovies.add(new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9));
     }
 
     private static void initializeViews() {

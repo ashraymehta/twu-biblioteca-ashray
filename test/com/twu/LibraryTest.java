@@ -3,6 +3,7 @@ package com.twu;
 import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 import com.twu.book.CheckedOutBook;
+import com.twu.movie.AvailableMovie;
 import com.twu.movie.Movie;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,8 +47,8 @@ public class LibraryTest {
         allBooks.addAll(checkedOutBooks);
         allMovies = new ArrayList<>();
         allMovies = new ArrayList<>();
-        allMovies.add(new Movie("Batman Begins", "Christopher Nolan", 2005, 9));
-        allMovies.add(new Movie("The Dark Knight", "Christopher Nolan", 2008, 9));
+        allMovies.add(new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9));
+        allMovies.add(new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9));
         library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher);
     }
 
