@@ -41,10 +41,10 @@ public class ReturnBookView {
     }
 
     public void printSuccessfulReturnMessage() {
-        printStream.println(Messages.SUCCESSFUL_RETURN_MESSAGE);
+        printStream.println(Messages.SUCCESSFUL_BOOK_RETURN_MESSAGE);
     }
 
     public void printUnsuccessfulReturnMessage() {
-        printStream.println(Messages.UNSUCCESSFUL_RETURN_MESSAGE);
+        printStream.println(Messages.UNSUCCESSFUL_BOOK_RETURN_MESSAGE);
     }
 }

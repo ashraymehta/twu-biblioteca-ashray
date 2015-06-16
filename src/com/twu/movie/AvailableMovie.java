@@ -1,5 +1,7 @@
 package com.twu.movie;
 
+import com.twu.Messages;
+
 public class AvailableMovie extends Movie {
     public AvailableMovie(String name, String director, int year, int movieRating) {
         super(name, director, year, movieRating);
@@ -12,7 +14,7 @@ public class AvailableMovie extends Movie {
 
     @Override
     public String getAppropriateCheckoutMessage() {
-        return null;
+        return Messages.UNSUCCESSFUL_MOVIE_CHECKOUT_MESSAGE;
     }
 
     public static AvailableMovie create(CheckedOutMovie checkedOutMovie) {

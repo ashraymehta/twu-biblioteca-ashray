@@ -17,12 +17,12 @@ public class NullBook extends Book {
 
     @Override
     public String getAppropriateCheckoutMessage() {
-        return Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE;
+        return Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
     }
 
     @Override
     public String getAppropriateReturnMessage() {
-        return Messages.UNSUCCESSFUL_RETURN_MESSAGE;
+        return Messages.UNSUCCESSFUL_BOOK_RETURN_MESSAGE;
     }
 
     @Override

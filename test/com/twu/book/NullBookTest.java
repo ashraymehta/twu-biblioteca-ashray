@@ -22,6 +22,6 @@ public class NullBookTest {
     public void shouldReturnSuccessfulCheckoutMessage() throws Exception {
         String actualMessage = nullBook.getAppropriateCheckoutMessage();
 
-        assertEquals(actualMessage, Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE);
+        assertEquals(actualMessage, Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
     }
 }

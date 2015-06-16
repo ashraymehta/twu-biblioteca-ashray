@@ -44,7 +44,7 @@ public class CheckedOutBookTest {
         CheckedOutBook book = new CheckedOutBook(title, author, yearPublished);
         String actualMessage = book.getAppropriateCheckoutMessage();
 
-        assertEquals(actualMessage, Messages.SUCCESSFUL_CHECKOUT_MESSAGE);
+        assertEquals(actualMessage, Messages.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
     }
 
     @Test

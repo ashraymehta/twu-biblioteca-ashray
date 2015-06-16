@@ -16,7 +16,7 @@ public class NullMovie extends Movie {
 
     @Override
     public String getAppropriateCheckoutMessage() {
-        return Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE;
+        return Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
     }
 
     @Override

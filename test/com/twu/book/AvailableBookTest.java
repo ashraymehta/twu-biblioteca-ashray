@@ -69,6 +69,6 @@ public class AvailableBookTest {
         AvailableBook book = new AvailableBook(title, author, yearPublished);
         String actualMessage = book.getAppropriateCheckoutMessage();
 
-        assertEquals(actualMessage, Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE);
+        assertEquals(actualMessage, Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
     }
 }

@@ -29,6 +29,7 @@ public class EntryPoint {
     private static HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
     private static Set<Movie> allMovies;
     private static MoviesView moviesView;
+    private static CheckoutMovieView checkoutMovieView;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -62,6 +63,7 @@ public class EntryPoint {
         booksView = new BooksView(availableBooks, consoleOutStream);
         returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
         checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
+        checkoutMovieView = new CheckoutMovieView(scanner, consoleOutStream);
         moviesView = new MoviesView(movies, consoleOutStream);
     }
 
@@ -78,8 +80,10 @@ public class EntryPoint {
         menuItemsMappedToMenuAction.put(3, returnBookAction);
         menuItemsMappedToSerials.put(4, "List movies");
         menuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView));
-        menuItemsMappedToSerials.put(5, "Quit");
-        menuItemsMappedToMenuAction.put(5, new QuitAction());
+        menuItemsMappedToSerials.put(5, "Checkout Movie");
+        menuItemsMappedToMenuAction.put(5, new CheckoutMovieAction(checkoutMovieView, library));
+        menuItemsMappedToSerials.put(6, "Quit");
+        menuItemsMappedToMenuAction.put(6, new QuitAction());
     }
 
     private static void initializeStreams() {

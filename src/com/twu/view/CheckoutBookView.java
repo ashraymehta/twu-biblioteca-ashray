@@ -6,8 +6,8 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.twu.Messages.SUCCESSFUL_CHECKOUT_MESSAGE;
-import static com.twu.Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE;
+import static com.twu.Messages.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
+import static com.twu.Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
 
 // Prints list of available books, gets user selection and feedback on successful or unsuccessful checkoutBook
 public class CheckoutBookView {
@@ -47,10 +47,10 @@ public class CheckoutBookView {
     }
 
     public void printSuccessfulCheckoutMessage() {
-        printStream.println(SUCCESSFUL_CHECKOUT_MESSAGE);
+        printStream.println(SUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
     }
 
     public void printUnsuccessfulCheckoutMessage() {
-        printStream.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
+        printStream.println(UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
     }
 }
