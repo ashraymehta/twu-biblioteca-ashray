@@ -39,6 +39,7 @@ public class LibraryTest {
     private AvailableMovie availableMovieTwo;
     private CheckedOutMovie checkedOutOutMovieOne;
     private ArrayList<Book> availableBookArrayList;
+    private List<Movie> availableMovies;
 
 
     @Before
@@ -60,13 +61,15 @@ public class LibraryTest {
         availableMovieTwo = new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9);
         checkedOutOutMovieOne = new CheckedOutMovie("The Dark Knight Rises", "Christopher Nolan", 2012, 9);
 
+        availableMovies = new ArrayList<>();
+
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
         allMovies.add(availableMovieOne);
         allMovies.add(availableMovieTwo);
         allMovies.add(checkedOutOutMovieOne);
 
-        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher);
+        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher, availableMovies);
     }
 
     @Test
@@ -77,6 +80,16 @@ public class LibraryTest {
         availableBooks.add(availableBookTwo);
 
         assertTrue(actualResult.equals(availableBooks));
+    }
+
+    @Test
+    public void shouldReturnAvailableMovies() throws Exception {
+        List<Movie> actualResult = library.getAvailableMovies();
+        List<AvailableMovie> availableMovies = new ArrayList<>();
+        availableMovies.add(availableMovieOne);
+        availableMovies.add(availableMovieTwo);
+
+        assertTrue(actualResult.containsAll(availableMovies));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -121,7 +134,7 @@ public class LibraryTest {
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
         allMovies = new HashSet<>();
         allMovies.add(availableMovieOne);
-        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher);
+        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher, availableMovies);
         Movie movie = library.checkoutMovie(availableMovieOne);
 
         assertTrue(movie instanceof CheckedOutMovie);

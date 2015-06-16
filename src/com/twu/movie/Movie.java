@@ -1,6 +1,6 @@
 package com.twu.movie;
 
-import java.util.ArrayList;
+import java.util.List;
 
 // Represents a Movie with comparison checks for the object as well as some properties
 public abstract class Movie {
@@ -49,8 +49,10 @@ public abstract class Movie {
 
     public abstract String getAppropriateCheckoutMessage();
 
-    public void addToListIfNameMatches(ArrayList<Movie> matchingList, String nameToMatch) {
+    public void addToListIfNameMatches(List<Movie> matchingList, String nameToMatch) {
         if (name.equalsIgnoreCase(nameToMatch.toLowerCase()))
             matchingList.add(this);
     }
+
+    public abstract void addToListIfAvailable(List<Movie> availableMovies);
 }

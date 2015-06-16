@@ -16,13 +16,16 @@ public class Library {
     private final Set<Movie> allMovies;
     private final BookSearcher bookSearcher;
     private final MovieSearcher movieSearcher;
+    private final List<Movie> availableMovies;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Set<Movie> allMovies, BookSearcher bookSearcher, MovieSearcher movieSearcher) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Set<Movie> allMovies, BookSearcher bookSearcher,
+                   MovieSearcher movieSearcher, List<Movie> availableMovies) {
         this.availableBooks = availableBooks;
         this.allBooks = allBooks;
         this.allMovies = allMovies;
         this.bookSearcher = bookSearcher;
         this.movieSearcher = movieSearcher;
+        this.availableMovies = availableMovies;
     }
 
     public List<Book> getAvailableBooks() {
@@ -31,6 +34,14 @@ public class Library {
             book.addToListIfAvailable(availableBooks);
         }
         return Collections.unmodifiableList(availableBooks);
+    }
+
+    public List<Movie> getAvailableMovies() {
+        availableMovies.clear();
+        for (Movie movie : allMovies) {
+            movie.addToListIfAvailable(availableMovies);
+        }
+        return Collections.unmodifiableList(availableMovies);
     }
 
     public Book checkoutBook(Book toBeCheckedOut) {

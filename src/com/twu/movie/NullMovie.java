@@ -2,7 +2,7 @@ package com.twu.movie;
 
 import com.twu.Messages;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class NullMovie extends Movie {
     public NullMovie() {
@@ -20,7 +20,7 @@ public class NullMovie extends Movie {
     }
 
     @Override
-    public void addToListIfNameMatches(ArrayList<Movie> matchingList, String nameToMatch) {
+    public void addToListIfAvailable(List<Movie> availableMovies) {
 
     }
 }
