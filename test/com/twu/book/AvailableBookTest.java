@@ -42,9 +42,7 @@ public class AvailableBookTest {
         String author = "JK Rowling";
         int yearPublished = 1997;
         AvailableBook book = new AvailableBook(title, author, yearPublished);
-        List<Book> allBooks = new ArrayList<>();
-        book.checkoutBook(allBooks);
-        Book newBook = allBooks.get(0);
+        Book newBook = book.checkoutBook();
 
         assertTrue(newBook instanceof CheckedOutBook);
     }

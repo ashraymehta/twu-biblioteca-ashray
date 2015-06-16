@@ -45,7 +45,10 @@ public class Library {
     }
 
     public Book checkoutBook(Book toBeCheckedOut) {
-        return toBeCheckedOut.checkoutBook(allBooks);
+        allBooks.remove(toBeCheckedOut);
+        toBeCheckedOut = toBeCheckedOut.checkoutBook();
+        allBooks.add(toBeCheckedOut);
+        return toBeCheckedOut;
     }
 
     public Book returnBook(Book toBeCheckedOut) {

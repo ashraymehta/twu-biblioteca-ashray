@@ -13,7 +13,7 @@ public abstract class Book {
         this.yearPublished = yearPublished;
     }
 
-    public abstract Book checkoutBook(List<Book> allBooks);
+    public abstract Book checkoutBook();
     public abstract Book returnBook(List<Book> allBooks);
     public abstract String getAppropriateCheckoutMessage();
     public abstract String getAppropriateReturnMessage();

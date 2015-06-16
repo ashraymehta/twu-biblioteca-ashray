@@ -15,11 +15,8 @@ public class AvailableBook extends Book {
                 checkedOutBook.yearPublished);
     }
 
-    public Book checkoutBook(List<Book> allBooks) {
-        allBooks.remove(this);
-        CheckedOutBook checkedOutBook = CheckedOutBook.create(this);
-        allBooks.add(checkedOutBook);
-        return checkedOutBook;
+    public Book checkoutBook() {
+        return CheckedOutBook.create(this);
     }
 
     @Override
