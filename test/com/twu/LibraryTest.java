@@ -12,7 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -43,56 +42,7 @@ public class LibraryTest {
         allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
-        library = new Library(availableBookArrayList, checkedOutBooks, allBooks, searcher);
-    }
-
-    @Test
-    public void shouldCheckoutBook() throws Exception {
-        library.checkoutBook(0);
-
-        assertFalse(availableBookArrayList.contains(availableBookOne));
-    }
-
-    @Test
-    public void shouldAddCheckoutBookToListOfCheckedOutBooks() throws Exception {
-        library.checkoutBook(0);
-
-        assertTrue(checkedOutBooks.contains(availableBookOne));
-    }
-
-    @Test
-    public void shouldTellWhenBookWasNotSuccessfullyCheckedOut() throws Exception {
-        boolean actualResult = library.checkoutBook(5);
-
-        assertFalse(actualResult);
-    }
-
-    @Test
-    public void shouldReturnFalseWhenBookIsNotAvailableAtTheIndex() throws Exception {
-        boolean actualResult = library.checkoutBook(-5);
-
-        assertFalse(actualResult);
-    }
-
-    @Test
-    public void shouldBeAbleToTakeBackBook() throws Exception {
-        library.returnBook(0);
-
-        assertFalse(checkedOutBooks.contains(checkedOutOutBookOne));
-    }
-
-    @Test
-    public void shouldAddReturnedBookToListOfAvailableBooks() throws Exception {
-        library.returnBook(0);
-
-        assertTrue(availableBookArrayList.contains(checkedOutOutBookOne));
-    }
-
-    @Test
-    public void shouldReturnFalseWhenCheckedOutBookIsNotAvailableAtTheIndex() throws Exception {
-        boolean actualResult = library.returnBook(-5);
-
-        assertFalse(actualResult);
+        library = new Library(availableBookArrayList, allBooks, searcher);
     }
 
     @Test

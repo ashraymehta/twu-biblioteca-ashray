@@ -11,12 +11,10 @@ public class Library {
 
     private final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;
-    private final ArrayList<Book> checkedOutBooks;
     private final Searcher searcher;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> checkedOutBooks, ArrayList<Book> allBooks, Searcher searcher) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Searcher searcher) {
         this.availableBooks = availableBooks;
-        this.checkedOutBooks = checkedOutBooks;
         this.allBooks = allBooks;
         this.searcher = searcher;
     }
@@ -29,30 +27,12 @@ public class Library {
         return Collections.unmodifiableList(availableBooks);
     }
 
-    public boolean checkoutBook(int bookIndex) {
-        try {
-            Book toBeCheckedOut = availableBooks.remove(bookIndex);
-            return checkedOutBooks.add(toBeCheckedOut);
-        } catch (IndexOutOfBoundsException ex) {
-            return false;
-        }
-    }
-
     public Book checkoutBook(Book toBeCheckedOut) {
         return toBeCheckedOut.checkoutBook(allBooks);
     }
 
     public Book returnBook(Book toBeCheckedOut) {
         return toBeCheckedOut.returnBook(allBooks);
-    }
-
-    public boolean returnBook(int bookIndex) {
-        try {
-            Book checkoutOutBook = checkedOutBooks.remove(bookIndex);
-            return availableBooks.add(checkoutOutBook);
-        } catch (IndexOutOfBoundsException ex) {
-            return false;
-        }
     }
 
     public Book searchBook(String title) {
