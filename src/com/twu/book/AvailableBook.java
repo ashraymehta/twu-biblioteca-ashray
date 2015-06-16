@@ -35,4 +35,9 @@ public class AvailableBook extends Book {
     public String getAppropriateCheckoutMessage() {
         return Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE;
     }
+
+    @Override
+    public String getAppropriateReturnMessage() {
+        return Messages.SUCCESSFUL_RETURN_MESSAGE;
+    }
 }

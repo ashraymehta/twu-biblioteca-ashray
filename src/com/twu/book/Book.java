@@ -14,9 +14,11 @@ public abstract class Book {
         this.id = id;
     }
 
-    public abstract void addToListIfAvailable(List<Book> availableList);
-
+    public abstract Book checkoutBook(List<Book> allBooks);
+    public abstract Book returnBook(List<Book> allBooks);
     public abstract String getAppropriateCheckoutMessage();
+    public abstract String getAppropriateReturnMessage();
+    public abstract void addToListIfAvailable(List<Book> availableList);
 
     public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
         if (title.toLowerCase().equals(titleToMatch.toLowerCase()))
@@ -43,7 +45,4 @@ public abstract class Book {
     public int hashCode() {
         return id;
     }
-
-    public abstract Book checkoutBook(List<Book> allBooks);
-    public abstract Book returnBook(List<Book> allBooks);
 }

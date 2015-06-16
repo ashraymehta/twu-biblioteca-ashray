@@ -25,6 +25,11 @@ public class CheckedOutBook extends Book {
     }
 
     @Override
+    public String getAppropriateReturnMessage() {
+        return Messages.UNSUCCESSFUL_RETURN_MESSAGE;
+    }
+
+    @Override
     public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
 
     }

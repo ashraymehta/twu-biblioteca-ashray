@@ -20,6 +20,11 @@ public class NullBook extends Book {
     }
 
     @Override
+    public String getAppropriateReturnMessage() {
+        return Messages.UNSUCCESSFUL_RETURN_MESSAGE;
+    }
+
+    @Override
     public Book checkoutBook(List<Book> allBooks) {
         return this;
     }
