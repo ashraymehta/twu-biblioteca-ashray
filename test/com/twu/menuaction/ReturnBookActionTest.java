@@ -1,7 +1,7 @@
 package com.twu.menuaction;
 
 import com.twu.Library;
-import com.twu.ReturnBookView;
+import com.twu.view.ReturnBookView;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

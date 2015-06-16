@@ -1,5 +1,6 @@
-package com.twu;
+package com.twu.view;
 
+import com.twu.Menu;
 import com.twu.menuaction.MenuAction;
 
 import java.io.PrintStream;

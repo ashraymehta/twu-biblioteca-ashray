@@ -1,7 +1,7 @@
 package com.twu.menuaction;
 
 import com.twu.Library;
-import com.twu.ReturnBookView;
+import com.twu.view.ReturnBookView;
 
 // Invokes printing of books, return of book and print successful or unsuccessful messages
 public class ReturnBookAction implements MenuAction {

@@ -1,6 +1,6 @@
 package com.twu.menuaction;
 
-import com.twu.CheckoutBookView;
+import com.twu.view.CheckoutBookView;
 import com.twu.Library;
 import com.twu.Searcher;
 import com.twu.book.Book;

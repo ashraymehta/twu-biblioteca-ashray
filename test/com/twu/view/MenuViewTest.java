@@ -1,6 +1,8 @@
-package com.twu;
+package com.twu.view;
 
+import com.twu.Menu;
 import com.twu.menuaction.MenuAction;
+import com.twu.view.MenuView;
 import org.junit.Before;
 import org.junit.Test;
 

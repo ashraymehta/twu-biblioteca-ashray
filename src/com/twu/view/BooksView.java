@@ -1,4 +1,6 @@
-package com.twu;
+package com.twu.view;
+
+import com.twu.Books;
 
 import java.io.PrintStream;
 

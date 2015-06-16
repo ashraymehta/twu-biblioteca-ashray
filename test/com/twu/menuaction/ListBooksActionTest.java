@@ -1,6 +1,6 @@
 package com.twu.menuaction;
 
-import com.twu.BooksView;
+import com.twu.view.BooksView;
 import com.twu.Library;
 import org.junit.Test;
 import org.junit.runner.RunWith;

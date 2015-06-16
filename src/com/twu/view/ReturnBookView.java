@@ -1,4 +1,7 @@
-package com.twu;
+package com.twu.view;
+
+import com.twu.Books;
+import com.twu.Messages;
 
 import java.io.PrintStream;
 import java.util.InputMismatchException;

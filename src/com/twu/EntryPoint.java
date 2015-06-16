@@ -4,6 +4,10 @@ import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 import com.twu.book.NullBook;
 import com.twu.menuaction.*;
+import com.twu.view.BooksView;
+import com.twu.view.CheckoutBookView;
+import com.twu.view.MenuView;
+import com.twu.view.ReturnBookView;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
