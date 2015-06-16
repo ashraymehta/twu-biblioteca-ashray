@@ -16,27 +16,27 @@ import java.util.Scanner;
 
 public class EntryPoint {
 
+    private static Scanner scanner;
+    private static ArrayList<Book> listOfAvailableBooks;
+    private static Books availableBooks;
+    private static PrintStream consoleOutStream;
+    private static ArrayList<Book> listOfCheckedOutBooks;
+    private static BooksView booksView;
+    private static ReturnBookView returnBookView;
+    private static CheckoutBookView checkoutBookView;
+    private static ArrayList<Book> allBooks;
+    private static Library library;
+    private static HashMap<Integer, String> menuItemsMappedToSerials;
+    private static HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Book> listOfAvailableBooks = getAvailableBooks();
-        Books availableBooks = new Books(listOfAvailableBooks);
-        PrintStream consoleOutStream = new PrintStream(System.out);
-        ArrayList<Book> listOfCheckedOutBooks = new ArrayList<>();
-        Books checkedOutBooks = new Books(listOfCheckedOutBooks);
-        BooksView booksView = new BooksView(availableBooks, consoleOutStream);
-        ReturnBookView returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
-        CheckoutBookView checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
-        ArrayList<Book> allBooks = new ArrayList<>();
-        allBooks.addAll(listOfAvailableBooks);
-        allBooks.addAll(listOfCheckedOutBooks);
+        initializeStreams();
+        initializeListOfBooks();
+        initializeViews();
         NullBook nullBook = new NullBook();
         Searcher searcher = new Searcher(nullBook);
-        Library library = new Library(listOfAvailableBooks, allBooks, searcher);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
-
-        HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();
-        HashMap<Integer, MenuAction> menuItemsMappedToMenuAction = new HashMap<>();
-        populateHashMaps(booksView, returnBookView, library, checkoutBookAction, menuItemsMappedToSerials, menuItemsMappedToMenuAction);
+        library = new Library(listOfAvailableBooks, allBooks, searcher);
+        populateHashMaps();
 
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
         MenuView menuView = new MenuView(menu, scanner, consoleOutStream);
@@ -46,10 +46,18 @@ public class EntryPoint {
         bibliotecaApp.start();
     }
 
-    private static void populateHashMaps(BooksView booksView, ReturnBookView returnBookView,
-                                         Library library, CheckoutBookAction checkoutBookAction,
-                                         HashMap<Integer, String> menuItemsMappedToSerials,
-                                         HashMap<Integer, MenuAction> menuItemsMappedToMenuAction) {
+    private static void initializeViews() {
+        Books checkedOutBooks = new Books(listOfCheckedOutBooks);
+        booksView = new BooksView(availableBooks, consoleOutStream);
+        returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
+        checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
+    }
+
+    private static void populateHashMaps() {
+        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
+
+        menuItemsMappedToSerials = new HashMap<>();
+        menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
         menuItemsMappedToMenuAction.put(1, new ListBooksAction(booksView, library));
         menuItemsMappedToSerials.put(2, "Checkout Book");
@@ -60,6 +68,21 @@ public class EntryPoint {
         menuItemsMappedToSerials.put(4, "Quit");
         menuItemsMappedToMenuAction.put(4, new QuitAction());
     }
+
+    private static void initializeStreams() {
+        scanner = new Scanner(System.in);
+        consoleOutStream = new PrintStream(System.out);
+    }
+
+    private static void initializeListOfBooks() {
+        listOfAvailableBooks = getAvailableBooks();
+        availableBooks = new Books(listOfAvailableBooks);
+        listOfCheckedOutBooks = new ArrayList<>();
+        allBooks = new ArrayList<>();
+        allBooks.addAll(listOfAvailableBooks);
+        allBooks.addAll(listOfCheckedOutBooks);
+    }
+
 
     private static ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> listOfAvailableBooks = new ArrayList<>();
