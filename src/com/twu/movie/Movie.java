@@ -57,4 +57,6 @@ public abstract class Movie {
     public abstract void addToListIfAvailable(List<Movie> availableMovies);
 
     public abstract Movie returnMovie();
+
+    public abstract String getAppropriateReturnMessage();
 }

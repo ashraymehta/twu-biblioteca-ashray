@@ -28,4 +28,9 @@ public class NullMovie extends Movie {
     public Movie returnMovie() {
         return this;
     }
+
+    @Override
+    public String getAppropriateReturnMessage() {
+        return Messages.UNSUCCESSFUL_MOVIE_RETURN_MESSAGE;
+    }
 }

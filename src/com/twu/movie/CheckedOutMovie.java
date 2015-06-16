@@ -29,6 +29,11 @@ public class CheckedOutMovie extends Movie {
         return AvailableMovie.create(this);
     }
 
+    @Override
+    public String getAppropriateReturnMessage() {
+        return Messages.UNSUCCESSFUL_MOVIE_RETURN_MESSAGE;
+    }
+
     public static CheckedOutMovie create(AvailableMovie availableMovie) {
         return new CheckedOutMovie(availableMovie.name, availableMovie.director, availableMovie.year,
                 availableMovie.movieRating);
