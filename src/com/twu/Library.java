@@ -64,7 +64,7 @@ public class Library {
     }
 
     public Movie returnMovie(Movie movie) {
-        availableMovies.remove(movie);
+        allMovies.remove(movie);
         movie = movie.returnMovie();
         allMovies.add(movie);
         return movie;

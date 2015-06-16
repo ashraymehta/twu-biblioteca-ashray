@@ -13,8 +13,6 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static junit.framework.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReturnMovieViewTest {
@@ -32,7 +30,7 @@ public class ReturnMovieViewTest {
         printStream = new PrintStream(outputStream);
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Title 1".getBytes());
         scanner = new Scanner(byteArrayInputStream);
-        returnMovieView = new ReturnMovieView(movies, scanner, printStream);
+        returnMovieView = new ReturnMovieView(scanner, printStream);
     }
 
     @Test
@@ -51,14 +49,5 @@ public class ReturnMovieViewTest {
         String expectedOutput = "Thank you! Enjoy the book." + System.lineSeparator();
 
         assertEquals(expectedOutput, actualOutput);
-    }
-
-    @Test
-    public void shouldDisplayMovies() throws Exception {
-        printStream = mock(PrintStream.class);
-        returnMovieView = new ReturnMovieView(movies, scanner, printStream);
-        returnMovieView.printMovies();
-
-        verify(printStream).println(movies);
     }
 }

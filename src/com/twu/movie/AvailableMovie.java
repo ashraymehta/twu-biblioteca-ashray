@@ -31,7 +31,7 @@ public class AvailableMovie extends Movie {
 
     @Override
     public String getAppropriateReturnMessage() {
-        return Messages.SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE;
+        return Messages.SUCCESSFUL_MOVIE_RETURN_MESSAGE;
     }
 
     public static AvailableMovie create(CheckedOutMovie checkedOutMovie) {

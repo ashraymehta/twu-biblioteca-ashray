@@ -31,6 +31,7 @@ public class EntryPoint {
     private static MoviesView moviesView;
     private static CheckoutMovieView checkoutMovieView;
     private static List<Movie> availableMovies;
+    private static ReturnMovieView returnMovieView;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -66,6 +67,7 @@ public class EntryPoint {
         Books checkedOutBooks = new Books(listOfCheckedOutBooks);
         booksView = new BooksView(availableBooks, consoleOutStream);
         returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
+        returnMovieView = new ReturnMovieView(scanner, consoleOutStream);
         checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
         checkoutMovieView = new CheckoutMovieView(scanner, consoleOutStream);
         moviesView = new MoviesView(new Movies(availableMovies), consoleOutStream);
@@ -86,8 +88,10 @@ public class EntryPoint {
         menuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView, library));
         menuItemsMappedToSerials.put(5, "Checkout Movie");
         menuItemsMappedToMenuAction.put(5, new CheckoutMovieAction(checkoutMovieView, library));
-        menuItemsMappedToSerials.put(6, "Quit");
-        menuItemsMappedToMenuAction.put(6, new QuitAction());
+        menuItemsMappedToSerials.put(6, "Return Movie");
+        menuItemsMappedToMenuAction.put(6, new ReturnMovieAction(returnMovieView, library));
+        menuItemsMappedToSerials.put(7, "Quit");
+        menuItemsMappedToMenuAction.put(7, new QuitAction());
     }
 
     private static void initializeStreams() {
