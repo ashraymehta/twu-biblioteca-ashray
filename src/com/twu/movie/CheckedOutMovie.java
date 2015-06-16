@@ -5,6 +5,11 @@ public class CheckedOutMovie extends Movie {
         super(name, director, year, movieRating);
     }
 
+    @Override
+    public Movie checkout() {
+        return null;
+    }
+
     public static CheckedOutMovie create(AvailableMovie availableMovie) {
         return new CheckedOutMovie(availableMovie.name, availableMovie.director, availableMovie.year,
                 availableMovie.movieRating);

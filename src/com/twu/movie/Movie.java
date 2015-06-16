@@ -42,4 +42,6 @@ public abstract class Movie {
         result = 31 * result + movieRating;
         return result;
     }
+
+    public abstract Movie checkout();
 }

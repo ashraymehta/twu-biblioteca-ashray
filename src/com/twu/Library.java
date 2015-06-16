@@ -42,4 +42,8 @@ public class Library {
     public Book searchBook(String title) {
         return bookSearcher.search(allBooks, title);
     }
+
+    public void checkoutMovie(Movie movie) {
+        movie.checkout();
+    }
 }

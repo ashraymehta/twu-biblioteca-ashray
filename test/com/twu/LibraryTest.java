@@ -4,6 +4,7 @@ import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 import com.twu.book.CheckedOutBook;
 import com.twu.movie.AvailableMovie;
+import com.twu.movie.CheckedOutMovie;
 import com.twu.movie.Movie;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,31 +26,43 @@ public class LibraryTest {
     @Mock
     BookSearcher bookSearcher;
 
-    private ArrayList<Book> availableBookArrayList;
-    private ArrayList<Book> checkedOutBooks;
+    private Set<Movie> allMovies;
     private ArrayList<Book> allBooks;
+    private Library library;
     private AvailableBook availableBookOne;
     private AvailableBook availableBookTwo;
     private CheckedOutBook checkedOutOutBookOne;
-    private Library library;
-    private Set<Movie> allMovies;
+
+    private AvailableMovie availableMovieOne;
+    private AvailableMovie availableMovieTwo;
+    private CheckedOutMovie checkedOutOutMovieOne;
+
 
     @Before
     public void setUp() throws Exception {
-        availableBookArrayList = new ArrayList<>();
         availableBookOne = new AvailableBook("Title 1", "Author 1", 1000);
-        availableBookArrayList.add(availableBookOne);
         availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500);
-        availableBookArrayList.add(availableBookTwo);
-        checkedOutBooks = new ArrayList<>();
         checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000);
+
+        ArrayList<Book> availableBookArrayList = new ArrayList<>();
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        availableBookArrayList.add(availableBookOne);
+        availableBookArrayList.add(availableBookTwo);
         checkedOutBooks.add(checkedOutOutBookOne);
+
         allBooks = new ArrayList<>();
+        allMovies = new HashSet<>();
+
+        availableMovieOne = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
+        availableMovieTwo = new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9);
+        checkedOutOutMovieOne = new CheckedOutMovie("The Dark Knight Rises", "Christopher Nolan", 2012, 9);
+
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
-        allMovies = new HashSet<>();
-        allMovies.add(new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9));
-        allMovies.add(new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9));
+        allMovies.add(availableMovieOne);
+        allMovies.add(availableMovieTwo);
+        allMovies.add(checkedOutOutMovieOne);
+
         library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher);
     }
 
@@ -91,5 +104,13 @@ public class LibraryTest {
         library.searchBook(title);
 
         verify(bookSearcher).search(allBooks, title);
+    }
+
+    @Test
+    public void shouldBeAbleToCheckoutAMovie() throws Exception {
+        availableMovieOne = mock(AvailableMovie.class);
+        library.checkoutMovie(availableMovieOne);
+
+        verify(availableMovieOne).checkout();
     }
 }
