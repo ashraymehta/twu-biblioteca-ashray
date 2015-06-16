@@ -5,10 +5,7 @@ import com.twu.book.Book;
 import com.twu.book.NullBook;
 import com.twu.menuaction.*;
 import com.twu.movie.Movie;
-import com.twu.view.BooksView;
-import com.twu.view.CheckoutBookView;
-import com.twu.view.MenuView;
-import com.twu.view.ReturnBookView;
+import com.twu.view.*;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -31,6 +28,7 @@ public class EntryPoint {
     private static HashMap<Integer, String> menuItemsMappedToSerials;
     private static HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
     private static ArrayList<Movie> allMovies;
+    private static MoviesView moviesView;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -58,13 +56,16 @@ public class EntryPoint {
 
     private static void initializeViews() {
         Books checkedOutBooks = new Books(listOfCheckedOutBooks);
+        Movies movies = new Movies(allMovies);
         booksView = new BooksView(availableBooks, consoleOutStream);
         returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
         checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
+        moviesView = new MoviesView(movies, consoleOutStream);
     }
 
     private static void populateHashMaps() {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
+        MenuAction returnBookAction = new ReturnBookAction(returnBookView, library);
         menuItemsMappedToSerials = new HashMap<>();
         menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
@@ -72,10 +73,11 @@ public class EntryPoint {
         menuItemsMappedToSerials.put(2, "Checkout Book");
         menuItemsMappedToMenuAction.put(2, checkoutBookAction);
         menuItemsMappedToSerials.put(3, "Return Book");
-        MenuAction returnBookAction = new ReturnBookAction(returnBookView, library);
         menuItemsMappedToMenuAction.put(3, returnBookAction);
-        menuItemsMappedToSerials.put(4, "Quit");
-        menuItemsMappedToMenuAction.put(4, new QuitAction());
+        menuItemsMappedToSerials.put(4, "List movies");
+        menuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView));
+        menuItemsMappedToSerials.put(5, "Quit");
+        menuItemsMappedToMenuAction.put(5, new QuitAction());
     }
 
     private static void initializeStreams() {
