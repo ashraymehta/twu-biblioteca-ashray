@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// Holds the available and the checked out books; provides APIs to checkout and return a book
+// Holds the available and the checked out books; provides APIs to checkoutBook and return a book
 public class Library {
 
     public final ArrayList<Book> allBooks;
@@ -37,7 +37,7 @@ public class Library {
     }
 
     public Book checkoutBook(Book toBeCheckedOut) {
-        return toBeCheckedOut.checkout(allBooks);
+        return toBeCheckedOut.checkoutBook(allBooks);
     }
 
     public boolean returnBook(int bookIndex) {

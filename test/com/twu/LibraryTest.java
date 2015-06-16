@@ -110,6 +110,6 @@ public class LibraryTest {
         availableBookOne = mock(AvailableBook.class);
         library.checkoutBook(availableBookOne);
 
-        verify(availableBookOne).checkout(allBooks);
+        verify(availableBookOne).checkoutBook(allBooks);
     }
 }

@@ -5,7 +5,7 @@ import com.twu.Library;
 import com.twu.Searcher;
 import com.twu.book.Book;
 
-// Invokes printing of books, checkout of book and print successful or unsuccessful messages
+// Invokes printing of books, checkoutBook of book and print successful or unsuccessful messages
 public class CheckoutBookAction implements MenuAction {
 
     private CheckoutBookView checkoutBookView;

@@ -46,4 +46,17 @@ public class CheckedOutBookTest {
 
         assertEquals(actualMessage, Messages.SUCCESSFUL_CHECKOUT_MESSAGE);
     }
+
+    @Test
+    public void shouldBeAbleToReturnItself() throws Exception {
+        String title = "Harry Potter and the Philosopher's Stone";
+        String author = "JK Rowling";
+        int yearPublished = 1997;
+        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, 1);
+        List<Book> allBooks = new ArrayList<>();
+        book.returnBook(allBooks);
+        Book newBook = allBooks.get(0);
+
+        assertTrue(newBook instanceof AvailableBook);
+    }
 }

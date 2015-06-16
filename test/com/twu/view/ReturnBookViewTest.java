@@ -40,7 +40,7 @@ public class ReturnBookViewTest {
 
         assertEquals(expectedInput, actualInput);
     }
-    
+
     @Test
     public void shouldGetBookTitleFromConsole() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Title 1".getBytes());

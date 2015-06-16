@@ -43,7 +43,7 @@ public class AvailableBookTest {
         int yearPublished = 1997;
         AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
         List<Book> allBooks = new ArrayList<>();
-        book.checkout(allBooks);
+        book.checkoutBook(allBooks);
         Book newBook = allBooks.get(0);
 
         assertTrue(newBook instanceof CheckedOutBook);

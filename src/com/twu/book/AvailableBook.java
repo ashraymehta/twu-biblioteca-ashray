@@ -14,11 +14,16 @@ public class AvailableBook extends Book {
                 checkedOutBook.yearPublished, checkedOutBook.id);
     }
 
-    public Book checkout(List<Book> allBooks) {
+    public Book checkoutBook(List<Book> allBooks) {
         allBooks.remove(this);
         CheckedOutBook checkedOutBook = CheckedOutBook.create(this);
         allBooks.add(checkedOutBook);
         return checkedOutBook;
+    }
+
+    @Override
+    public Book returnBook(List<Book> allBooks) {
+        return this;
     }
 
     @Override
