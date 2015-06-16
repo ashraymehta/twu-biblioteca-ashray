@@ -39,4 +39,14 @@ public class ReturnMovieViewTest {
 
         assertEquals(expectedInput, actualInput);
     }
+
+    @Test
+    public void shouldDisplayMessage() throws Exception {
+        returnMovieView.printMessage("Thank you! Enjoy the book.");
+
+        String actualOutput = outputStream.toString();
+        String expectedOutput = "Thank you! Enjoy the book." + System.lineSeparator();
+
+        assertEquals(expectedOutput, actualOutput);
+    }
 }
