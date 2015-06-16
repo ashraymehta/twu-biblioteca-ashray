@@ -1,5 +1,7 @@
 package com.twu.view;
 
+import com.twu.Movies;
+
 import java.io.PrintStream;
 
 public class MoviesView {
