@@ -31,7 +31,7 @@ public class NullBook extends Book {
     }
 
     @Override
-    public Book returnBook(List<Book> allBooks) {
+    public Book returnBook() {
         return this;
     }
 }

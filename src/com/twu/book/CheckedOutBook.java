@@ -36,10 +36,7 @@ public class CheckedOutBook extends Book {
     }
 
     @Override
-    public Book returnBook(List<Book> allBooks) {
-        allBooks.remove(this);
-        AvailableBook availableBook = AvailableBook.create(this);
-        allBooks.add(availableBook);
-        return availableBook;
+    public Book returnBook() {
+        return AvailableBook.create(this);
     }
 }

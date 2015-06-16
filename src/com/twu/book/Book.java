@@ -14,7 +14,7 @@ public abstract class Book {
     }
 
     public abstract Book checkoutBook();
-    public abstract Book returnBook(List<Book> allBooks);
+    public abstract Book returnBook();
     public abstract String getAppropriateCheckoutMessage();
     public abstract String getAppropriateReturnMessage();
     public abstract void addToListIfAvailable(List<Book> availableList);

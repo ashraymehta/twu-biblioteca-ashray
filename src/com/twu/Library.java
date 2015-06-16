@@ -51,8 +51,11 @@ public class Library {
         return toBeCheckedOut;
     }
 
-    public Book returnBook(Book toBeCheckedOut) {
-        return toBeCheckedOut.returnBook(allBooks);
+    public Book returnBook(Book toBeReturned) {
+        allBooks.remove(toBeReturned);
+        toBeReturned = toBeReturned.returnBook();
+        allBooks.add(toBeReturned);
+        return toBeReturned;
     }
 
     public Book searchBook(String title) {
