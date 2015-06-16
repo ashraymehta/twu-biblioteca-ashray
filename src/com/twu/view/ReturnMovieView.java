@@ -24,4 +24,8 @@ public class ReturnMovieView {
     public void printMessage(String message) {
         printStream.println(message);
     }
+
+    public void printMovies() {
+        printStream.println(movies);
+    }
 }
