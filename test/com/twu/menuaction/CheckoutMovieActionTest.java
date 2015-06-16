@@ -47,4 +47,11 @@ public class CheckoutMovieActionTest {
 
         verify(library).searchMovie("Title");
     }
+
+    @Test
+    public void shouldCheckoutMovieFromLibrary() throws Exception {
+        checkoutMovieAction.perform();
+
+        verify(library).checkoutMovie(availableMovie);
+    }
 }
