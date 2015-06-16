@@ -2,49 +2,53 @@ package com.twu;
 
 import com.twu.book.AvailableBook;
 import com.twu.book.Book;
+import com.twu.book.CheckedOutBook;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class LibraryTest {
 
-    private ArrayList<Book> bookArrayList;
+    private ArrayList<Book> availableBookArrayList;
     private ArrayList<Book> checkedOutBooks;
-    private Book bookOne;
-    private Book bookTwo;
-    private Book checkoutOutBookOne;
+    private AvailableBook availableBookOne;
+    private AvailableBook availableBookTwo;
+    private CheckedOutBook checkoutOutBookOne;
     private Library library;
 
     @Before
     public void setUp() throws Exception {
-        bookArrayList = new ArrayList<>();
-        bookOne = new AvailableBook("Title 1", "Author 1", 1000, 1);
-        bookArrayList.add(bookOne);
-        bookTwo = new AvailableBook("Title 2", "Author 2", 1500, 2);
-        bookArrayList.add(bookTwo);
+        availableBookArrayList = new ArrayList<>();
+        availableBookOne = new AvailableBook("Title 1", "Author 1", 1000, 1);
+        availableBookArrayList.add(availableBookOne);
+        availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500, 2);
+        availableBookArrayList.add(availableBookTwo);
         checkedOutBooks = new ArrayList<>();
-        checkoutOutBookOne = new AvailableBook("Title 3", "Author 3", 2000, 3);
+        checkoutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, 3);
         checkedOutBooks.add(checkoutOutBookOne);
         ArrayList<Book> allBooks = new ArrayList<>();
-        library = new Library(bookArrayList, checkedOutBooks, allBooks);
+        allBooks.addAll(availableBookArrayList);
+        allBooks.addAll(checkedOutBooks);
+        library = new Library(availableBookArrayList, checkedOutBooks, allBooks);
     }
 
     @Test
     public void shouldCheckoutBook() throws Exception {
         library.checkoutBook(0);
 
-        assertFalse(bookArrayList.contains(bookOne));
+        assertFalse(availableBookArrayList.contains(availableBookOne));
     }
 
     @Test
     public void shouldAddCheckoutBookToListOfCheckedOutBooks() throws Exception {
         library.checkoutBook(0);
 
-        assertTrue(checkedOutBooks.contains(bookOne));
+        assertTrue(checkedOutBooks.contains(availableBookOne));
     }
 
     @Test
@@ -72,7 +76,7 @@ public class LibraryTest {
     public void shouldAddReturnedBookToListOfAvailableBooks() throws Exception {
         library.returnBook(0);
 
-        assertTrue(bookArrayList.contains(checkoutOutBookOne));
+        assertTrue(availableBookArrayList.contains(checkoutOutBookOne));
     }
 
     @Test
@@ -80,5 +84,15 @@ public class LibraryTest {
         boolean actualResult = library.returnBook(-5);
 
         assertFalse(actualResult);
+    }
+
+    @Test
+    public void shouldReturnAvailableBooks() throws Exception {
+        List<Book> actualResult = library.getAvailableBooks();
+        List<AvailableBook> availableBooks = new ArrayList<>();
+        availableBooks.add(availableBookOne);
+        availableBooks.add(availableBookTwo);
+
+        assertTrue(actualResult.equals(availableBooks));
     }
 }

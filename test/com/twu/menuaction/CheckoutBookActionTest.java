@@ -4,10 +4,8 @@ import com.twu.CheckoutBookView;
 import com.twu.Library;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CheckoutBookActionTest {
     private Library library;
@@ -23,7 +21,7 @@ public class CheckoutBookActionTest {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
 
-        Mockito.verify(checkoutBookView).printListOfBooks();
+        verify(checkoutBookView).printListOfBooks();
     }
 
     @Test
@@ -32,7 +30,7 @@ public class CheckoutBookActionTest {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
 
-        Mockito.verify(checkoutBookView).getSelection();
+        verify(checkoutBookView).getSelection();
     }
 
     @Test
@@ -42,7 +40,7 @@ public class CheckoutBookActionTest {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
 
-        Mockito.verify(library).checkoutBook(0);
+        verify(library).checkoutBook(0);
     }
 
     @Test
@@ -53,7 +51,7 @@ public class CheckoutBookActionTest {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
 
-        Mockito.verify(checkoutBookView).printSuccessfulCheckoutMessage();
+        verify(checkoutBookView).printSuccessfulCheckoutMessage();
     }
 
     @Test
@@ -64,6 +62,6 @@ public class CheckoutBookActionTest {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         checkoutBookAction.perform();
 
-        Mockito.verify(checkoutBookView).printUnsuccessfulCheckoutMessage();
+        verify(checkoutBookView).printUnsuccessfulCheckoutMessage();
     }
 }

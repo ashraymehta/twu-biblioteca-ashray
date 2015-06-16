@@ -46,7 +46,7 @@ public class CheckoutBookViewTest {
         Scanner scanner = new Scanner(byteArrayInputStream);
         CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, printStream);
 
-        String actualInput = checkoutBookView.getBook();
+        String actualInput = checkoutBookView.getBookTitle();
         String expectedInput = "Title 1";
 
         assertEquals(expectedInput, actualInput);

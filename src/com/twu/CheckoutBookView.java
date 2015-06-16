@@ -41,7 +41,7 @@ public class CheckoutBookView {
         printStream.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
     }
 
-    public String getBook() {
+    public String getBookTitle() {
         return scanner.nextLine();
     }
 }
