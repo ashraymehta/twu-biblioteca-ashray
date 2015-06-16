@@ -15,7 +15,7 @@ public class NullBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        nullBook = new NullBook(title, author, yearPublished, 1);
+        nullBook = new NullBook();
     }
 
     @Test

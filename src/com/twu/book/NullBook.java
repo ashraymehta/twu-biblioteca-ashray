@@ -5,8 +5,8 @@ import com.twu.Messages;
 import java.util.List;
 
 public class NullBook extends Book {
-    public NullBook(String title, String author, int yearPublished, int id) {
-        super(title, author, yearPublished, id);
+    public NullBook() {
+        super(null, null, 0, 0);
     }
 
     @Override

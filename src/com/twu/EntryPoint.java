@@ -2,6 +2,7 @@ package com.twu;
 
 import com.twu.book.AvailableBook;
 import com.twu.book.Book;
+import com.twu.book.NullBook;
 import com.twu.menuaction.*;
 
 import java.io.PrintStream;
@@ -23,7 +24,8 @@ public class EntryPoint {
         CheckoutBookView checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
         ArrayList<Book> allBooks = new ArrayList<>();
         Library library = new Library(listOfAvailableBooks, listOfCheckedOutBooks, allBooks);
-        Searcher searcher = new Searcher(listOfAvailableBooks);
+        NullBook nullBook = new NullBook();
+        Searcher searcher = new Searcher(listOfAvailableBooks, nullBook);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
 
         HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();

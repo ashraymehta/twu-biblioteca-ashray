@@ -29,6 +29,9 @@ public class CheckoutBookActionTest {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
         when(checkoutBookView.getBookTitle()).thenReturn("Title");
+        AvailableBook availableBook = mock(AvailableBook.class);
+        when(searcher.search("Title")).thenReturn(availableBook);
+        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(searcher).search("Title");
@@ -38,6 +41,10 @@ public class CheckoutBookActionTest {
     public void shouldDisplayListOfBooks() throws Exception {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
+        when(checkoutBookView.getBookTitle()).thenReturn("Title");
+        AvailableBook availableBook = mock(AvailableBook.class);
+        when(searcher.search("Title")).thenReturn(availableBook);
+        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(checkoutBookView).printListOfBooks();
@@ -47,6 +54,10 @@ public class CheckoutBookActionTest {
     public void shouldTakeInput() throws Exception {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
+        when(checkoutBookView.getBookTitle()).thenReturn("Title");
+        AvailableBook availableBook = mock(AvailableBook.class);
+        when(searcher.search("Title")).thenReturn(availableBook);
+        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(checkoutBookView).getBookTitle();
@@ -57,8 +68,9 @@ public class CheckoutBookActionTest {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
         when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = new AvailableBook("Title", "Author", 1000, 12);
+        AvailableBook availableBook = mock(AvailableBook.class);
         when(searcher.search("Title")).thenReturn(availableBook);
+        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(library).checkoutBook(availableBook);
