@@ -7,9 +7,9 @@ import java.util.ArrayList;
 // Holds the available and the checked out books; provides APIs to checkout and return a book
 public class Library {
 
+    public final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;
     private final ArrayList<Book> checkedOutBooks;
-    public final ArrayList<Book> allBooks;
 
     public Library(ArrayList<Book> availableBooks, ArrayList<Book> checkedOutBooks, ArrayList<Book> allBooks) {
         this.availableBooks = availableBooks;

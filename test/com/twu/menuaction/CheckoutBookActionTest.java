@@ -2,7 +2,6 @@ package com.twu.menuaction;
 
 import com.twu.CheckoutBookView;
 import com.twu.Library;
-import com.twu.menuaction.CheckoutBookAction;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

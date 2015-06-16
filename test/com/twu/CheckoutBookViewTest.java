@@ -41,6 +41,18 @@ public class CheckoutBookViewTest {
     }
 
     @Test
+    public void shouldGetBookTitleFromConsole() throws Exception {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Title 1".getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        CheckoutBookView checkoutBookView = new CheckoutBookView(books, scanner, printStream);
+
+        String actualInput = checkoutBookView.getBook();
+        String expectedInput = "Title 1";
+
+        assertEquals(expectedInput, actualInput);
+    }
+
+    @Test
     public void shouldDisplayListOfBooksWithSerialNumbers() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
         when(books.getBooksWithSerialsAsString()).thenReturn("1. Title Author Year");

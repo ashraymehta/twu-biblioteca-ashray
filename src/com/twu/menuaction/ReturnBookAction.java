@@ -18,7 +18,7 @@ public class ReturnBookAction implements MenuAction {
         returnBookView.printListOfBooks();
         int selection = returnBookView.getSelection();
         boolean isBookReturned = library.returnBook(selection - 1);
-        if(isBookReturned)
+        if (isBookReturned)
             returnBookView.printSuccessfulReturnMessage();
         returnBookView.printUnsuccessfulReturnMessage();
     }
