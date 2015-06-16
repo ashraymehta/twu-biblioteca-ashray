@@ -1,6 +1,6 @@
 package com.twu.movie;
 
-// Represents a Movie
+// Represents a Movie with comparison checks for the object as well as some properties
 public class Movie {
     private String name;
     private int year;

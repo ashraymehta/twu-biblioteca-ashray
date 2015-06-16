@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
 
-// Represents a Movie with comparison checks for the object as well as some properties
 public class MovieTest {
 
     @Test

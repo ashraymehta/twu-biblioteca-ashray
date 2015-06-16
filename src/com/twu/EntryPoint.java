@@ -4,6 +4,7 @@ import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 import com.twu.book.NullBook;
 import com.twu.menuaction.*;
+import com.twu.movie.Movie;
 import com.twu.view.BooksView;
 import com.twu.view.CheckoutBookView;
 import com.twu.view.MenuView;
@@ -29,6 +30,7 @@ public class EntryPoint {
     private static Library library;
     private static HashMap<Integer, String> menuItemsMappedToSerials;
     private static HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
+    private static ArrayList<Movie> allMovies;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -36,7 +38,7 @@ public class EntryPoint {
         initializeViews();
         NullBook nullBook = new NullBook();
         BookSearcher bookSearcher = new BookSearcher(nullBook);
-        library = new Library(listOfAvailableBooks, allBooks, bookSearcher);
+        library = new Library(listOfAvailableBooks, allBooks, allMovies, bookSearcher);
         populateHashMaps();
 
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
@@ -82,6 +84,9 @@ public class EntryPoint {
         allBooks = new ArrayList<>();
         allBooks.addAll(listOfAvailableBooks);
         allBooks.addAll(listOfCheckedOutBooks);
+        allMovies = new ArrayList<>();
+        allMovies.add(new Movie("Batman Begins", "Christopher Nolan", 2005, 9));
+        allMovies.add(new Movie("The Dark Knight", "Christopher Nolan", 2008, 9));
     }
 
 

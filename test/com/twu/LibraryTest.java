@@ -3,6 +3,7 @@ package com.twu;
 import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 import com.twu.book.CheckedOutBook;
+import com.twu.movie.Movie;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,7 @@ public class LibraryTest {
     private AvailableBook availableBookTwo;
     private CheckedOutBook checkedOutOutBookOne;
     private Library library;
+    private ArrayList<Movie> allMovies;
 
     @Before
     public void setUp() throws Exception {
@@ -42,7 +44,11 @@ public class LibraryTest {
         allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
-        library = new Library(availableBookArrayList, allBooks, bookSearcher);
+        allMovies = new ArrayList<>();
+        allMovies = new ArrayList<>();
+        allMovies.add(new Movie("Batman Begins", "Christopher Nolan", 2005, 9));
+        allMovies.add(new Movie("The Dark Knight", "Christopher Nolan", 2008, 9));
+        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher);
     }
 
     @Test

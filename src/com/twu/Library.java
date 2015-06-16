@@ -1,6 +1,7 @@
 package com.twu;
 
 import com.twu.book.Book;
+import com.twu.movie.Movie;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,11 +12,13 @@ public class Library {
 
     private final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;
+    private final ArrayList<Movie> allMovies;
     private final BookSearcher bookSearcher;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, BookSearcher bookSearcher) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, ArrayList<Movie> allMovies, BookSearcher bookSearcher) {
         this.availableBooks = availableBooks;
         this.allBooks = allBooks;
+        this.allMovies = allMovies;
         this.bookSearcher = bookSearcher;
     }
 
