@@ -1,7 +1,6 @@
 package com.twu.view;
 
 import com.twu.Books;
-import com.twu.view.ReturnBookView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +37,18 @@ public class ReturnBookViewTest {
 
         int actualInput = returnBookView.getSelection();
         int expectedInput = 5;
+
+        assertEquals(expectedInput, actualInput);
+    }
+    
+    @Test
+    public void shouldGetBookTitleFromConsole() throws Exception {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Title 1".getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        ReturnBookView returnBookView = new ReturnBookView(books, scanner, printStream);
+
+        String actualInput = returnBookView.getBookTitle();
+        String expectedInput = "Title 1";
 
         assertEquals(expectedInput, actualInput);
     }

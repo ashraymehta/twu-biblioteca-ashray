@@ -33,6 +33,10 @@ public class CheckoutBookView {
         }
     }
 
+    public String getBookTitle() {
+        return scanner.nextLine();
+    }
+
     public void printListOfBooks() {
         String booksString = books.getBooksWithSerialsAsString();
         printStream.println(booksString);
@@ -48,9 +52,5 @@ public class CheckoutBookView {
 
     public void printUnsuccessfulCheckoutMessage() {
         printStream.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
-    }
-
-    public String getBookTitle() {
-        return scanner.nextLine();
     }
 }
