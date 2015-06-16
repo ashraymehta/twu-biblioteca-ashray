@@ -12,7 +12,9 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -30,7 +32,7 @@ public class LibraryTest {
     private AvailableBook availableBookTwo;
     private CheckedOutBook checkedOutOutBookOne;
     private Library library;
-    private ArrayList<Movie> allMovies;
+    private Set<Movie> allMovies;
 
     @Before
     public void setUp() throws Exception {
@@ -45,8 +47,7 @@ public class LibraryTest {
         allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
-        allMovies = new ArrayList<>();
-        allMovies = new ArrayList<>();
+        allMovies = new HashSet<>();
         allMovies.add(new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9));
         allMovies.add(new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9));
         library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher);

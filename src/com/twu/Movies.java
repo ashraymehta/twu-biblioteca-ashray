@@ -2,13 +2,12 @@ package com.twu;
 
 import com.twu.movie.Movie;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class Movies {
-    private List<Movie> listOfMovies;
+    private Set<Movie> listOfMovies;
 
-    public Movies(ArrayList<Movie> listOfMovies) {
+    public Movies(Set<Movie> listOfMovies) {
         this.listOfMovies = listOfMovies;
     }
 

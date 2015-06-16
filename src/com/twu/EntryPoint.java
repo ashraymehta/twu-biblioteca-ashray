@@ -9,9 +9,7 @@ import com.twu.movie.Movie;
 import com.twu.view.*;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 // Entry point for the application
 public class EntryPoint {
@@ -28,7 +26,7 @@ public class EntryPoint {
     private static Library library;
     private static HashMap<Integer, String> menuItemsMappedToSerials;
     private static HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
-    private static ArrayList<Movie> allMovies;
+    private static Set<Movie> allMovies;
     private static MoviesView moviesView;
 
     public static void main(String[] args) {
@@ -50,7 +48,7 @@ public class EntryPoint {
     }
 
     private static void initializeListOfMovies() {
-        allMovies = new ArrayList<>();
+        allMovies = new HashSet<>();
         allMovies.add(new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9));
         allMovies.add(new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9));
     }

@@ -6,16 +6,17 @@ import com.twu.movie.Movie;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 // Holds the available and the checked out books; provides APIs to checkoutBook and return a book
 public class Library {
 
     private final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;
-    private final ArrayList<Movie> allMovies;
+    private final Set<Movie> allMovies;
     private final BookSearcher bookSearcher;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, ArrayList<Movie> allMovies, BookSearcher bookSearcher) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Set<Movie> allMovies, BookSearcher bookSearcher) {
         this.availableBooks = availableBooks;
         this.allBooks = allBooks;
         this.allMovies = allMovies;
