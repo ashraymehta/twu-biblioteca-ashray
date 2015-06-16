@@ -33,6 +33,10 @@ public class CheckoutBookView {
         printStream.println(booksString);
     }
 
+    public void printMessage(String message) {
+        printStream.println(message);
+    }
+
     public void printSuccessfulCheckoutMessage() {
         printStream.println(SUCCESSFUL_CHECKOUT_MESSAGE);
     }
