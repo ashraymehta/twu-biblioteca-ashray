@@ -30,11 +30,6 @@ public class CheckedOutBook extends Book {
     }
 
     @Override
-    public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
-
-    }
-
-    @Override
     public Book checkoutBook(List<Book> allBooks) {
         return this;
     }

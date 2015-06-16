@@ -48,7 +48,7 @@ public class ReturnBookActionTest {
 
         Mockito.verify(library).returnBook(checkedOutBook);
     }
-    
+
     @Test
     public void shouldGetAppropriateMessageFromBook() throws Exception {
         returnBookAction.perform();
