@@ -4,15 +4,15 @@ import com.twu.movie.AvailableMovie;
 import com.twu.movie.Movie;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
 public class MoviesTest {
     @Test
     public void shouldPresentDetailsOfAllMoviesAsString() throws Exception {
-        Set<Movie> movieArrayList = new HashSet<>();
+        List<Movie> movieArrayList = new ArrayList<>();
         movieArrayList.add(new AvailableMovie("Name", "Director", 2000, 5));
         movieArrayList.add(new AvailableMovie("Name", "Director", 2005, 10));
         Movies movies = new Movies(movieArrayList);

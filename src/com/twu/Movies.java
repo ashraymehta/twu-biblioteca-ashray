@@ -2,19 +2,19 @@ package com.twu;
 
 import com.twu.movie.Movie;
 
-import java.util.Set;
+import java.util.List;
 
 public class Movies {
-    private Set<Movie> listOfMovies;
+    private List<Movie> movieSet;
 
-    public Movies(Set<Movie> listOfMovies) {
-        this.listOfMovies = listOfMovies;
+    public Movies(List<Movie> movieSet) {
+        this.movieSet = movieSet;
     }
 
     @Override
     public String toString() {
         String listOfBooksAsString = "";
-        for (Movie movie : listOfMovies)
+        for (Movie movie : movieSet)
             listOfBooksAsString += movie + System.lineSeparator();
         return listOfBooksAsString;
     }

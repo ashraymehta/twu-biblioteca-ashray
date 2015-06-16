@@ -54,19 +54,21 @@ public class EntryPoint {
 
     private static void initializeListOfMovies() {
         allMovies = new HashSet<>();
-        allMovies.add(new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9));
-        allMovies.add(new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9));
         availableMovies = new ArrayList<>();
+        AvailableMovie availableMovieOne = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
+        AvailableMovie availableMovieTwo = new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9);
+        availableMovies.add(availableMovieOne);
+        availableMovies.add(availableMovieTwo);
+        allMovies.addAll(availableMovies);
     }
 
     private static void initializeViews() {
         Books checkedOutBooks = new Books(listOfCheckedOutBooks);
-        Movies movies = new Movies(allMovies);
         booksView = new BooksView(availableBooks, consoleOutStream);
         returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
         checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
         checkoutMovieView = new CheckoutMovieView(scanner, consoleOutStream);
-        moviesView = new MoviesView(movies, consoleOutStream);
+        moviesView = new MoviesView(new Movies(availableMovies), consoleOutStream);
     }
 
     private static void populateHashMaps() {
@@ -81,7 +83,7 @@ public class EntryPoint {
         menuItemsMappedToSerials.put(3, "Return Book");
         menuItemsMappedToMenuAction.put(3, returnBookAction);
         menuItemsMappedToSerials.put(4, "List movies");
-        menuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView));
+        menuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView, library));
         menuItemsMappedToSerials.put(5, "Checkout Movie");
         menuItemsMappedToMenuAction.put(5, new CheckoutMovieAction(checkoutMovieView, library));
         menuItemsMappedToSerials.put(6, "Quit");

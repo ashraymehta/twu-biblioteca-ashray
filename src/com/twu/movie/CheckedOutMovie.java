@@ -16,7 +16,7 @@ public class CheckedOutMovie extends Movie {
 
     @Override
     public String getAppropriateCheckoutMessage() {
-        return Messages.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
+        return Messages.SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE;
     }
 
     @Override
