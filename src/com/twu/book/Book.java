@@ -16,6 +16,11 @@ public abstract class Book {
 
     public abstract void addToListIfAvailable(List<Book> availableList);
 
+    public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
+        if (title.toLowerCase().equals(titleToMatch.toLowerCase()))
+            books.add(this);
+    }
+
     @Override
     public String toString() {
         return String.format("%-5d", id) + String.format("%-50s", title) + String.format("%-30s", author)
@@ -36,6 +41,4 @@ public abstract class Book {
     public int hashCode() {
         return id;
     }
-
-    public abstract void addToListIfTitleMatches(List<Book> books, String titleToMatch);
 }

@@ -21,10 +21,4 @@ public class AvailableBook extends Book {
     public void addToListIfAvailable(List<Book> availableList) {
         availableList.add(this);
     }
-
-    @Override
-    public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
-        if (title.toLowerCase().equals(titleToMatch.toLowerCase()))
-            books.add(this);
-    }
 }
