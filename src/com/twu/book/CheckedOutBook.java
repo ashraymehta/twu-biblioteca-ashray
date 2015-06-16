@@ -1,5 +1,7 @@
 package com.twu.book;
 
+import com.twu.Messages;
+
 import java.util.List;
 
 public class CheckedOutBook extends Book {
@@ -15,6 +17,11 @@ public class CheckedOutBook extends Book {
     @Override
     public void addToListIfAvailable(List<Book> availableList) {
 
+    }
+
+    @Override
+    public String getAppropriateCheckoutMessage() {
+        return Messages.SUCCESSFUL_CHECKOUT_MESSAGE;
     }
 
     @Override

@@ -16,6 +16,8 @@ public abstract class Book {
 
     public abstract void addToListIfAvailable(List<Book> availableList);
 
+    public abstract String getAppropriateCheckoutMessage();
+
     public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
         if (title.toLowerCase().equals(titleToMatch.toLowerCase()))
             books.add(this);

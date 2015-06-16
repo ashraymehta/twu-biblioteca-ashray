@@ -28,8 +28,7 @@ public class CheckoutBookAction implements MenuAction {
         library.checkoutBook((AvailableBook) matchingBook);
         if (matchingBook != null) {
             checkoutBookView.printSuccessfulCheckoutMessage();
-        }
-        else {
+        } else {
             checkoutBookView.printUnsuccessfulCheckoutMessage();
         }
     }

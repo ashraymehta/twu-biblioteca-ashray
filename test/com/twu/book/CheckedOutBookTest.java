@@ -1,5 +1,6 @@
 package com.twu.book;
 
+import com.twu.Messages;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -33,5 +34,16 @@ public class CheckedOutBookTest {
         book.addToListIfAvailable(availableList);
 
         assertTrue(availableList.contains(book));
+    }
+
+    @Test
+    public void shouldReturnSuccessfulCheckoutMessage() throws Exception {
+        String title = "Harry Potter and the Philosopher's Stone";
+        String author = "JK Rowling";
+        int yearPublished = 1997;
+        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, 1);
+        String actualMessage = book.getAppropriateCheckoutMessage();
+
+        assertEquals(actualMessage, Messages.SUCCESSFUL_CHECKOUT_MESSAGE);
     }
 }
