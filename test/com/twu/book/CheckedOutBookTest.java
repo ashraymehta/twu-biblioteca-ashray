@@ -48,7 +48,7 @@ public class CheckedOutBookTest {
     }
 
     @Test
-    public void shouldBeAbleToReturnItself() throws Exception {
+    public void shouldBeAbleToReturnItselfToTheLibrary() throws Exception {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;

@@ -43,8 +43,10 @@ public class Library {
         return bookSearcher.search(allBooks, title);
     }
 
-    public void checkoutMovie(Movie movie) {
+    public Movie checkoutMovie(Movie movie) {
         allMovies.remove(movie);
-        movie.checkout();
+        movie = movie.checkout();
+        allMovies.add(movie);
+        return movie;
     }
 }
