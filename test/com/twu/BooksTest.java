@@ -13,8 +13,8 @@ public class BooksTest {
     @Test
     public void shouldPresentDetailsOfAllBooksAsString() throws Exception {
         ArrayList<Book> bookArrayList = new ArrayList<>();
-        bookArrayList.add(new AvailableBook("Title 1", "Author 1", 1000, 1));
-        bookArrayList.add(new AvailableBook("Title 2", "Author 2", 1500, 2));
+        bookArrayList.add(new AvailableBook("Title 1", "Author 1", 1000));
+        bookArrayList.add(new AvailableBook("Title 2", "Author 2", 1500));
         Books books = new Books(bookArrayList);
 
         String actualString = books.toString();
@@ -29,8 +29,8 @@ public class BooksTest {
     @Test
     public void shouldPresentDetailsOfBooksWithSerialsAsString() throws Exception {
         ArrayList<Book> bookArrayList = new ArrayList<>();
-        bookArrayList.add(new AvailableBook("Title 1", "Author 1", 1000, 1));
-        bookArrayList.add(new AvailableBook("Title 2", "Author 2", 1500, 2));
+        bookArrayList.add(new AvailableBook("Title 1", "Author 1", 1000));
+        bookArrayList.add(new AvailableBook("Title 2", "Author 2", 1500));
         Books books = new Books(bookArrayList);
 
         String actualString = books.getBooksWithSerialsAsString();

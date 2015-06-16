@@ -33,12 +33,12 @@ public class LibraryTest {
     @Before
     public void setUp() throws Exception {
         availableBookArrayList = new ArrayList<>();
-        availableBookOne = new AvailableBook("Title 1", "Author 1", 1000, 1);
+        availableBookOne = new AvailableBook("Title 1", "Author 1", 1000);
         availableBookArrayList.add(availableBookOne);
-        availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500, 2);
+        availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500);
         availableBookArrayList.add(availableBookTwo);
         checkedOutBooks = new ArrayList<>();
-        checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, 3);
+        checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000);
         checkedOutBooks.add(checkedOutOutBookOne);
         allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
@@ -108,7 +108,7 @@ public class LibraryTest {
     @Test(expected = UnsupportedOperationException.class)
     public void shouldReturnUnmodifiableCollectionOfAvailableBooks() throws Exception {
         List<Book> actualResult = library.getAvailableBooks();
-        actualResult.add(new AvailableBook("Title 4", "Author", 1000, 4));
+        actualResult.add(new AvailableBook("Title 4", "Author", 1000));
     }
 
     @Test

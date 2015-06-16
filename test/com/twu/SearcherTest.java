@@ -22,8 +22,8 @@ public class SearcherTest {
     @Test
     public void shouldSearchForTitleInListOfBooksAndGetTheBookWhenFound() throws Exception {
         List<Book> books = new ArrayList<>();
-        AvailableBook bookOne = new AvailableBook("Title 1", "Author 1", 1000, 1);
-        AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500, 2);
+        AvailableBook bookOne = new AvailableBook("Title 1", "Author 1", 1000);
+        AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500);
         books.add(bookOne);
         books.add(bookTwo);
         Searcher searcher = new Searcher(nullBook);
@@ -37,8 +37,8 @@ public class SearcherTest {
     @Test
     public void shouldSearchForTitleInListOfBooksAndReturnNullBookWhenBookIsNotFound() throws Exception {
         List<Book> books = new ArrayList<>();
-        AvailableBook bookOne = new AvailableBook("Title 1", "Author 1", 1000, 1);
-        AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500, 2);
+        AvailableBook bookOne = new AvailableBook("Title 1", "Author 1", 1000);
+        AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500);
         books.add(bookOne);
         books.add(bookTwo);
         Searcher searcher = new Searcher(nullBook);

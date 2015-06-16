@@ -63,8 +63,8 @@ public class EntryPoint {
 
     private static ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> listOfAvailableBooks = new ArrayList<>();
-        listOfAvailableBooks.add(new AvailableBook("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997, 1));
-        listOfAvailableBooks.add(new AvailableBook("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998, 2));
+        listOfAvailableBooks.add(new AvailableBook("Harry Potter and the Philosopher's Stone", "JK Rowling", 1997));
+        listOfAvailableBooks.add(new AvailableBook("Harry Potter and the Chamber of Secrets", "JK Rowling", 1998));
         return listOfAvailableBooks;
     }
 }

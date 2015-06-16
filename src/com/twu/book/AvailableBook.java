@@ -5,13 +5,13 @@ import com.twu.Messages;
 import java.util.List;
 
 public class AvailableBook extends Book {
-    public AvailableBook(String title, String author, int yearPublished, int id) {
-        super(title, author, yearPublished, id);
+    public AvailableBook(String title, String author, int yearPublished) {
+        super(title, author, yearPublished);
     }
 
     public static AvailableBook create(CheckedOutBook checkedOutBook) {
         return new AvailableBook(checkedOutBook.title, checkedOutBook.author,
-                checkedOutBook.yearPublished, checkedOutBook.id);
+                checkedOutBook.yearPublished);
     }
 
     public Book checkoutBook(List<Book> allBooks) {

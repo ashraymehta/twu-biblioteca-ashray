@@ -5,13 +5,11 @@ import java.util.List;
 public abstract class Book {
     protected String title, author;
     protected int yearPublished;
-    protected int id;
 
-    public Book(String title, String author, int yearPublished, int id) {
+    public Book(String title, String author, int yearPublished) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
-        this.id = id;
     }
 
     public abstract Book checkoutBook(List<Book> allBooks);
@@ -38,11 +36,17 @@ public abstract class Book {
 
         Book book = (Book) o;
 
-        return id == book.id;
+        if (yearPublished != book.yearPublished) return false;
+        if (!title.equals(book.title)) return false;
+        return author.equals(book.author);
+
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result = title.hashCode();
+        result = 31 * result + author.hashCode();
+        result = 31 * result + yearPublished;
+        return result;
     }
 }

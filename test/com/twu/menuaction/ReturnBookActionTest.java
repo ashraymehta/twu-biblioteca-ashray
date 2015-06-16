@@ -30,7 +30,7 @@ public class ReturnBookActionTest {
         library = mock(Library.class);
         when(library.searchBook("Title")).thenReturn(checkedOutBook);
         when(library.returnBook(checkedOutBook)).thenReturn(availableBook);
-        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
+        when(availableBook.getAppropriateReturnMessage()).thenReturn("Success!");
         when(returnBookView.getBookTitle()).thenReturn("Title");
         returnBookAction = new ReturnBookAction(returnBookView, library);
     }
@@ -53,7 +53,7 @@ public class ReturnBookActionTest {
     public void shouldGetAppropriateMessageFromBook() throws Exception {
         returnBookAction.perform();
 
-        verify(availableBook).getAppropriateCheckoutMessage();
+        verify(availableBook).getAppropriateReturnMessage();
     }
 
     @Test

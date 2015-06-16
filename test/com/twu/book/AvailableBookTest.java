@@ -15,7 +15,7 @@ public class AvailableBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
 
         String actualString = book.toString();
         String expectedString = "Harry Potter and the Philosopher's Stone          " +
@@ -29,7 +29,7 @@ public class AvailableBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
         List<Book> availableList = new ArrayList<>();
         book.addToListIfAvailable(availableList);
 
@@ -41,7 +41,7 @@ public class AvailableBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
         List<Book> allBooks = new ArrayList<>();
         book.checkoutBook(allBooks);
         Book newBook = allBooks.get(0);
@@ -54,7 +54,7 @@ public class AvailableBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
         List<Book> matchingList = new ArrayList<>();
         book.addToListIfTitleMatches(matchingList, "Harry Potter and the Philosopher's Stone");
 
@@ -66,7 +66,7 @@ public class AvailableBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
         String actualMessage = book.getAppropriateCheckoutMessage();
 
         assertEquals(actualMessage, Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE);

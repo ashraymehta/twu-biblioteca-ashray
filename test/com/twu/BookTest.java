@@ -16,9 +16,9 @@ public class BookTest {
 
     @Before
     public void setUp() throws Exception {
-        firstBook = new AvailableBook("Title", "Author", 1000, 1);
-        secondBook = new CheckedOutBook("Title", "Author", 1000, 1);
-        thirdBook = new AvailableBook("Title", "Author", 1000, 1);
+        firstBook = new AvailableBook("Title", "Author", 1000);
+        secondBook = new CheckedOutBook("Title", "Author", 1000);
+        thirdBook = new AvailableBook("Title", "Author", 1000);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class BookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
 
         String actualString = book.toString();
         String expectedString = "Harry Potter and the Philosopher's Stone          " +

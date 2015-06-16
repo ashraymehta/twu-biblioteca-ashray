@@ -6,7 +6,7 @@ import java.util.List;
 
 public class NullBook extends Book {
     public NullBook() {
-        super(null, null, 0, 0);
+        super(null, null, 0);
     }
 
     @Override

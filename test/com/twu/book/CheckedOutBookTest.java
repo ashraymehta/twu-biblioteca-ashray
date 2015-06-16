@@ -15,7 +15,7 @@ public class CheckedOutBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, 1);
+        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished);
 
         String actualString = book.toString();
         String expectedString = "Harry Potter and the Philosopher's Stone          " +
@@ -29,7 +29,7 @@ public class CheckedOutBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished, 1);
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
         List<Book> availableList = new ArrayList<>();
         book.addToListIfAvailable(availableList);
 
@@ -41,7 +41,7 @@ public class CheckedOutBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, 1);
+        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished);
         String actualMessage = book.getAppropriateCheckoutMessage();
 
         assertEquals(actualMessage, Messages.SUCCESSFUL_CHECKOUT_MESSAGE);
@@ -52,7 +52,7 @@ public class CheckedOutBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, 1);
+        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished);
         List<Book> allBooks = new ArrayList<>();
         book.returnBook(allBooks);
         Book newBook = allBooks.get(0);
