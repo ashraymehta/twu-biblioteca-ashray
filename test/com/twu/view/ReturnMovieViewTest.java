@@ -1,0 +1,42 @@
+package com.twu.view;
+
+import com.twu.Movies;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+import static junit.framework.Assert.assertEquals;
+
+@RunWith(MockitoJUnitRunner.class)
+public class ReturnMovieViewTest {
+    @Mock
+    Movies movies;
+
+    private ByteArrayOutputStream outputStream;
+    private PrintStream printStream;
+    private ReturnMovieView returnMovieView;
+
+    @Before
+    public void setUp() throws Exception {
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Title 1".getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        returnMovieView = new ReturnMovieView(movies, scanner, printStream);
+    }
+
+    @Test
+    public void shouldGetMovieNameFromConsole() throws Exception {
+        String actualInput = returnMovieView.getMovieName();
+        String expectedInput = "Title 1";
+
+        assertEquals(expectedInput, actualInput);
+    }
+}
