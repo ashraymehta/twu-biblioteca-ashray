@@ -57,4 +57,11 @@ public class ReturnMovieActionTest {
 
         verify(availableMovie).getAppropriateReturnMessage();
     }
+
+    @Test
+    public void shouldPrintMessageAfterCheckout() throws Exception {
+        returnMovieAction.perform();
+
+        verify(returnMovieView).printMessage("Success!");
+    }
 }
