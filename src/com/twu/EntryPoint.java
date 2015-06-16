@@ -29,9 +29,9 @@ public class EntryPoint {
         ArrayList<Book> allBooks = new ArrayList<>();
         allBooks.addAll(listOfAvailableBooks);
         allBooks.addAll(listOfCheckedOutBooks);
-        Library library = new Library(listOfAvailableBooks, listOfCheckedOutBooks, allBooks);
         NullBook nullBook = new NullBook();
         Searcher searcher = new Searcher(nullBook);
+        Library library = new Library(listOfAvailableBooks, listOfCheckedOutBooks, allBooks, searcher);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
 
         HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();

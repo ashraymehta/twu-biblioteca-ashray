@@ -5,6 +5,9 @@ import com.twu.book.Book;
 import com.twu.book.CheckedOutBook;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,10 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+@RunWith(MockitoJUnitRunner.class)
 public class LibraryTest {
+    @Mock
+    Searcher searcher;
 
     private ArrayList<Book> availableBookArrayList;
     private ArrayList<Book> checkedOutBooks;
@@ -37,7 +43,7 @@ public class LibraryTest {
         allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
-        library = new Library(availableBookArrayList, checkedOutBooks, allBooks);
+        library = new Library(availableBookArrayList, checkedOutBooks, allBooks, searcher);
     }
 
     @Test
@@ -119,5 +125,13 @@ public class LibraryTest {
         library.checkoutBook(checkedOutOutBookOne);
 
         verify(checkedOutOutBookOne).checkoutBook(allBooks);
+    }
+
+    @Test
+    public void shouldBeAbleToSearchForABookByTitle() throws Exception {
+        String title = "Title 1";
+        library.searchBook(title);
+
+        verify(searcher).search(allBooks, title);
     }
 }

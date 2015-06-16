@@ -9,14 +9,16 @@ import java.util.List;
 // Holds the available and the checked out books; provides APIs to checkoutBook and return a book
 public class Library {
 
-    public final ArrayList<Book> allBooks;
+    private final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;
     private final ArrayList<Book> checkedOutBooks;
+    private final Searcher searcher;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> checkedOutBooks, ArrayList<Book> allBooks) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> checkedOutBooks, ArrayList<Book> allBooks, Searcher searcher) {
         this.availableBooks = availableBooks;
         this.checkedOutBooks = checkedOutBooks;
         this.allBooks = allBooks;
+        this.searcher = searcher;
     }
 
     public List<Book> getAvailableBooks() {
@@ -51,5 +53,9 @@ public class Library {
         } catch (IndexOutOfBoundsException ex) {
             return false;
         }
+    }
+
+    public Book searchBook(String title) {
+        return searcher.search(allBooks, title);
     }
 }
