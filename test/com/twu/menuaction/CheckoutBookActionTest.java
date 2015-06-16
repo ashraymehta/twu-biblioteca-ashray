@@ -27,11 +27,11 @@ public class CheckoutBookActionTest {
     @Before
     public void setUp() throws Exception {
         library = mock(Library.class);
-        checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
-        when(checkoutBookView.getBookTitle()).thenReturn("Title");
         when(library.searchBook("Title")).thenReturn(availableBook);
         when(library.checkoutBook(availableBook)).thenReturn(checkedOutBook);
         when(checkedOutBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
+        when(checkoutBookView.getBookTitle()).thenReturn("Title");
+        checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
     }
 
     @Test

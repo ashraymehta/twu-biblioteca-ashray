@@ -31,6 +31,10 @@ public class ReturnBookView {
         return scanner.nextLine();
     }
 
+    public void printMessage(String message) {
+        printStream.println(message);
+    }
+
     public void printListOfBooks() {
         String booksString = books.getBooksWithSerialsAsString();
         printStream.println(booksString);

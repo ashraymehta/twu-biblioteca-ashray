@@ -1,6 +1,7 @@
 package com.twu.menuaction;
 
 import com.twu.Library;
+import com.twu.book.Book;
 import com.twu.view.ReturnBookView;
 
 // Invokes printing of books, return of book and print successful or unsuccessful messages
@@ -15,11 +16,9 @@ public class ReturnBookAction implements MenuAction {
 
     @Override
     public void perform() {
-        returnBookView.printListOfBooks();
-        int selection = returnBookView.getSelection();
-        boolean isBookReturned = library.returnBook(selection - 1);
-        if (isBookReturned)
-            returnBookView.printSuccessfulReturnMessage();
-        returnBookView.printUnsuccessfulReturnMessage();
+        String bookTitle = returnBookView.getBookTitle();
+        Book toBeReturned = library.searchBook(bookTitle);
+        Book returnedBook = library.returnBook(toBeReturned);
+        returnBookView.printMessage(returnedBook.getAppropriateCheckoutMessage());
     }
 }

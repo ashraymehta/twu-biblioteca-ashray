@@ -1,69 +1,65 @@
 package com.twu.menuaction;
 
 import com.twu.Library;
+import com.twu.book.AvailableBook;
+import com.twu.book.CheckedOutBook;
 import com.twu.view.ReturnBookView;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ReturnBookActionTest {
+    @Mock
+    AvailableBook availableBook;
+    @Mock
+    CheckedOutBook checkedOutBook;
+    @Mock
+    ReturnBookView returnBookView;
+
     private Library library;
+    private ReturnBookAction returnBookAction;
 
     @Before
     public void setUp() throws Exception {
         library = mock(Library.class);
-    }
-
-    @Test
-    public void shouldDisplayListOfBooks() throws Exception {
-        ReturnBookView returnBookView = mock(ReturnBookView.class);
-        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
-        returnBookAction.perform();
-
-        Mockito.verify(returnBookView).printListOfBooks();
+        when(library.searchBook("Title")).thenReturn(checkedOutBook);
+        when(library.returnBook(checkedOutBook)).thenReturn(availableBook);
+        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
+        when(returnBookView.getBookTitle()).thenReturn("Title");
+        returnBookAction = new ReturnBookAction(returnBookView, library);
     }
 
     @Test
     public void shouldTakeInput() throws Exception {
-        ReturnBookView returnBookView = mock(ReturnBookView.class);
-        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
         returnBookAction.perform();
 
-        Mockito.verify(returnBookView).getSelection();
+        Mockito.verify(returnBookView).getBookTitle();
     }
 
     @Test
     public void shouldReturnBookAfterGettingSelection() throws Exception {
-        ReturnBookView returnBookView = mock(ReturnBookView.class);
-        when(returnBookView.getSelection()).thenReturn(1);
-        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
         returnBookAction.perform();
 
-        Mockito.verify(library).returnBook(0);
+        Mockito.verify(library).returnBook(checkedOutBook);
+    }
+    
+    @Test
+    public void shouldGetAppropriateMessageFromBook() throws Exception {
+        returnBookAction.perform();
+
+        verify(availableBook).getAppropriateCheckoutMessage();
     }
 
     @Test
-    public void shouldPrintSuccessMessageAfterSuccessfulReturn() throws Exception {
-        ReturnBookView returnBookView = mock(ReturnBookView.class);
-        when(returnBookView.getSelection()).thenReturn(1);
-        when(library.returnBook(0)).thenReturn(true);
-        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
+    public void shouldPrintMessageAfterCheckout() throws Exception {
         returnBookAction.perform();
 
-        Mockito.verify(returnBookView).printSuccessfulReturnMessage();
-    }
-
-    @Test
-    public void shouldPrintUnsuccessfulMessageAfterUnsuccessfulReturn() throws Exception {
-        ReturnBookView returnBookView = mock(ReturnBookView.class);
-        when(returnBookView.getSelection()).thenReturn(1);
-        when(library.returnBook(0)).thenReturn(false);
-        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
-        returnBookAction.perform();
-
-        Mockito.verify(returnBookView).printUnsuccessfulReturnMessage();
+        verify(returnBookView).printMessage("Success!");
     }
 }

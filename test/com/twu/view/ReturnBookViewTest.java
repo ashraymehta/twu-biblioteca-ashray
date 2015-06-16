@@ -104,4 +104,17 @@ public class ReturnBookViewTest {
 
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void shouldDisplayMessage() throws Exception {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("5".getBytes());
+        Scanner scanner = new Scanner(byteArrayInputStream);
+        ReturnBookView returnBookView = new ReturnBookView(books, scanner, printStream);
+        returnBookView.printMessage("Thank you! Enjoy the book.");
+
+        String actualOutput = outputStream.toString();
+        String expectedOutput = "Thank you! Enjoy the book." + System.lineSeparator();
+
+        assertEquals(expectedOutput, actualOutput);
+    }
 }
