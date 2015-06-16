@@ -44,4 +44,6 @@ public abstract class Movie {
     }
 
     public abstract Movie checkout();
+
+    public abstract String getAppropriateCheckoutMessage();
 }

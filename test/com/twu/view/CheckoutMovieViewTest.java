@@ -28,7 +28,7 @@ public class CheckoutMovieViewTest {
         PrintStream printStream = new PrintStream(outputStream);
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Title 1".getBytes());
         Scanner scanner = new Scanner(byteArrayInputStream);
-        checkoutMovieView = new CheckoutMovieView(movies, scanner, printStream);
+        checkoutMovieView = new CheckoutMovieView(scanner, printStream);
     }
 
     @Test

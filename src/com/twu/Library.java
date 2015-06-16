@@ -49,4 +49,8 @@ public class Library {
         allMovies.add(movie);
         return movie;
     }
+
+    public Movie searchMovie(String bookTitle) {
+        return null;
+    }
 }

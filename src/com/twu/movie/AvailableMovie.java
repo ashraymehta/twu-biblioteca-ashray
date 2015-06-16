@@ -10,6 +10,11 @@ public class AvailableMovie extends Movie {
         return CheckedOutMovie.create(this);
     }
 
+    @Override
+    public String getAppropriateCheckoutMessage() {
+        return null;
+    }
+
     public static AvailableMovie create(CheckedOutMovie checkedOutMovie) {
         return new AvailableMovie(checkedOutMovie.name, checkedOutMovie.director, checkedOutMovie.year,
                 checkedOutMovie.movieRating);
