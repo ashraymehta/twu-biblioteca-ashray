@@ -132,8 +132,6 @@ public class LibraryTest {
 
     @Test
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
-        allMovies = new HashSet<>();
-        allMovies.add(availableMovieOne);
         library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher, availableMovies);
         Movie movie = library.checkoutMovie(availableMovieOne);
 
@@ -146,5 +144,12 @@ public class LibraryTest {
         library.searchMovie(name);
 
         verify(movieSearcher).search(allMovies, name);
+    }
+
+    @Test
+    public void shouldBeAbleToReturnAMovie() throws Exception {
+        Movie returnedMovie = library.returnMovie(checkedOutOutMovieOne);
+
+        assertTrue(returnedMovie instanceof AvailableMovie);
     }
 }

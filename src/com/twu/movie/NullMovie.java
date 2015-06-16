@@ -23,4 +23,9 @@ public class NullMovie extends Movie {
     public void addToListIfAvailable(List<Movie> availableMovies) {
 
     }
+
+    @Override
+    public Movie returnMovie() {
+        return this;
+    }
 }

@@ -63,6 +63,13 @@ public class Library {
         return movie;
     }
 
+    public Movie returnMovie(Movie movie) {
+        availableMovies.remove(movie);
+        movie = movie.returnMovie();
+        allMovies.add(movie);
+        return movie;
+    }
+
     public Movie searchMovie(String movieName) {
         return movieSearcher.search(allMovies, movieName);
     }
