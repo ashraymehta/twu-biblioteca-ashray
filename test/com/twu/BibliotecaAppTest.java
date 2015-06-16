@@ -25,6 +25,8 @@ public class BibliotecaAppTest {
 
     @Mock
     ConsoleOut consoleOut;
+    @Mock
+    Searcher searcher;
 
     private HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
     private HashMap<Integer, String> menuItemsMappedToSerials;
@@ -36,7 +38,7 @@ public class BibliotecaAppTest {
         menuItemsMappedToSerials.put(1, "List books");
         menuItemsMappedToMenuAction.put(1, new ListBooksAction(mock(BooksView.class)));
         menuItemsMappedToSerials.put(2, "Checkout books");
-        menuItemsMappedToMenuAction.put(2, new CheckoutBookAction(mock(CheckoutBookView.class), mock(Library.class)));
+        menuItemsMappedToMenuAction.put(2, new CheckoutBookAction(mock(CheckoutBookView.class), mock(Library.class), searcher));
         menuItemsMappedToSerials.put(2, "Quit");
         menuItemsMappedToMenuAction.put(2, new QuitAction());
     }

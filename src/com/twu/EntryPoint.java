@@ -23,7 +23,8 @@ public class EntryPoint {
         CheckoutBookView checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
         ArrayList<Book> allBooks = new ArrayList<>();
         Library library = new Library(listOfAvailableBooks, listOfCheckedOutBooks, allBooks);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
+        Searcher searcher = new Searcher(listOfAvailableBooks);
+        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
 
         HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();
         HashMap<Integer, MenuAction> menuItemsMappedToMenuAction = new HashMap<>();
