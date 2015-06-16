@@ -35,6 +35,7 @@ public class EntryPoint {
     public static void main(String[] args) {
         initializeStreams();
         initializeListOfBooks();
+        initializeListOfMovies();
         initializeViews();
         NullBook nullBook = new NullBook();
         BookSearcher bookSearcher = new BookSearcher(nullBook);
@@ -49,6 +50,12 @@ public class EntryPoint {
         bibliotecaApp.start();
     }
 
+    private static void initializeListOfMovies() {
+        allMovies = new ArrayList<>();
+        allMovies.add(new Movie("Batman Begins", "Christopher Nolan", 2005, 9));
+        allMovies.add(new Movie("The Dark Knight", "Christopher Nolan", 2008, 9));
+    }
+
     private static void initializeViews() {
         Books checkedOutBooks = new Books(listOfCheckedOutBooks);
         booksView = new BooksView(availableBooks, consoleOutStream);
@@ -58,7 +65,6 @@ public class EntryPoint {
 
     private static void populateHashMaps() {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
-
         menuItemsMappedToSerials = new HashMap<>();
         menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
@@ -84,9 +90,6 @@ public class EntryPoint {
         allBooks = new ArrayList<>();
         allBooks.addAll(listOfAvailableBooks);
         allBooks.addAll(listOfCheckedOutBooks);
-        allMovies = new ArrayList<>();
-        allMovies.add(new Movie("Batman Begins", "Christopher Nolan", 2005, 9));
-        allMovies.add(new Movie("The Dark Knight", "Christopher Nolan", 2008, 9));
     }
 
 
