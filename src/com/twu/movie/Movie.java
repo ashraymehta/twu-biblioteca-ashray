@@ -2,10 +2,10 @@ package com.twu.movie;
 
 // Represents a Movie with comparison checks for the object as well as some properties
 public abstract class Movie {
-    private String name;
-    private int year;
-    private String director;
-    private int movieRating;
+    protected String name;
+    protected String director;
+    protected int year;
+    protected int movieRating;
 
     public Movie(String name, String director, int year, int movieRating) {
         this.name = name;
