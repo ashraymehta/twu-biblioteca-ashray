@@ -3,7 +3,6 @@ package com.twu.menuaction;
 import com.twu.CheckoutBookView;
 import com.twu.Library;
 import com.twu.Searcher;
-import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 
 // Invokes printing of books, checkout of book and print successful or unsuccessful messages
@@ -25,7 +24,7 @@ public class CheckoutBookAction implements MenuAction {
         String bookTitle = checkoutBookView.getBookTitle();
         library.getAvailableBooks();
         Book matchingBook = searcher.search(bookTitle);
-        library.checkoutBook((AvailableBook) matchingBook);
+        library.checkoutBook(matchingBook);
         checkoutBookView.printMessage(matchingBook.getAppropriateCheckoutMessage());
     }
 }

@@ -23,6 +23,8 @@ public class EntryPoint {
         ReturnBookView returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
         CheckoutBookView checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
         ArrayList<Book> allBooks = new ArrayList<>();
+        allBooks.addAll(listOfAvailableBooks);
+        allBooks.addAll(listOfCheckedOutBooks);
         Library library = new Library(listOfAvailableBooks, listOfCheckedOutBooks, allBooks);
         NullBook nullBook = new NullBook();
         Searcher searcher = new Searcher(listOfAvailableBooks, nullBook);

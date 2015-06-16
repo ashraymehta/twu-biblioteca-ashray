@@ -1,6 +1,5 @@
 package com.twu;
 
-import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class Library {
         }
     }
 
-    public void checkoutBook(AvailableBook availableBook) {
+    public void checkoutBook(Book availableBook) {
         availableBook.checkout(allBooks);
     }
 

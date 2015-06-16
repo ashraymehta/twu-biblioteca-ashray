@@ -18,4 +18,9 @@ public class NullBook extends Book {
     public String getAppropriateCheckoutMessage() {
         return Messages.UNSUCCESSFUL_CHECKOUT_MESSAGE;
     }
+
+    @Override
+    public void checkout(List<Book> allBooks) {
+
+    }
 }

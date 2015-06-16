@@ -46,6 +46,7 @@ public class CheckoutBookView {
     }
 
     public String getBookTitle() {
+        scanner.nextLine();
         return scanner.nextLine();
     }
 }

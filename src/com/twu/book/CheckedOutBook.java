@@ -28,4 +28,9 @@ public class CheckedOutBook extends Book {
     public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
 
     }
+
+    @Override
+    public void checkout(List<Book> allBooks) {
+
+    }
 }

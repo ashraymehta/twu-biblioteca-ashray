@@ -43,4 +43,6 @@ public abstract class Book {
     public int hashCode() {
         return id;
     }
+
+    public abstract void checkout(List<Book> allBooks);
 }
