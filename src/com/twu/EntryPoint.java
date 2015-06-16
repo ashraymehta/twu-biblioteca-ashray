@@ -47,7 +47,7 @@ public class EntryPoint {
                                          HashMap<Integer, String> menuItemsMappedToSerials,
                                          HashMap<Integer, MenuAction> menuItemsMappedToMenuAction) {
         menuItemsMappedToSerials.put(1, "List books");
-        menuItemsMappedToMenuAction.put(1, new ListBooksAction(booksView));
+        menuItemsMappedToMenuAction.put(1, new ListBooksAction(booksView, library));
         menuItemsMappedToSerials.put(2, "Checkout Book");
         menuItemsMappedToMenuAction.put(2, checkoutBookAction);
         menuItemsMappedToSerials.put(3, "Return Book");

@@ -25,7 +25,7 @@ public abstract class Book {
 
     @Override
     public String toString() {
-        return String.format("%-5d", id) + String.format("%-50s", title) + String.format("%-30s", author)
+        return String.format("%-50s", title) + String.format("%-30s", author)
                 + String.format("%-10s", yearPublished);
     }
 

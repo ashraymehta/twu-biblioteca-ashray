@@ -18,9 +18,9 @@ public class BooksTest {
         Books books = new Books(bookArrayList);
 
         String actualString = books.toString();
-        String expectedString = "1    Title 1                                           " +
+        String expectedString = "Title 1                                           " +
                 "Author 1                      " + "1000      " + System.lineSeparator() +
-                "2    Title 2                                           " +
+                "Title 2                                           " +
                 "Author 2                      " + "1500      " + System.lineSeparator();
 
         assertEquals(expectedString, actualString);
@@ -34,9 +34,9 @@ public class BooksTest {
         Books books = new Books(bookArrayList);
 
         String actualString = books.getBooksWithSerialsAsString();
-        String expectedString = "1. 1    Title 1                                           " +
+        String expectedString = "1. Title 1                                           " +
                 "Author 1                      " + "1000      " + System.lineSeparator() +
-                "2. 2    Title 2                                           " +
+                "2. Title 2                                           " +
                 "Author 2                      " + "1500      " + System.lineSeparator();
 
         assertEquals(expectedString, actualString);
