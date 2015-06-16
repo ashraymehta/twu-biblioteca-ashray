@@ -77,14 +77,15 @@ public class CheckoutBookActionTest {
     }
 
     @Test
-    public void shouldPrintSuccessMessageAfterSuccessfulCheckout() throws Exception {
+    public void shouldPrintMessageAfterCheckout() throws Exception {
         CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
         when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = new AvailableBook("Title", "Author", 1000, 12);
+        AvailableBook availableBook = mock(AvailableBook.class);
         when(searcher.search("Title")).thenReturn(availableBook);
+        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
-        verify(checkoutBookView).printSuccessfulCheckoutMessage();
+        verify(checkoutBookView).printMessage("Success!");
     }
 }
