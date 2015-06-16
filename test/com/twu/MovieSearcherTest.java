@@ -34,4 +34,19 @@ public class MovieSearcherTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void shouldSearchForNameInListOfBooksAndGetNullMovieWhenNotFound() throws Exception {
+        Set<Movie> movies = new HashSet<>();
+        AvailableMovie availableMovieOne = new AvailableMovie("Name 1", "Director 1", 1000, 9);
+        AvailableMovie availableMovieTwo = new AvailableMovie("Name 2", "Director 2", 500, 9);
+        movies.add(availableMovieOne);
+        movies.add(availableMovieTwo);
+        MovieSearcher movieSearcher = new MovieSearcher(nullMovie);
+
+        Movie actualResult = movieSearcher.search(movies, "Name 4");
+        Movie expectedResult = nullMovie;
+
+        assertEquals(expectedResult, actualResult);
+    }
 }
