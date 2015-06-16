@@ -21,7 +21,7 @@ public class LibraryTest {
     private ArrayList<Book> allBooks;
     private AvailableBook availableBookOne;
     private AvailableBook availableBookTwo;
-    private CheckedOutBook checkoutOutBookOne;
+    private CheckedOutBook checkedOutOutBookOne;
     private Library library;
 
     @Before
@@ -32,8 +32,8 @@ public class LibraryTest {
         availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500, 2);
         availableBookArrayList.add(availableBookTwo);
         checkedOutBooks = new ArrayList<>();
-        checkoutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, 3);
-        checkedOutBooks.add(checkoutOutBookOne);
+        checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, 3);
+        checkedOutBooks.add(checkedOutOutBookOne);
         allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
@@ -72,14 +72,14 @@ public class LibraryTest {
     public void shouldBeAbleToTakeBackBook() throws Exception {
         library.returnBook(0);
 
-        assertFalse(checkedOutBooks.contains(checkoutOutBookOne));
+        assertFalse(checkedOutBooks.contains(checkedOutOutBookOne));
     }
 
     @Test
     public void shouldAddReturnedBookToListOfAvailableBooks() throws Exception {
         library.returnBook(0);
 
-        assertTrue(availableBookArrayList.contains(checkoutOutBookOne));
+        assertTrue(availableBookArrayList.contains(checkedOutOutBookOne));
     }
 
     @Test
@@ -111,5 +111,13 @@ public class LibraryTest {
         library.checkoutBook(availableBookOne);
 
         verify(availableBookOne).checkoutBook(allBooks);
+    }
+
+    @Test
+    public void shouldBeAbleToReturnBookWhenBookIsPassed() throws Exception {
+        checkedOutOutBookOne = mock(CheckedOutBook.class);
+        library.checkoutBook(checkedOutOutBookOne);
+
+        verify(checkedOutOutBookOne).checkoutBook(allBooks);
     }
 }

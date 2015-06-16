@@ -40,6 +40,10 @@ public class Library {
         return toBeCheckedOut.checkoutBook(allBooks);
     }
 
+    public Book returnBook(Book toBeCheckedOut) {
+        return toBeCheckedOut.returnBook(allBooks);
+    }
+
     public boolean returnBook(int bookIndex) {
         try {
             Book checkoutOutBook = checkedOutBooks.remove(bookIndex);
