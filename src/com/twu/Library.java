@@ -3,6 +3,7 @@ package com.twu;
 import com.twu.book.Book;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // Holds the available and the checked out books; provides APIs to checkout and return a book
@@ -23,7 +24,7 @@ public class Library {
         for(Book book : allBooks) {
             book.addToListIfAvailable(availableBooks);
         }
-        return availableBooks;
+        return Collections.unmodifiableList(availableBooks);
     }
 
     public boolean checkoutBook(int bookIndex) {

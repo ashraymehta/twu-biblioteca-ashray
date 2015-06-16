@@ -95,4 +95,10 @@ public class LibraryTest {
 
         assertTrue(actualResult.equals(availableBooks));
     }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldReturnUnmodifiableCollectionOfAvailableBooks() throws Exception {
+        List<Book> actualResult = library.getAvailableBooks();
+        actualResult.add(new AvailableBook("Title 4", "Author", 1000, 4));
+    }
 }
