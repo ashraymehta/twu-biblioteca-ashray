@@ -22,8 +22,11 @@ public class CheckoutBookView {
 
     public int getSelection() {
         try {
-            return scanner.nextInt();
+            return Integer.parseInt(scanner.nextLine());
         } catch (InputMismatchException e) {
+            return -1;
+        }
+        catch (NumberFormatException e) {
             return -1;
         }
     }
@@ -46,7 +49,6 @@ public class CheckoutBookView {
     }
 
     public String getBookTitle() {
-        scanner.nextLine();
         return scanner.nextLine();
     }
 }
