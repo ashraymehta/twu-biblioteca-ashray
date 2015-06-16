@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -36,6 +37,7 @@ public class LibraryTest {
     private AvailableMovie availableMovieOne;
     private AvailableMovie availableMovieTwo;
     private CheckedOutMovie checkedOutOutMovieOne;
+    private ArrayList<Book> availableBookArrayList;
 
 
     @Before
@@ -44,7 +46,7 @@ public class LibraryTest {
         availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500);
         checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000);
 
-        ArrayList<Book> availableBookArrayList = new ArrayList<>();
+        availableBookArrayList = new ArrayList<>();
         ArrayList<Book> checkedOutBooks = new ArrayList<>();
         availableBookArrayList.add(availableBookOne);
         availableBookArrayList.add(availableBookTwo);
@@ -112,5 +114,15 @@ public class LibraryTest {
         library.checkoutMovie(availableMovieOne);
 
         verify(availableMovieOne).checkout();
+    }
+
+    @Test
+    public void shouldRemoveOldMovieFromAllMovies() throws Exception {
+        allMovies = new HashSet<>();
+        allMovies.add(availableMovieOne);
+        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher);
+        library.checkoutMovie(availableMovieOne);
+
+        assertFalse(allMovies.contains(availableMovieOne));
     }
 }

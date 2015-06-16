@@ -44,6 +44,7 @@ public class Library {
     }
 
     public void checkoutMovie(Movie movie) {
+        allMovies.remove(movie);
         movie.checkout();
     }
 }
