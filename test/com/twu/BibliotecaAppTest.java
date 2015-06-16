@@ -28,7 +28,7 @@ public class BibliotecaAppTest {
     @Mock
     ConsoleOut consoleOut;
     @Mock
-    Searcher searcher;
+    BookSearcher bookSearcher;
     @Mock
     Library library;
 

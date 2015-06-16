@@ -4,6 +4,7 @@ package com.twu.menuaction;
 import com.twu.view.BooksView;
 import com.twu.Library;
 
+// Invokes the printing of list of books
 public class ListBooksAction implements MenuAction {
 
     private final BooksView booksView;

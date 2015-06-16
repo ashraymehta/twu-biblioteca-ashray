@@ -4,6 +4,7 @@ import com.twu.Messages;
 
 import java.util.List;
 
+// Represents a book that is currently not in the library
 public class CheckedOutBook extends Book {
     public CheckedOutBook(String title, String author, int yearPublished) {
         super(title, author, yearPublished);

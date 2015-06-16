@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+// Entry point for the application
 public class EntryPoint {
 
     private static Scanner scanner;
@@ -34,8 +35,8 @@ public class EntryPoint {
         initializeListOfBooks();
         initializeViews();
         NullBook nullBook = new NullBook();
-        Searcher searcher = new Searcher(nullBook);
-        library = new Library(listOfAvailableBooks, allBooks, searcher);
+        BookSearcher bookSearcher = new BookSearcher(nullBook);
+        library = new Library(listOfAvailableBooks, allBooks, bookSearcher);
         populateHashMaps();
 
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);

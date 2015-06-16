@@ -1,5 +1,6 @@
 package com.twu.movie;
 
+// Represents a Movie
 public class Movie {
     private String name;
     private int year;

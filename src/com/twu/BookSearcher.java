@@ -6,11 +6,12 @@ import com.twu.book.NullBook;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Searcher {
+// Searches a book title when a list of books is provided
+public class BookSearcher {
 
     private NullBook nullBook;
 
-    public Searcher(NullBook nullBook) {
+    public BookSearcher(NullBook nullBook) {
         this.nullBook = nullBook;
     }
 

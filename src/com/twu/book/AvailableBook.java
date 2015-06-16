@@ -4,6 +4,7 @@ import com.twu.Messages;
 
 import java.util.List;
 
+// Represents a book that is available in the library
 public class AvailableBook extends Book {
     public AvailableBook(String title, String author, int yearPublished) {
         super(title, author, yearPublished);

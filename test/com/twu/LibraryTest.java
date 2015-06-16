@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class LibraryTest {
     @Mock
-    Searcher searcher;
+    BookSearcher bookSearcher;
 
     private ArrayList<Book> availableBookArrayList;
     private ArrayList<Book> checkedOutBooks;
@@ -42,7 +42,7 @@ public class LibraryTest {
         allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
-        library = new Library(availableBookArrayList, allBooks, searcher);
+        library = new Library(availableBookArrayList, allBooks, bookSearcher);
     }
 
     @Test
@@ -82,6 +82,6 @@ public class LibraryTest {
         String title = "Title 1";
         library.searchBook(title);
 
-        verify(searcher).search(allBooks, title);
+        verify(bookSearcher).search(allBooks, title);
     }
 }

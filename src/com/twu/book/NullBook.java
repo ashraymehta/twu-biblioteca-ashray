@@ -4,6 +4,7 @@ import com.twu.Messages;
 
 import java.util.List;
 
+// Represents a book when book is not found instead of null
 public class NullBook extends Book {
     public NullBook() {
         super(null, null, 0);

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
-public class SearcherTest {
+public class BookSearcherTest {
     private NullBook nullBook;
 
     @Before
@@ -26,9 +26,9 @@ public class SearcherTest {
         AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500);
         books.add(bookOne);
         books.add(bookTwo);
-        Searcher searcher = new Searcher(nullBook);
+        BookSearcher bookSearcher = new BookSearcher(nullBook);
 
-        Book actualResult = searcher.search(books, "Title 1");
+        Book actualResult = bookSearcher.search(books, "Title 1");
         Book expectedResult = bookOne;
 
         assertEquals(expectedResult, actualResult);
@@ -41,9 +41,9 @@ public class SearcherTest {
         AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500);
         books.add(bookOne);
         books.add(bookTwo);
-        Searcher searcher = new Searcher(nullBook);
+        BookSearcher bookSearcher = new BookSearcher(nullBook);
 
-        Book actualResult = searcher.search(books, "Title 3");
+        Book actualResult = bookSearcher.search(books, "Title 3");
 
         assertEquals(nullBook, actualResult);
     }

@@ -2,6 +2,7 @@ package com.twu.book;
 
 import java.util.List;
 
+// Represents a Book with comparison checks for the object as well as some properties
 public abstract class Book {
     protected String title, author;
     protected int yearPublished;

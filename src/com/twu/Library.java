@@ -11,12 +11,12 @@ public class Library {
 
     private final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;
-    private final Searcher searcher;
+    private final BookSearcher bookSearcher;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Searcher searcher) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, BookSearcher bookSearcher) {
         this.availableBooks = availableBooks;
         this.allBooks = allBooks;
-        this.searcher = searcher;
+        this.bookSearcher = bookSearcher;
     }
 
     public List<Book> getAvailableBooks() {
@@ -36,6 +36,6 @@ public class Library {
     }
 
     public Book searchBook(String title) {
-        return searcher.search(allBooks, title);
+        return bookSearcher.search(allBooks, title);
     }
 }
