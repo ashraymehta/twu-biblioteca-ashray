@@ -11,11 +11,14 @@ import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class LibraryTest {
 
     private ArrayList<Book> availableBookArrayList;
     private ArrayList<Book> checkedOutBooks;
+    private ArrayList<Book> allBooks;
     private AvailableBook availableBookOne;
     private AvailableBook availableBookTwo;
     private CheckedOutBook checkoutOutBookOne;
@@ -31,7 +34,7 @@ public class LibraryTest {
         checkedOutBooks = new ArrayList<>();
         checkoutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, 3);
         checkedOutBooks.add(checkoutOutBookOne);
-        ArrayList<Book> allBooks = new ArrayList<>();
+        allBooks = new ArrayList<>();
         allBooks.addAll(availableBookArrayList);
         allBooks.addAll(checkedOutBooks);
         library = new Library(availableBookArrayList, checkedOutBooks, allBooks);
@@ -100,5 +103,13 @@ public class LibraryTest {
     public void shouldReturnUnmodifiableCollectionOfAvailableBooks() throws Exception {
         List<Book> actualResult = library.getAvailableBooks();
         actualResult.add(new AvailableBook("Title 4", "Author", 1000, 4));
+    }
+
+    @Test
+    public void shouldBeAbleToCheckoutBookWhenBookIsPassed() throws Exception {
+        availableBookOne = mock(AvailableBook.class);
+        library.checkoutBook(availableBookOne);
+
+        verify(availableBookOne).checkout(allBooks);
     }
 }

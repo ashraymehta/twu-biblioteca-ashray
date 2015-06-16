@@ -1,5 +1,6 @@
 package com.twu;
 
+import com.twu.book.AvailableBook;
 import com.twu.book.Book;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Library {
 
     public List<Book> getAvailableBooks() {
         availableBooks.clear();
-        for(Book book : allBooks) {
+        for (Book book : allBooks) {
             book.addToListIfAvailable(availableBooks);
         }
         return Collections.unmodifiableList(availableBooks);
@@ -34,6 +35,10 @@ public class Library {
         } catch (IndexOutOfBoundsException ex) {
             return false;
         }
+    }
+
+    public void checkoutBook(AvailableBook availableBook) {
+        availableBook.checkout(allBooks);
     }
 
     public boolean returnBook(int bookIndex) {

@@ -14,7 +14,8 @@ public class AvailableBook extends Book {
 
     public void checkout(List<Book> allBooks) {
         allBooks.remove(this);
-        allBooks.add(CheckedOutBook.create(this));
+        CheckedOutBook checkedOutBook = CheckedOutBook.create(this);
+        allBooks.add(checkedOutBook);
     }
 
     @Override
