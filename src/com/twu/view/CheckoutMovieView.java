@@ -21,4 +21,8 @@ public class CheckoutMovieView {
     public String getMovieName() {
         return scanner.nextLine();
     }
+
+    public void printMessage(String message) {
+        printStream.println(message);
+    }
 }
