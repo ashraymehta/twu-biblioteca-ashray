@@ -15,12 +15,14 @@ public class Library {
     private final ArrayList<Book> availableBooks;
     private final Set<Movie> allMovies;
     private final BookSearcher bookSearcher;
+    private final MovieSearcher movieSearcher;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Set<Movie> allMovies, BookSearcher bookSearcher) {
+    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Set<Movie> allMovies, BookSearcher bookSearcher, MovieSearcher movieSearcher) {
         this.availableBooks = availableBooks;
         this.allBooks = allBooks;
         this.allMovies = allMovies;
         this.bookSearcher = bookSearcher;
+        this.movieSearcher = movieSearcher;
     }
 
     public List<Book> getAvailableBooks() {
@@ -50,7 +52,7 @@ public class Library {
         return movie;
     }
 
-    public Movie searchMovie(String bookTitle) {
-        return null;
+    public Movie searchMovie(String movieName) {
+        return movieSearcher.search(allMovies, movieName);
     }
 }

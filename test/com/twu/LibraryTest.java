@@ -25,6 +25,8 @@ import static org.mockito.Mockito.verify;
 public class LibraryTest {
     @Mock
     BookSearcher bookSearcher;
+    @Mock
+    MovieSearcher movieSearcher;
 
     private Set<Movie> allMovies;
     private ArrayList<Book> allBooks;
@@ -64,7 +66,7 @@ public class LibraryTest {
         allMovies.add(availableMovieTwo);
         allMovies.add(checkedOutOutMovieOne);
 
-        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher);
+        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher);
     }
 
     @Test
@@ -119,9 +121,17 @@ public class LibraryTest {
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
         allMovies = new HashSet<>();
         allMovies.add(availableMovieOne);
-        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher);
+        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher);
         Movie movie = library.checkoutMovie(availableMovieOne);
 
         assertTrue(movie instanceof CheckedOutMovie);
+    }
+
+    @Test
+    public void shouldBeAbleToSearchForAMovieByName() throws Exception {
+        String name = "Name 1";
+        library.searchMovie(name);
+
+        verify(movieSearcher).search(allMovies, name);
     }
 }
