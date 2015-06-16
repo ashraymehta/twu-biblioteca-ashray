@@ -26,9 +26,9 @@ public class SearcherTest {
         AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500, 2);
         books.add(bookOne);
         books.add(bookTwo);
-        Searcher searcher = new Searcher(books, nullBook);
+        Searcher searcher = new Searcher(nullBook);
 
-        Book actualResult = searcher.search("Title 1");
+        Book actualResult = searcher.search(books, "Title 1");
         Book expectedResult = bookOne;
 
         assertEquals(expectedResult, actualResult);
@@ -41,9 +41,9 @@ public class SearcherTest {
         AvailableBook bookTwo = new AvailableBook("Title 2", "Author 2", 500, 2);
         books.add(bookOne);
         books.add(bookTwo);
-        Searcher searcher = new Searcher(books, nullBook);
+        Searcher searcher = new Searcher(nullBook);
 
-        Book actualResult = searcher.search("Title 3");
+        Book actualResult = searcher.search(books, "Title 3");
 
         assertEquals(nullBook, actualResult);
     }

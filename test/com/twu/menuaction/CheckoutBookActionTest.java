@@ -1,5 +1,6 @@
 package com.twu.menuaction;
 
+import com.twu.book.Book;
 import com.twu.view.CheckoutBookView;
 import com.twu.Library;
 import com.twu.Searcher;
@@ -10,6 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -26,13 +30,15 @@ public class CheckoutBookActionTest {
 
     private Library library;
     private CheckoutBookAction checkoutBookAction;
+    private List<Book> booksToSearch;
 
     @Before
     public void setUp() throws Exception {
         library = mock(Library.class);
+        booksToSearch = new ArrayList<>();
         checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
         when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        when(searcher.search("Title")).thenReturn(availableBook);
+        when(searcher.search(booksToSearch, "Title")).thenReturn(availableBook);
         when(library.checkoutBook(availableBook)).thenReturn(checkedOutBook);
         when(checkedOutBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
     }
@@ -41,7 +47,7 @@ public class CheckoutBookActionTest {
     public void shouldSearchForBookTitle() throws Exception {
         checkoutBookAction.perform();
 
-        verify(searcher).search("Title");
+        verify(searcher).search(booksToSearch, "Title");
     }
 
     @Test

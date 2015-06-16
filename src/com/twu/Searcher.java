@@ -8,15 +8,13 @@ import java.util.List;
 
 public class Searcher {
 
-    private List<Book> books;
     private NullBook nullBook;
 
-    public Searcher(List<Book> books, NullBook nullBook) {
-        this.books = books;
+    public Searcher(NullBook nullBook) {
         this.nullBook = nullBook;
     }
 
-    public Book search(String title) {
+    public Book search(List<Book> books, String title) {
         List<Book> matchingBooks = new ArrayList<>();
         for (Book book : books) {
             book.addToListIfTitleMatches(matchingBooks, title);

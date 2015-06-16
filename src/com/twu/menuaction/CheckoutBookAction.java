@@ -5,6 +5,8 @@ import com.twu.Library;
 import com.twu.Searcher;
 import com.twu.book.Book;
 
+import java.util.List;
+
 // Invokes printing of books, checkoutBook of book and print successful or unsuccessful messages
 public class CheckoutBookAction implements MenuAction {
 
@@ -21,8 +23,8 @@ public class CheckoutBookAction implements MenuAction {
     @Override
     public void perform() {
         String bookTitle = checkoutBookView.getBookTitle();
-        library.getAvailableBooks();
-        Book matchingBook = searcher.search(bookTitle);
+        List<Book> availableBooks = library.getAvailableBooks();
+        Book matchingBook = searcher.search(availableBooks, bookTitle);
         matchingBook = library.checkoutBook(matchingBook);
         checkoutBookView.printMessage(matchingBook.getAppropriateCheckoutMessage());
     }
