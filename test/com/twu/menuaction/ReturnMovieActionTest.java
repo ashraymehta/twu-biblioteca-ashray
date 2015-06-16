@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -50,4 +51,10 @@ public class ReturnMovieActionTest {
         Mockito.verify(library).returnMovie(checkedOutMovie);
     }
 
+    @Test
+    public void shouldGetAppropriateMessageFromMovie() throws Exception {
+        returnMovieAction.perform();
+
+        verify(availableMovie).getAppropriateReturnMessage();
+    }
 }
