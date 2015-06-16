@@ -3,7 +3,10 @@ package com.twu.movie;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MovieTest {
 
@@ -31,6 +34,19 @@ public class MovieTest {
                 "Christopher Nolan             " + "2005      " + "9    ";
 
         assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void shouldAddToItselfToListIfNameMatches() throws Exception {
+        String name = "Batman Begins";
+        String director = "Christopher Nolan";
+        int year = 2005;
+        int movieRating = 9;
+        Movie movie = new AvailableMovie(name, director, year, movieRating);
+        ArrayList<Movie> matchingList = new ArrayList<>();
+        movie.addToListIfNameMatches(matchingList, "Batman Begins");
+
+        assertTrue(matchingList.contains(movie));
     }
 
     @Test

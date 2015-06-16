@@ -6,6 +6,7 @@ import com.twu.book.NullBook;
 import com.twu.menuaction.*;
 import com.twu.movie.AvailableMovie;
 import com.twu.movie.Movie;
+import com.twu.movie.NullMovie;
 import com.twu.view.*;
 
 import java.io.PrintStream;
@@ -36,7 +37,8 @@ public class EntryPoint {
         initializeViews();
         NullBook nullBook = new NullBook();
         BookSearcher bookSearcher = new BookSearcher(nullBook);
-        MovieSearcher movieSearcher = new MovieSearcher();
+        Movie nullMovie = new NullMovie();
+        MovieSearcher movieSearcher = new MovieSearcher(nullMovie);
         library = new Library(listOfAvailableBooks, allBooks, allMovies, bookSearcher, movieSearcher);
         populateHashMaps();
 
