@@ -19,7 +19,5 @@ public class CheckoutMovieAction implements MenuAction {
     public void perform() {
         String movieName = checkoutMovieView.getMovieName();
         Movie matchingMovie = library.searchMovie(movieName);
-        matchingMovie = library.checkoutMovie(matchingMovie);
-        checkoutMovieView.printMessage(matchingMovie.getAppropriateCheckoutMessage());
     }
 }

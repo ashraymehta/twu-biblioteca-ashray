@@ -22,7 +22,7 @@ public class CheckoutMovieActionTest {
     CheckedOutMovie checkedOutMovie;
 
     private Library library;
-    private CheckoutMovieAction checkoutBookAction;
+    private CheckoutMovieAction checkoutMovieAction;
 
     @Before
     public void setUp() throws Exception {
@@ -31,14 +31,20 @@ public class CheckoutMovieActionTest {
         when(library.checkoutMovie(availableMovie)).thenReturn(checkedOutMovie);
         when(checkedOutMovie.getAppropriateCheckoutMessage()).thenReturn("Success!");
         when(checkoutMovieView.getMovieName()).thenReturn("Title");
-        checkoutBookAction = new CheckoutMovieAction(checkoutMovieView, library);
+        checkoutMovieAction = new CheckoutMovieAction(checkoutMovieView, library);
     }
 
     @Test
     public void shouldTakeInput() throws Exception {
-        checkoutBookAction.perform();
+        checkoutMovieAction.perform();
 
         verify(checkoutMovieView).getMovieName();
     }
 
+    @Test
+    public void shouldSearchForMovieInTheLibrary() throws Exception {
+        checkoutMovieAction.perform();
+
+        verify(library).searchMovie("Title");
+    }
 }
