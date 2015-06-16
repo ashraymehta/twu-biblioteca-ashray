@@ -54,4 +54,11 @@ public class CheckoutMovieActionTest {
 
         verify(library).checkoutMovie(availableMovie);
     }
+
+    @Test
+    public void shouldDisplayAppropriateMessage() throws Exception {
+        checkoutMovieAction.perform();
+
+        verify(checkoutMovieView).printMessage("Success!");
+    }
 }
