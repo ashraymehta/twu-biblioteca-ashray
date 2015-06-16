@@ -43,4 +43,11 @@ public class ReturnMovieActionTest {
         Mockito.verify(returnMovieView).getMovieName();
     }
 
+    @Test
+    public void shouldGetMovieAfterGettingSelection() throws Exception {
+        returnMovieAction.perform();
+
+        Mockito.verify(library).returnMovie(checkedOutMovie);
+    }
+
 }
