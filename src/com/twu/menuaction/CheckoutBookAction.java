@@ -20,11 +20,10 @@ public class CheckoutBookAction implements MenuAction {
 
     @Override
     public void perform() {
-        checkoutBookView.printListOfBooks();
         String bookTitle = checkoutBookView.getBookTitle();
         library.getAvailableBooks();
         Book matchingBook = searcher.search(bookTitle);
-        library.checkoutBook(matchingBook);
+        matchingBook = library.checkoutBook(matchingBook);
         checkoutBookView.printMessage(matchingBook.getAppropriateCheckoutMessage());
     }
 }

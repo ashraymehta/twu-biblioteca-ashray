@@ -44,5 +44,5 @@ public abstract class Book {
         return id;
     }
 
-    public abstract void checkout(List<Book> allBooks);
+    public abstract Book checkout(List<Book> allBooks);
 }

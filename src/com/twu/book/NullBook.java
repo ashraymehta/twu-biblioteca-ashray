@@ -20,7 +20,7 @@ public class NullBook extends Book {
     }
 
     @Override
-    public void checkout(List<Book> allBooks) {
-
+    public Book checkout(List<Book> allBooks) {
+        return this;
     }
 }

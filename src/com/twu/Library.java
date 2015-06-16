@@ -36,8 +36,8 @@ public class Library {
         }
     }
 
-    public void checkoutBook(Book availableBook) {
-        availableBook.checkout(allBooks);
+    public Book checkoutBook(Book toBeCheckedOut) {
+        return toBeCheckedOut.checkout(allBooks);
     }
 
     public boolean returnBook(int bookIndex) {

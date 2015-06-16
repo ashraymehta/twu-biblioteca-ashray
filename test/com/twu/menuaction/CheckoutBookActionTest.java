@@ -4,6 +4,7 @@ import com.twu.CheckoutBookView;
 import com.twu.Library;
 import com.twu.Searcher;
 import com.twu.book.AvailableBook;
+import com.twu.book.CheckedOutBook;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,48 +17,35 @@ import static org.mockito.Mockito.*;
 public class CheckoutBookActionTest {
     @Mock
     Searcher searcher;
+    @Mock
+    CheckoutBookView checkoutBookView;
+    @Mock
+    AvailableBook availableBook;
+    @Mock
+    CheckedOutBook checkedOutBook;
 
     private Library library;
+    private CheckoutBookAction checkoutBookAction;
 
     @Before
     public void setUp() throws Exception {
         library = mock(Library.class);
+        checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
+        when(checkoutBookView.getBookTitle()).thenReturn("Title");
+        when(searcher.search("Title")).thenReturn(availableBook);
+        when(library.checkoutBook(availableBook)).thenReturn(checkedOutBook);
+        when(checkedOutBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
     }
 
     @Test
     public void shouldSearchForBookTitle() throws Exception {
-        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
-        when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = mock(AvailableBook.class);
-        when(searcher.search("Title")).thenReturn(availableBook);
-        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(searcher).search("Title");
     }
 
     @Test
-    public void shouldDisplayListOfBooks() throws Exception {
-        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
-        when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = mock(AvailableBook.class);
-        when(searcher.search("Title")).thenReturn(availableBook);
-        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
-        checkoutBookAction.perform();
-
-        verify(checkoutBookView).printListOfBooks();
-    }
-
-    @Test
     public void shouldTakeInput() throws Exception {
-        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
-        when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = mock(AvailableBook.class);
-        when(searcher.search("Title")).thenReturn(availableBook);
-        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(checkoutBookView).getBookTitle();
@@ -65,12 +53,6 @@ public class CheckoutBookActionTest {
 
     @Test
     public void shouldCheckoutBookAfterGettingSelection() throws Exception {
-        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
-        when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = mock(AvailableBook.class);
-        when(searcher.search("Title")).thenReturn(availableBook);
-        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(library).checkoutBook(availableBook);
@@ -78,24 +60,13 @@ public class CheckoutBookActionTest {
 
     @Test
     public void shouldGetAppropriateMessageFromBook() throws Exception {
-        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
-        when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = mock(AvailableBook.class);
-        when(searcher.search("Title")).thenReturn(availableBook);
         checkoutBookAction.perform();
 
-        verify(availableBook).getAppropriateCheckoutMessage();
+        verify(checkedOutBook).getAppropriateCheckoutMessage();
     }
 
     @Test
     public void shouldPrintMessageAfterCheckout() throws Exception {
-        CheckoutBookView checkoutBookView = mock(CheckoutBookView.class);
-        CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library, searcher);
-        when(checkoutBookView.getBookTitle()).thenReturn("Title");
-        AvailableBook availableBook = mock(AvailableBook.class);
-        when(searcher.search("Title")).thenReturn(availableBook);
-        when(availableBook.getAppropriateCheckoutMessage()).thenReturn("Success!");
         checkoutBookAction.perform();
 
         verify(checkoutBookView).printMessage("Success!");
