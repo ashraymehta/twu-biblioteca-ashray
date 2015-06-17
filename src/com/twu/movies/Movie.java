@@ -1,5 +1,7 @@
 package com.twu.movies;
 
+import com.twu.user.Customer;
+
 import java.util.List;
 
 // Represents a Movie with comparison checks for the object as well as some properties
@@ -45,7 +47,7 @@ public abstract class Movie {
         return result;
     }
 
-    public abstract Movie checkout();
+    public abstract Movie checkout(Customer customer);
 
     public abstract String getAppropriateCheckoutMessage();
 

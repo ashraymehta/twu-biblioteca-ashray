@@ -61,7 +61,7 @@ public class LibraryTest {
 
         availableMovieOne = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
         availableMovieTwo = new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9);
-        checkedOutOutMovieOne = new CheckedOutMovie("The Dark Knight Rises", "Christopher Nolan", 2012, 9);
+        checkedOutOutMovieOne = new CheckedOutMovie("The Dark Knight Rises", "Christopher Nolan", 2012, 9, customer);
 
         availableMovies = new ArrayList<>();
 
@@ -127,15 +127,15 @@ public class LibraryTest {
     @Test
     public void shouldBeAbleToCheckoutAMovie() throws Exception {
         availableMovieOne = mock(AvailableMovie.class);
-        library.checkoutMovie(availableMovieOne);
+        library.checkoutMovie(availableMovieOne, customer);
 
-        verify(availableMovieOne).checkout();
+        verify(availableMovieOne).checkout(customer);
     }
 
     @Test
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
         library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher);
-        Movie movie = library.checkoutMovie(availableMovieOne);
+        Movie movie = library.checkoutMovie(availableMovieOne, customer);
 
         assertTrue(movie instanceof CheckedOutMovie);
     }

@@ -59,9 +59,9 @@ public class Library {
         return toBeReturned;
     }
 
-    public Movie checkoutMovie(Movie movie) {
+    public Movie checkoutMovie(Movie movie, Customer customer) {
         allMovies.remove(movie);
-        movie = movie.checkout();
+        movie = movie.checkout(customer);
         allMovies.add(movie);
         return movie;
     }

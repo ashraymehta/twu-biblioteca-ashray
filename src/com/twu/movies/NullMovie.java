@@ -1,6 +1,7 @@
 package com.twu.movies;
 
 import com.twu.Messages;
+import com.twu.user.Customer;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class NullMovie extends Movie {
     }
 
     @Override
-    public Movie checkout() {
+    public Movie checkout(Customer customer) {
         return this;
     }
 

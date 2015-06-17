@@ -31,7 +31,7 @@ public class CheckoutMovieActionTest {
     public void setUp() throws Exception {
         library = mock(Library.class);
         when(library.searchMovie("Title")).thenReturn(availableMovie);
-        when(library.checkoutMovie(availableMovie)).thenReturn(checkedOutMovie);
+        when(library.checkoutMovie(availableMovie, customer)).thenReturn(checkedOutMovie);
         when(checkedOutMovie.getAppropriateCheckoutMessage()).thenReturn("Success!");
         when(checkoutMovieView.getMovieName()).thenReturn("Title");
         checkoutMovieAction = new CheckoutMovieAction(checkoutMovieView, library);
@@ -55,7 +55,7 @@ public class CheckoutMovieActionTest {
     public void shouldCheckoutMovieFromLibrary() throws Exception {
         checkoutMovieAction.perform(customer);
 
-        verify(library).checkoutMovie(availableMovie);
+        verify(library).checkoutMovie(availableMovie, customer);
     }
 
     @Test

@@ -1,21 +1,22 @@
 package com.twu.movies;
 
 import com.twu.Messages;
+import com.twu.user.Customer;
 
 import java.util.List;
 
 public class CheckedOutMovie extends Movie {
-    public CheckedOutMovie(String name, String director, int year, int movieRating) {
+    public CheckedOutMovie(String name, String director, int year, int movieRating, Customer customer) {
         super(name, director, year, movieRating);
     }
 
-    public static CheckedOutMovie create(AvailableMovie availableMovie) {
+    public static CheckedOutMovie create(AvailableMovie availableMovie, Customer customer) {
         return new CheckedOutMovie(availableMovie.name, availableMovie.director, availableMovie.year,
-                availableMovie.movieRating);
+                availableMovie.movieRating, customer);
     }
 
     @Override
-    public Movie checkout() {
+    public Movie checkout(Customer customer) {
         return null;
     }
 
