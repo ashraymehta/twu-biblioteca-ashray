@@ -17,6 +17,7 @@ import static junit.framework.Assert.assertEquals;
 public class AuthenticatorTest {
     private Authenticator authenticator;
     private NullUser nullUser;
+    private Customer toBeLoggedIn;
 
     @Before
     public void setUp() throws Exception {
@@ -24,6 +25,7 @@ public class AuthenticatorTest {
         Set<AbstractUser> users = new HashSet<>();
         Customer customerOne = new Customer("123-4567", "Password");
         Customer customerTwo = new Customer("987-6543", "Password");
+        toBeLoggedIn = new Customer("123-4567", "Password");
         users.add(customerOne);
         users.add(customerTwo);
         authenticator = new Authenticator(users, nullUser);
@@ -31,11 +33,18 @@ public class AuthenticatorTest {
 
     @Test
     public void shouldReturnGivenUserIfAuthenticated() throws Exception {
-        Customer toBeLoggedIn = new Customer("123-4567", "Password");
-
         AbstractUser actualResult = authenticator.login(toBeLoggedIn);
         AbstractUser expectedResult = toBeLoggedIn;
 
-        assertEquals(toBeLoggedIn, actualResult);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void shouldReturnNullUserWhenUserIsNotAuthenticated() throws Exception {
+        toBeLoggedIn = new Customer("2314214", "asjdnqw");
+        AbstractUser actualResult = authenticator.login(toBeLoggedIn);
+        AbstractUser expectedResult = nullUser;
+
+        assertEquals(expectedResult, actualResult);
     }
 }

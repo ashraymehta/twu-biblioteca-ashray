@@ -19,7 +19,7 @@ public class Authenticator {
         if(allUsers.contains(toBeLoggedIn))
             return toBeLoggedIn;
         else
-            return null;
+            return nullUser;
 
     }
 }
