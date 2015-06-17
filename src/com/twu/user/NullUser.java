@@ -11,4 +11,9 @@ public class NullUser extends AbstractUser {
     public String getLoginStatusMessage() {
         return Messages.UNSUCCESSFUL_LOGIN;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o != null && getClass() == o.getClass();
+    }
 }

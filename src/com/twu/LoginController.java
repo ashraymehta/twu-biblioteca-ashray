@@ -18,12 +18,15 @@ public class LoginController {
     }
 
     public AbstractUser login() {
-        loginView.printMessage(ENTER_LIBRARY_NUMBER);
-        String libraryNumber = loginView.getUserInput();
-        loginView.printMessage(ENTER_PASSWORD);
-        String password = loginView.getUserInput();
-        AbstractUser user = authenticator.login(libraryNumber, password);
-        loginView.printMessage(user.getLoginStatusMessage());
-        return null;
+        AbstractUser user;
+        do {
+            loginView.printMessage(ENTER_LIBRARY_NUMBER);
+            String libraryNumber = loginView.getUserInput();
+            loginView.printMessage(ENTER_PASSWORD);
+            String password = loginView.getUserInput();
+            user = authenticator.login(libraryNumber, password);
+            loginView.printMessage(user.getLoginStatusMessage());
+        } while (user.equals(nullUser));
+        return user;
     }
 }

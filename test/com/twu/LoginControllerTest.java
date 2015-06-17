@@ -82,4 +82,21 @@ public class LoginControllerTest {
 
         verify(loginView).printMessage(Messages.SUCCESSFUL_LOGIN);
     }
+
+    @Test
+    public void shouldLoopUntilLoginIsSuccessful() throws Exception {
+        authenticator = mock(Authenticator.class);
+        when(loginView.getUserInput())
+                .thenReturn(libraryNumber)
+                .thenReturn(password)
+                .thenReturn(libraryNumber)
+                .thenReturn(password);
+        when(authenticator.login(libraryNumber, password))
+                .thenReturn(nullUser)
+                .thenReturn(user);
+        loginController = new LoginController(loginView, authenticator, nullUser);
+        loginController.login();
+
+        verify(authenticator, times(2)).login(libraryNumber, password);
+    }
 }

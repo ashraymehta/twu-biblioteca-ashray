@@ -21,7 +21,7 @@ public class Authenticator {
         for (AbstractUser user : allUsers) {
             user.addToListIfCredentialsMatch(libraryNumber, password, matchingUsers);
         }
-        if(matchingUsers.size() > 0)
+        if (matchingUsers.size() > 0)
             return matchingUsers.get(0);
         else
             return nullUser;

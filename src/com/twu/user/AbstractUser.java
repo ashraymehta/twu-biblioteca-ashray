@@ -12,7 +12,7 @@ public abstract class AbstractUser {
     }
 
     public void addToListIfCredentialsMatch(String libraryNumber, String password, List<AbstractUser> matchedList) {
-        if(this.libraryNumber.equals(libraryNumber) && this.password.equals(password))
+        if (this.libraryNumber.equals(libraryNumber) && this.password.equals(password))
             matchedList.add(this);
     }
 
@@ -26,7 +26,7 @@ public abstract class AbstractUser {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null) return false;
 
         AbstractUser that = (AbstractUser) o;
 
