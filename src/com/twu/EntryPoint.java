@@ -36,7 +36,6 @@ public class EntryPoint {
     private static List<Movie> availableMovies;
     private static ReturnMovieView returnMovieView;
     private static QuitAction quitAction;
-    private static NullUser nullUser;
 
     public static void main(String[] args) {
         initializeStreams();

@@ -2,9 +2,9 @@ package com.twu.books;
 
 import com.twu.Messages;
 import com.twu.user.Customer;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -15,8 +15,13 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CheckedOutBookTest {
-    @Mock
-    Customer checkedOutTo;
+
+    private Customer checkedOutTo;
+
+    @Before
+    public void setUp() throws Exception {
+        checkedOutTo = new Customer("123-4567", "Password");
+    }
 
     @Test
     public void shouldPresentDetailsOfBookAsString() throws Exception {
@@ -27,7 +32,8 @@ public class CheckedOutBookTest {
 
         String actualString = book.toString();
         String expectedString = "Harry Potter and the Philosopher's Stone          " +
-                "JK Rowling                    " + "1997      ";
+                "JK Rowling                    " + "1997      " +
+                "123-4567  " ;
 
         assertEquals(expectedString, actualString);
     }

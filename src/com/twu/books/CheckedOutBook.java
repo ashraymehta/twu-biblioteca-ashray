@@ -43,4 +43,9 @@ public class CheckedOutBook extends Book {
     public Book returnBook() {
         return AvailableBook.create(this);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("%-10s", checkedOutTo);
+    }
 }
