@@ -1,13 +1,25 @@
 package com.twu;
 
 import com.twu.user.AbstractUser;
+import com.twu.user.NullUser;
 
-import java.util.List;
+import java.util.Set;
 
 public class Authenticator {
-    private List<AbstractUser> allUsers;
+    private Set<AbstractUser> allUsers;
+    private NullUser nullUser;
 
-    public Authenticator(List<AbstractUser> allUsers) {
+    public Authenticator(Set<AbstractUser> allUsers, NullUser nullUser) {
         this.allUsers = allUsers;
+        this.nullUser = nullUser;
+    }
+
+
+    public AbstractUser login(AbstractUser toBeLoggedIn) {
+        if(allUsers.contains(toBeLoggedIn))
+            return toBeLoggedIn;
+        else
+            return null;
+
     }
 }
