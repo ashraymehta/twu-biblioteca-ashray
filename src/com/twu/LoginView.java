@@ -15,4 +15,8 @@ public class LoginView {
     public String getUserInput() {
         return scanner.nextLine();
     }
+
+    public void printMessage(String message) {
+        out.println(message);
+    }
 }

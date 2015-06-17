@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoginViewTest {
@@ -32,5 +33,13 @@ public class LoginViewTest {
         String expectedInput = "Library Number";
 
         assertEquals(expectedInput, actualInput);
+    }
+
+    @Test
+    public void shouldPrintTheMessageProvided() throws Exception {
+        String message = "Message!";
+        loginView.printMessage(message);
+
+        verify(printStream).println(message);
     }
 }
