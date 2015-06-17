@@ -2,13 +2,16 @@ package com.twu;
 
 import com.twu.books.AvailableBook;
 import com.twu.books.Book;
+import com.twu.books.CheckedOutBook;
 import com.twu.books.NullBook;
 import com.twu.menuactions.*;
 import com.twu.movies.AvailableMovie;
+import com.twu.movies.CheckedOutMovie;
 import com.twu.movies.Movie;
 import com.twu.movies.NullMovie;
 import com.twu.user.AbstractUser;
 import com.twu.user.Customer;
+import com.twu.user.Librarian;
 import com.twu.user.NullUser;
 import com.twu.views.*;
 
@@ -23,13 +26,13 @@ public class EntryPoint {
     private static Books availableBooks;
     private static PrintStream consoleOutStream;
     private static ArrayList<Book> listOfCheckedOutBooks;
-    private static BooksView booksView;
+    private static BooksView availableBooksView;
     private static ReturnBookView returnBookView;
     private static CheckoutBookView checkoutBookView;
     private static ArrayList<Book> allBooks;
     private static Library library;
-    private static HashMap<Integer, String> menuItemsMappedToSerials;
-    private static HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
+    private static HashMap<Integer, String> customerMenuItemsMappedToSerials;
+    private static HashMap<Integer, MenuAction> customerMenuItemsMappedToMenuAction;
     private static Set<Movie> allMovies;
     private static MoviesView moviesView;
     private static CheckoutMovieView checkoutMovieView;
@@ -37,6 +40,13 @@ public class EntryPoint {
     private static ReturnMovieView returnMovieView;
     private static QuitAction quitAction;
     private static ArrayList<Movie> listOfCheckedOutMovies;
+    private static MenuView librarianMenuView;
+    private static HashMap<Integer, String> librarianMenuItemsMappedToSerials;
+    private static HashMap<Integer, MenuAction> librarianMenuItemsMappedToMenuAction;
+    private static BooksView checkedOutBooksView;
+    private static MoviesView checkedOutMoviesView;
+    private static Movies checkedOutMovies;
+    private static Customer checkedOutTo;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -51,8 +61,10 @@ public class EntryPoint {
         library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher, listOfCheckedOutBooks, listOfCheckedOutMovies);
         populateHashMaps();
 
-        Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
-        MenuView menuView = new MenuView(menu, scanner, consoleOutStream);
+        Menu customerMenu = new Menu(customerMenuItemsMappedToMenuAction, customerMenuItemsMappedToSerials);
+        Menu librarianMenu = new Menu(librarianMenuItemsMappedToMenuAction, librarianMenuItemsMappedToSerials);
+        MenuView customerMenuView = new MenuView(customerMenu, scanner, consoleOutStream);
+        librarianMenuView = new MenuView(librarianMenu, scanner, consoleOutStream);
         ConsoleOut consoleOut = new ConsoleOut(consoleOutStream);
 
         HashSet<AbstractUser> allUsers = initializeAllUsers();
@@ -60,14 +72,16 @@ public class EntryPoint {
         LoginView loginView = new LoginView(consoleOutStream, scanner);
         LoginController loginController = new LoginController(loginView, authenticator, nullUser);
 
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction, loginController);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, customerMenuView, librarianMenuView, quitAction, loginController);
         bibliotecaApp.start();
     }
 
     private static HashSet<AbstractUser> initializeAllUsers() {
         HashSet<AbstractUser> allUsers = new HashSet<>();
-        allUsers.add(new Customer("123-4567", "Password"));
+        checkedOutTo = new Customer("123-4567", "Password");
+        allUsers.add(checkedOutTo);
         allUsers.add(new Customer("111-1111", "11111"));
+        allUsers.add(new Librarian("000-0000", "0000"));
         return allUsers;
     }
 
@@ -77,14 +91,21 @@ public class EntryPoint {
         listOfCheckedOutMovies = new ArrayList<>();
         AvailableMovie availableMovieOne = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
         AvailableMovie availableMovieTwo = new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9);
+        CheckedOutMovie checkedOutMovie = new CheckedOutMovie("The Dark Knight Returns",
+                "Christopher Nolan", 2011, 9, checkedOutTo);
+        listOfCheckedOutMovies.add(checkedOutMovie);
         availableMovies.add(availableMovieOne);
         availableMovies.add(availableMovieTwo);
         allMovies.addAll(availableMovies);
+        allMovies.addAll(listOfCheckedOutMovies);
     }
 
     private static void initializeViews() {
         Books checkedOutBooks = new Books(listOfCheckedOutBooks);
-        booksView = new BooksView(availableBooks, consoleOutStream);
+        checkedOutMovies = new Movies(listOfCheckedOutMovies);
+        availableBooksView = new BooksView(availableBooks, consoleOutStream);
+        checkedOutBooksView = new BooksView(checkedOutBooks, consoleOutStream);
+        checkedOutMoviesView = new MoviesView(checkedOutMovies, consoleOutStream);
         returnBookView = new ReturnBookView(checkedOutBooks, scanner, consoleOutStream);
         returnMovieView = new ReturnMovieView(scanner, consoleOutStream);
         checkoutBookView = new CheckoutBookView(availableBooks, scanner, consoleOutStream);
@@ -96,22 +117,31 @@ public class EntryPoint {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         MenuAction returnBookAction = new ReturnBookAction(returnBookView, library);
         quitAction = new QuitAction();
-        menuItemsMappedToSerials = new HashMap<>();
-        menuItemsMappedToMenuAction = new HashMap<>();
-        menuItemsMappedToSerials.put(1, "List books");
-        menuItemsMappedToMenuAction.put(1, new ListAvailableBooksAction(booksView, library));
-        menuItemsMappedToSerials.put(2, "Checkout Book");
-        menuItemsMappedToMenuAction.put(2, checkoutBookAction);
-        menuItemsMappedToSerials.put(3, "Return Book");
-        menuItemsMappedToMenuAction.put(3, returnBookAction);
-        menuItemsMappedToSerials.put(4, "List movies");
-        menuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView, library));
-        menuItemsMappedToSerials.put(5, "Checkout Movie");
-        menuItemsMappedToMenuAction.put(5, new CheckoutMovieAction(checkoutMovieView, library));
-        menuItemsMappedToSerials.put(6, "Return Movie");
-        menuItemsMappedToMenuAction.put(6, new ReturnMovieAction(returnMovieView, library));
-        menuItemsMappedToSerials.put(7, "Quit");
-        menuItemsMappedToMenuAction.put(7, quitAction);
+        customerMenuItemsMappedToSerials = new HashMap<>();
+        customerMenuItemsMappedToMenuAction = new HashMap<>();
+        customerMenuItemsMappedToSerials.put(1, "List books");
+        customerMenuItemsMappedToMenuAction.put(1, new ListAvailableBooksAction(availableBooksView, library));
+        customerMenuItemsMappedToSerials.put(2, "Checkout Book");
+        customerMenuItemsMappedToMenuAction.put(2, checkoutBookAction);
+        customerMenuItemsMappedToSerials.put(3, "Return Book");
+        customerMenuItemsMappedToMenuAction.put(3, returnBookAction);
+        customerMenuItemsMappedToSerials.put(4, "List movies");
+        customerMenuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView, library));
+        customerMenuItemsMappedToSerials.put(5, "Checkout Movie");
+        customerMenuItemsMappedToMenuAction.put(5, new CheckoutMovieAction(checkoutMovieView, library));
+        customerMenuItemsMappedToSerials.put(6, "Return Movie");
+        customerMenuItemsMappedToMenuAction.put(6, new ReturnMovieAction(returnMovieView, library));
+        customerMenuItemsMappedToSerials.put(7, "Quit");
+        customerMenuItemsMappedToMenuAction.put(7, quitAction);
+
+        librarianMenuItemsMappedToSerials = new HashMap<>();
+        librarianMenuItemsMappedToMenuAction = new HashMap<>();
+        librarianMenuItemsMappedToSerials.put(1, "View checked out book details");
+        librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBooksView, library));
+        librarianMenuItemsMappedToSerials.put(2, "View checked out movie details");
+        librarianMenuItemsMappedToMenuAction.put(2, new CheckedOutMovieDetailsAction(checkedOutMoviesView, library));
+        librarianMenuItemsMappedToSerials.put(3, "Quit");
+        librarianMenuItemsMappedToMenuAction.put(3, new QuitAction());
     }
 
     private static void initializeStreams() {
@@ -123,11 +153,11 @@ public class EntryPoint {
         listOfAvailableBooks = getAvailableBooks();
         availableBooks = new Books(listOfAvailableBooks);
         listOfCheckedOutBooks = new ArrayList<>();
+        listOfCheckedOutBooks.add(new CheckedOutBook("The Silkworm", "Robert Galbraith", 2014, checkedOutTo));
         allBooks = new ArrayList<>();
         allBooks.addAll(listOfAvailableBooks);
         allBooks.addAll(listOfCheckedOutBooks);
     }
-
 
     private static ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> listOfAvailableBooks = new ArrayList<>();

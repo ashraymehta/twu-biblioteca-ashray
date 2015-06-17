@@ -25,7 +25,9 @@ public class BibliotecaAppTest {
     @Mock
     Library library;
     @Mock
-    MenuView menuView;
+    MenuView customerMenuView;
+    @Mock
+    MenuView librarianMenuView;
     @Mock
     LoginController loginController;
     @Mock
@@ -42,8 +44,8 @@ public class BibliotecaAppTest {
         allUsers.add(customerOne);
         allUsers.add(customerTwo);
         when(loginController.login()).thenReturn(customer);
-        when(menuView.performActionUponSelection(customer)).thenReturn(quitAction);
-        bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction, loginController);
+        when(customerMenuView.performActionUponSelection(customer)).thenReturn(quitAction);
+        bibliotecaApp = new BibliotecaApp(consoleOut, customerMenuView, librarianMenuView, quitAction, loginController);
     }
 
     @Test
@@ -57,13 +59,13 @@ public class BibliotecaAppTest {
     public void shouldPrintMainMenu() throws Exception {
         bibliotecaApp.start();
 
-        verify(menuView).printMainMenu();
+        verify(customerMenuView).printMainMenu();
     }
 
     @Test
     public void shouldPerformActionUponSelection() throws Exception {
         bibliotecaApp.start();
 
-        verify(menuView).performActionUponSelection(customer);
+        verify(customerMenuView).performActionUponSelection(customer);
     }
 }
