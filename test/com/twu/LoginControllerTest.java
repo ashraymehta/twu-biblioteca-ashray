@@ -1,5 +1,6 @@
 package com.twu;
 
+import com.twu.user.AbstractUser;
 import com.twu.user.NullUser;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,8 @@ public class LoginControllerTest {
     LoginView loginView;
     @Mock
     Authenticator authenticator;
+    @Mock
+    AbstractUser user;
 
     private LoginController loginController;
     private String libraryNumber;
@@ -32,6 +35,10 @@ public class LoginControllerTest {
         when(loginView.getUserInput())
                 .thenReturn(libraryNumber)
                 .thenReturn(password);
+        when(authenticator.login(libraryNumber, password))
+                .thenReturn(user);
+        when(user.getLoginStatusMessage())
+                .thenReturn(Messages.SUCCESSFUL_LOGIN);
     }
 
     @Test
@@ -60,5 +67,12 @@ public class LoginControllerTest {
         loginController.login();
 
         verify(authenticator).login(libraryNumber, password);
+    }
+
+    @Test
+    public void shouldGetStatusMessageOfUser() throws Exception {
+        loginController.login();
+
+        verify(user).getLoginStatusMessage();
     }
 }

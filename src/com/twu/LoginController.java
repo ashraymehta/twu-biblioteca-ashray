@@ -22,7 +22,8 @@ public class LoginController {
         String libraryNumber = loginView.getUserInput();
         loginView.printMessage(ENTER_PASSWORD);
         String password = loginView.getUserInput();
-        authenticator.login(libraryNumber, password);
+        AbstractUser user = authenticator.login(libraryNumber, password);
+        user.getLoginStatusMessage();
         return null;
     }
 }
