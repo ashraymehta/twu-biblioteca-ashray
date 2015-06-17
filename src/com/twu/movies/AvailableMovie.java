@@ -39,4 +39,9 @@ public class AvailableMovie extends Movie {
     public String getAppropriateReturnMessage() {
         return Messages.SUCCESSFUL_MOVIE_RETURN_MESSAGE;
     }
+
+    @Override
+    public void addToListIfCheckedOut(List<Movie> checkedOutMovies) {
+
+    }
 }

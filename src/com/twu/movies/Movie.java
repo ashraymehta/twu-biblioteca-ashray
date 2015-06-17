@@ -61,4 +61,6 @@ public abstract class Movie {
     public abstract Movie returnMovie();
 
     public abstract String getAppropriateReturnMessage();
+
+    public abstract void addToListIfCheckedOut(List<Movie> checkedOutMovies);
 }

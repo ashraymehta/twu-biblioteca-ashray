@@ -34,4 +34,9 @@ public class NullMovie extends Movie {
     public String getAppropriateReturnMessage() {
         return Messages.UNSUCCESSFUL_MOVIE_RETURN_MESSAGE;
     }
+
+    @Override
+    public void addToListIfCheckedOut(List<Movie> checkedOutMovies) {
+
+    }
 }
