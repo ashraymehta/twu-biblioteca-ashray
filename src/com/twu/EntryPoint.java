@@ -32,6 +32,7 @@ public class EntryPoint {
     private static CheckoutMovieView checkoutMovieView;
     private static List<Movie> availableMovies;
     private static ReturnMovieView returnMovieView;
+    private static QuitAction quitAction;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -49,7 +50,7 @@ public class EntryPoint {
         MenuView menuView = new MenuView(menu, scanner, consoleOutStream);
         ConsoleOut consoleOut = new ConsoleOut(consoleOutStream);
 
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction);
         bibliotecaApp.start();
     }
 
@@ -76,6 +77,7 @@ public class EntryPoint {
     private static void populateHashMaps() {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
         MenuAction returnBookAction = new ReturnBookAction(returnBookView, library);
+        quitAction = new QuitAction();
         menuItemsMappedToSerials = new HashMap<>();
         menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
@@ -91,9 +93,8 @@ public class EntryPoint {
         menuItemsMappedToSerials.put(6, "Return Movie");
         menuItemsMappedToMenuAction.put(6, new ReturnMovieAction(returnMovieView, library));
         menuItemsMappedToSerials.put(7, "Quit");
-        menuItemsMappedToMenuAction.put(7, new QuitAction());
+        menuItemsMappedToMenuAction.put(7, quitAction);
     }
-
     private static void initializeStreams() {
         scanner = new Scanner(System.in);
         consoleOutStream = new PrintStream(System.out);

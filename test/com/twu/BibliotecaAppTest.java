@@ -14,14 +14,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.HashMap;
-import java.util.Scanner;
 
-import static junit.framework.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BibliotecaAppTest {
@@ -31,12 +26,17 @@ public class BibliotecaAppTest {
     BookSearcher bookSearcher;
     @Mock
     Library library;
+    @Mock
+    MenuView menuView;
 
     private HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
     private HashMap<Integer, String> menuItemsMappedToSerials;
+    private QuitAction quitAction;
+    private BibliotecaApp bibliotecaApp;
 
     @Before
     public void setUp() throws Exception {
+        quitAction = new QuitAction();
         menuItemsMappedToSerials = new HashMap<>();
         menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
@@ -44,17 +44,14 @@ public class BibliotecaAppTest {
         menuItemsMappedToSerials.put(2, "Checkout books");
         menuItemsMappedToMenuAction.put(2, new CheckoutBookAction(mock(CheckoutBookView.class), mock(Library.class)));
         menuItemsMappedToSerials.put(2, "Quit");
-        menuItemsMappedToMenuAction.put(2, new QuitAction());
+        menuItemsMappedToMenuAction.put(2, quitAction);
+
+        bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction);
+        when(menuView.performActionUponSelection()).thenReturn(quitAction);
     }
 
     @Test
     public void shouldPrintWelcomeMessage() throws Exception {
-        String command = "2";
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(command.getBytes());
-        Scanner scanner = new Scanner(byteArrayInputStream);
-        Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
-        MenuView menuView = new MenuView(menu, scanner, mock(PrintStream.class));
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView);
         bibliotecaApp.start();
 
         Mockito.verify(consoleOut).printWelcomeMessage();
@@ -62,19 +59,8 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldPrintMainMenu() throws Exception {
-        String command = "2";
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(command.getBytes());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        Scanner scanner = new Scanner(byteArrayInputStream);
-        Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
-        MenuView menuView = new MenuView(menu, scanner, new PrintStream(outputStream));
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView);
         bibliotecaApp.start();
 
-        String actualOutput = outputStream.toString();
-        String expectedOutput = "1. List books" + System.lineSeparator() +
-                "2. Quit" + System.lineSeparator() + System.lineSeparator();
-
-        assertEquals(expectedOutput, actualOutput);
+        verify(menuView).printMainMenu();
     }
 }

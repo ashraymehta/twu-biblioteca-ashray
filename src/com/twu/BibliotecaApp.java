@@ -9,16 +9,18 @@ public class BibliotecaApp {
 
     private ConsoleOut consoleOut;
     private MenuView menuView;
+    private QuitAction quitAction;
 
-    public BibliotecaApp(ConsoleOut consoleOut, MenuView menuView) {
+    public BibliotecaApp(ConsoleOut consoleOut, MenuView menuView, QuitAction quitAction) {
         this.consoleOut = consoleOut;
         this.menuView = menuView;
+        this.quitAction = quitAction;
     }
 
     public void start() {
         consoleOut.printWelcomeMessage();
         MenuAction actionTaken = null;
-        while (!(actionTaken instanceof QuitAction)) {
+        while (!quitAction.equals(actionTaken)) {
             menuView.printMainMenu();
             actionTaken = menuView.performActionUponSelection();
         }
