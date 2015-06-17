@@ -18,8 +18,8 @@ public class Library {
     private final MovieSearcher movieSearcher;
     private final List<Movie> availableMovies;
 
-    public Library(ArrayList<Book> availableBooks, ArrayList<Book> allBooks, Set<Movie> allMovies, BookSearcher bookSearcher,
-                   MovieSearcher movieSearcher, List<Movie> availableMovies) {
+    public Library(ArrayList<Book> availableBooks, List<Movie> availableMovies, ArrayList<Book> allBooks,
+                   Set<Movie> allMovies, BookSearcher bookSearcher, MovieSearcher movieSearcher) {
         this.availableBooks = availableBooks;
         this.allBooks = allBooks;
         this.allMovies = allMovies;

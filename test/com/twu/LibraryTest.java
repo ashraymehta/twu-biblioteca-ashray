@@ -69,7 +69,7 @@ public class LibraryTest {
         allMovies.add(availableMovieTwo);
         allMovies.add(checkedOutOutMovieOne);
 
-        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher, availableMovies);
+        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class LibraryTest {
 
     @Test
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
-        library = new Library(availableBookArrayList, allBooks, allMovies, bookSearcher, movieSearcher, availableMovies);
+        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher);
         Movie movie = library.checkoutMovie(availableMovieOne);
 
         assertTrue(movie instanceof CheckedOutMovie);

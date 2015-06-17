@@ -42,7 +42,7 @@ public class EntryPoint {
         BookSearcher bookSearcher = new BookSearcher(nullBook);
         Movie nullMovie = new NullMovie();
         MovieSearcher movieSearcher = new MovieSearcher(nullMovie);
-        library = new Library(listOfAvailableBooks, allBooks, allMovies, bookSearcher, movieSearcher, availableMovies);
+        library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher);
         populateHashMaps();
 
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
