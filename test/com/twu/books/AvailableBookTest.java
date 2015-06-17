@@ -1,6 +1,7 @@
 package com.twu.books;
 
 import com.twu.Messages;
+import com.twu.user.Customer;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class AvailableBookTest {
     @Test
@@ -42,7 +44,7 @@ public class AvailableBookTest {
         String author = "JK Rowling";
         int yearPublished = 1997;
         AvailableBook book = new AvailableBook(title, author, yearPublished);
-        Book newBook = book.checkoutBook();
+        Book newBook = book.checkoutBook(mock(Customer.class));
 
         assertTrue(newBook instanceof CheckedOutBook);
     }

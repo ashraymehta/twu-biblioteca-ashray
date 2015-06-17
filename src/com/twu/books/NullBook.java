@@ -1,13 +1,14 @@
 package com.twu.books;
 
 import com.twu.Messages;
+import com.twu.user.Customer;
 
 import java.util.List;
 
 // Represents a books when books is not found instead of null
 public class NullBook extends Book {
     public NullBook() {
-        super(null, null, 0);
+        super("", "", 0);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class NullBook extends Book {
     }
 
     @Override
-    public Book checkoutBook() {
+    public Book checkoutBook(Customer customer) {
         return this;
     }
 

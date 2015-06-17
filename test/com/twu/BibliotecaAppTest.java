@@ -1,6 +1,8 @@
 package com.twu;
 
 import com.twu.menuactions.QuitAction;
+import com.twu.user.AbstractUser;
+import com.twu.user.Customer;
 import com.twu.views.MenuView;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.HashSet;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -22,14 +26,24 @@ public class BibliotecaAppTest {
     Library library;
     @Mock
     MenuView menuView;
+    @Mock
+    LoginController loginController;
+    @Mock
+    Customer customer;
 
     private BibliotecaApp bibliotecaApp;
 
     @Before
     public void setUp() throws Exception {
         QuitAction quitAction = new QuitAction();
-        bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction);
-        when(menuView.performActionUponSelection()).thenReturn(quitAction);
+        HashSet<AbstractUser> allUsers = new HashSet<>();
+        Customer customerOne = new Customer("123-4567", "Password");
+        Customer customerTwo = new Customer("111-1111", "11111");
+        allUsers.add(customerOne);
+        allUsers.add(customerTwo);
+        when(loginController.login()).thenReturn(customer);
+        when(menuView.performActionUponSelection(customer)).thenReturn(quitAction);
+        bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction, loginController);
     }
 
     @Test
@@ -50,6 +64,6 @@ public class BibliotecaAppTest {
     public void shouldPerformActionUponSelection() throws Exception {
         bibliotecaApp.start();
 
-        verify(menuView).performActionUponSelection();
+        verify(menuView).performActionUponSelection(customer);
     }
 }

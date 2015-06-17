@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.user.AbstractUser;
 import com.twu.views.BooksView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,11 +16,13 @@ public class ListBooksActionTest {
     Library library;
     @Mock
     BooksView booksViewStub;
+    @Mock
+    private AbstractUser abstractUser;
 
     @Test
     public void shouldBeAbleToDisplayList() throws Exception {
         ListBooksAction listBooksAction = new ListBooksAction(booksViewStub, library);
-        listBooksAction.perform();
+        listBooksAction.perform(abstractUser);
 
         verify(booksViewStub).printListOfBooks();
     }
@@ -27,7 +30,7 @@ public class ListBooksActionTest {
     @Test
     public void shouldRefreshBooksFromLibrary() throws Exception {
         ListBooksAction listBooksAction = new ListBooksAction(booksViewStub, library);
-        listBooksAction.perform();
+        listBooksAction.perform(abstractUser);
 
         verify(library).getAvailableBooks();
     }

@@ -2,6 +2,7 @@ package com.twu;
 
 import com.twu.books.Book;
 import com.twu.movies.Movie;
+import com.twu.user.Customer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,9 +45,9 @@ public class Library {
         return Collections.unmodifiableList(availableMovies);
     }
 
-    public Book checkoutBook(Book toBeCheckedOut) {
+    public Book checkoutBook(Book toBeCheckedOut, Customer customer) {
         allBooks.remove(toBeCheckedOut);
-        toBeCheckedOut = toBeCheckedOut.checkoutBook();
+        toBeCheckedOut = toBeCheckedOut.checkoutBook(customer);
         allBooks.add(toBeCheckedOut);
         return toBeCheckedOut;
     }

@@ -1,6 +1,7 @@
 package com.twu;
 
 import com.twu.menuactions.MenuAction;
+import com.twu.user.AbstractUser;
 
 import java.util.HashMap;
 
@@ -15,9 +16,9 @@ public class Menu {
         this.menuItemsMappedToSerials = menuItemsMappedToSerials;
     }
 
-    public MenuAction performActionForInput(int userInput) {
+    public MenuAction performActionForInput(AbstractUser user, int userInput) {
         MenuAction menuAction = menuItemsMappedToMenuAction.get(userInput);
-        menuAction.perform();
+        menuAction.perform(user);
         return menuAction;
     }
 

@@ -2,6 +2,7 @@ package com.twu.menuactions;
 
 import com.twu.Library;
 import com.twu.books.Book;
+import com.twu.user.AbstractUser;
 import com.twu.views.ReturnBookView;
 
 // Invokes printing of books, return of books and print successful or unsuccessful messages
@@ -15,7 +16,7 @@ public class ReturnBookAction implements MenuAction {
     }
 
     @Override
-    public void perform() {
+    public void perform(AbstractUser user) {
         String bookTitle = returnBookView.getBookTitle();
         Book toBeReturned = library.searchBook(bookTitle);
         Book returnedBook = library.returnBook(toBeReturned);

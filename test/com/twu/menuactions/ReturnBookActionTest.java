@@ -3,6 +3,7 @@ package com.twu.menuactions;
 import com.twu.Library;
 import com.twu.books.AvailableBook;
 import com.twu.books.CheckedOutBook;
+import com.twu.user.Customer;
 import com.twu.views.ReturnBookView;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,8 @@ public class ReturnBookActionTest {
     CheckedOutBook checkedOutBook;
     @Mock
     ReturnBookView returnBookView;
+    @Mock
+    Customer customer;
 
     private Library library;
     private ReturnBookAction returnBookAction;
@@ -37,28 +40,28 @@ public class ReturnBookActionTest {
 
     @Test
     public void shouldTakeInput() throws Exception {
-        returnBookAction.perform();
+        returnBookAction.perform(customer);
 
         Mockito.verify(returnBookView).getBookTitle();
     }
 
     @Test
     public void shouldReturnBookAfterGettingSelection() throws Exception {
-        returnBookAction.perform();
+        returnBookAction.perform(customer);
 
         Mockito.verify(library).returnBook(checkedOutBook);
     }
 
     @Test
     public void shouldGetAppropriateMessageFromBook() throws Exception {
-        returnBookAction.perform();
+        returnBookAction.perform(customer);
 
         verify(availableBook).getAppropriateReturnMessage();
     }
 
     @Test
     public void shouldPrintMessageAfterCheckout() throws Exception {
-        returnBookAction.perform();
+        returnBookAction.perform(customer);
 
         verify(returnBookView).printMessage("Success!");
     }

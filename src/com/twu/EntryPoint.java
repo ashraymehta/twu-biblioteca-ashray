@@ -7,6 +7,9 @@ import com.twu.menuactions.*;
 import com.twu.movies.AvailableMovie;
 import com.twu.movies.Movie;
 import com.twu.movies.NullMovie;
+import com.twu.user.AbstractUser;
+import com.twu.user.Customer;
+import com.twu.user.NullUser;
 import com.twu.views.*;
 
 import java.io.PrintStream;
@@ -33,6 +36,7 @@ public class EntryPoint {
     private static List<Movie> availableMovies;
     private static ReturnMovieView returnMovieView;
     private static QuitAction quitAction;
+    private static NullUser nullUser;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -40,6 +44,7 @@ public class EntryPoint {
         initializeListOfMovies();
         initializeViews();
         NullBook nullBook = new NullBook();
+        NullUser nullUser = new NullUser();
         BookSearcher bookSearcher = new BookSearcher(nullBook);
         Movie nullMovie = new NullMovie();
         MovieSearcher movieSearcher = new MovieSearcher(nullMovie);
@@ -50,8 +55,20 @@ public class EntryPoint {
         MenuView menuView = new MenuView(menu, scanner, consoleOutStream);
         ConsoleOut consoleOut = new ConsoleOut(consoleOutStream);
 
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction);
+        HashSet<AbstractUser> allUsers = initializeAllUsers();
+        Authenticator authenticator = new Authenticator(allUsers, nullUser);
+        LoginView loginView = new LoginView(consoleOutStream, scanner);
+        LoginController loginController = new LoginController(loginView, authenticator, nullUser);
+
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, menuView, quitAction, loginController);
         bibliotecaApp.start();
+    }
+
+    private static HashSet<AbstractUser> initializeAllUsers() {
+        HashSet<AbstractUser> allUsers = new HashSet<>();
+        allUsers.add(new Customer("123-4567", "Password"));
+        allUsers.add(new Customer("111-1111", "11111"));
+        return allUsers;
     }
 
     private static void initializeListOfMovies() {

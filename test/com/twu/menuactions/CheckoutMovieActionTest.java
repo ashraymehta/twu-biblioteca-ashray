@@ -3,6 +3,7 @@ package com.twu.menuactions;
 import com.twu.Library;
 import com.twu.movies.AvailableMovie;
 import com.twu.movies.CheckedOutMovie;
+import com.twu.user.Customer;
 import com.twu.views.CheckoutMovieView;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,8 @@ public class CheckoutMovieActionTest {
     AvailableMovie availableMovie;
     @Mock
     CheckedOutMovie checkedOutMovie;
+    @Mock
+    Customer customer;
 
     private Library library;
     private CheckoutMovieAction checkoutMovieAction;
@@ -36,28 +39,28 @@ public class CheckoutMovieActionTest {
 
     @Test
     public void shouldTakeInput() throws Exception {
-        checkoutMovieAction.perform();
+        checkoutMovieAction.perform(customer);
 
         verify(checkoutMovieView).getMovieName();
     }
 
     @Test
     public void shouldSearchForMovieInTheLibrary() throws Exception {
-        checkoutMovieAction.perform();
+        checkoutMovieAction.perform(customer);
 
         verify(library).searchMovie("Title");
     }
 
     @Test
     public void shouldCheckoutMovieFromLibrary() throws Exception {
-        checkoutMovieAction.perform();
+        checkoutMovieAction.perform(customer);
 
         verify(library).checkoutMovie(availableMovie);
     }
 
     @Test
     public void shouldDisplayAppropriateMessage() throws Exception {
-        checkoutMovieAction.perform();
+        checkoutMovieAction.perform(customer);
 
         verify(checkoutMovieView).printMessage("Success!");
     }

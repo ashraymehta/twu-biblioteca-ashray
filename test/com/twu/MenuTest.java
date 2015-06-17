@@ -3,6 +3,7 @@ package com.twu;
 import com.twu.menuactions.ListBooksAction;
 import com.twu.menuactions.MenuAction;
 import com.twu.menuactions.QuitAction;
+import com.twu.user.Customer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,9 +51,10 @@ public class MenuTest {
     @Test
     public void shouldPrintListOfBooksOnOneInput() throws Exception {
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
-        menu.performActionForInput(1);
+        Customer customer = new Customer("123-4567", "Password");
+        menu.performActionForInput(customer,1);
 
-        Mockito.verify(listBooksAction).perform();
+        Mockito.verify(listBooksAction).perform(customer);
     }
 
     @Test

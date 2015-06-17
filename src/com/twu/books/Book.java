@@ -1,5 +1,7 @@
 package com.twu.books;
 
+import com.twu.user.Customer;
+
 import java.util.List;
 
 // Represents a Book with comparison checks for the object as well as some properties
@@ -13,7 +15,7 @@ public abstract class Book {
         this.yearPublished = yearPublished;
     }
 
-    public abstract Book checkoutBook();
+    public abstract Book checkoutBook(Customer customer);
 
     public abstract Book returnBook();
 

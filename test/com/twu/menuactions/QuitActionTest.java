@@ -1,12 +1,17 @@
 package com.twu.menuactions;
 
+import com.twu.user.AbstractUser;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
+@RunWith(MockitoJUnitRunner.class)
 public class QuitActionTest {
-    QuitAction quitAction;
+    private QuitAction quitAction;
 
     @Before
     public void setUp() throws Exception {
@@ -15,7 +20,7 @@ public class QuitActionTest {
 
     @Test
     public void shouldExitSystem() throws Exception {
-        quitAction.perform();
+        quitAction.perform(mock(AbstractUser.class));
     }
 
     @Test

@@ -1,8 +1,10 @@
 package com.twu.menuactions;
 
+import com.twu.user.AbstractUser;
+
 public class QuitAction implements MenuAction {
     @Override
-    public void perform() {
+    public void perform(AbstractUser user) {
         return;
     }
 

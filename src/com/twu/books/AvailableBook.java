@@ -1,6 +1,7 @@
 package com.twu.books;
 
 import com.twu.Messages;
+import com.twu.user.Customer;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class AvailableBook extends Book {
                 checkedOutBook.yearPublished);
     }
 
-    public Book checkoutBook() {
-        return CheckedOutBook.create(this);
+    public Book checkoutBook(Customer customer) {
+        return CheckedOutBook.create(this, customer);
     }
 
     @Override

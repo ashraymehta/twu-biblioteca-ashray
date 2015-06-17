@@ -2,6 +2,7 @@ package com.twu.views;
 
 import com.twu.Menu;
 import com.twu.menuactions.MenuAction;
+import com.twu.user.AbstractUser;
 
 import java.io.PrintStream;
 import java.util.InputMismatchException;
@@ -33,10 +34,10 @@ public class MenuView {
         }
     }
 
-    public MenuAction performActionUponSelection() {
+    public MenuAction performActionUponSelection(AbstractUser user) {
         int selection = getSelection();
         if (menu.hasActionAtPosition(selection))
-            return menu.performActionForInput(selection);
+            return menu.performActionForInput(user, selection);
         else
             printInvalidSelectionMessage();
         return null;

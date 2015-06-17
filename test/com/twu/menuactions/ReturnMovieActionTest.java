@@ -3,6 +3,7 @@ package com.twu.menuactions;
 import com.twu.Library;
 import com.twu.movies.AvailableMovie;
 import com.twu.movies.CheckedOutMovie;
+import com.twu.user.AbstractUser;
 import com.twu.views.ReturnMovieView;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,8 @@ public class ReturnMovieActionTest {
     CheckedOutMovie checkedOutMovie;
     @Mock
     ReturnMovieView returnMovieView;
+    @Mock
+    AbstractUser abstractUser;
 
     private Library library;
     private ReturnMovieAction returnMovieAction;
@@ -37,28 +40,28 @@ public class ReturnMovieActionTest {
 
     @Test
     public void shouldTakeInput() throws Exception {
-        returnMovieAction.perform();
+        returnMovieAction.perform(abstractUser);
 
         Mockito.verify(returnMovieView).getMovieName();
     }
 
     @Test
     public void shouldGetMovieAfterGettingSelection() throws Exception {
-        returnMovieAction.perform();
+        returnMovieAction.perform(abstractUser);
 
         Mockito.verify(library).returnMovie(checkedOutMovie);
     }
 
     @Test
     public void shouldGetAppropriateMessageFromMovie() throws Exception {
-        returnMovieAction.perform();
+        returnMovieAction.perform(abstractUser);
 
         verify(availableMovie).getAppropriateReturnMessage();
     }
 
     @Test
     public void shouldPrintMessageAfterCheckout() throws Exception {
-        returnMovieAction.perform();
+        returnMovieAction.perform(abstractUser);
 
         verify(returnMovieView).printMessage("Success!");
     }

@@ -1,18 +1,22 @@
 package com.twu.books;
 
 import com.twu.Messages;
+import com.twu.user.Customer;
 
 import java.util.List;
 
 // Represents a books that is currently not in the library
 public class CheckedOutBook extends Book {
-    public CheckedOutBook(String title, String author, int yearPublished) {
+    private Customer checkedOutTo;
+
+    public CheckedOutBook(String title, String author, int yearPublished, Customer checkedOutTo) {
         super(title, author, yearPublished);
+        this.checkedOutTo = checkedOutTo;
     }
 
-    public static CheckedOutBook create(AvailableBook availableBook) {
+    public static CheckedOutBook create(AvailableBook availableBook, Customer customer) {
         return new CheckedOutBook(availableBook.title, availableBook.author,
-                availableBook.yearPublished);
+                availableBook.yearPublished, customer);
     }
 
     @Override
@@ -31,7 +35,7 @@ public class CheckedOutBook extends Book {
     }
 
     @Override
-    public Book checkoutBook() {
+    public Book checkoutBook(Customer customer) {
         return this;
     }
 

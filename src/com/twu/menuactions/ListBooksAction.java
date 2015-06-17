@@ -2,6 +2,7 @@ package com.twu.menuactions;
 
 
 import com.twu.Library;
+import com.twu.user.AbstractUser;
 import com.twu.views.BooksView;
 
 // Invokes the printing of list of books
@@ -16,7 +17,7 @@ public class ListBooksAction implements MenuAction {
     }
 
     @Override
-    public void perform() {
+    public void perform(AbstractUser user) {
         library.getAvailableBooks();
         booksView.printListOfBooks();
     }

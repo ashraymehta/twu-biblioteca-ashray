@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.user.Customer;
 import com.twu.views.MoviesView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,11 +16,13 @@ public class ListMoviesActionTest {
     MoviesView moviesView;
     @Mock
     Library library;
+    @Mock
+    Customer customer;
 
     @Test
     public void shouldBeAbleToDisplayList() throws Exception {
         ListMoviesAction listMoviesAction = new ListMoviesAction(moviesView, library);
-        listMoviesAction.perform();
+        listMoviesAction.perform(customer);
 
         verify(moviesView).printListOfMovies();
     }
@@ -27,7 +30,7 @@ public class ListMoviesActionTest {
     @Test
     public void shouldGetListOfMoviesFromLibrary() throws Exception {
         ListMoviesAction listMoviesAction = new ListMoviesAction(moviesView, library);
-        listMoviesAction.perform();
+        listMoviesAction.perform(customer);
 
         verify(library).getAvailableMovies();
     }

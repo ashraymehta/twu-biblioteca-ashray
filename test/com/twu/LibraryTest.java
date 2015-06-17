@@ -6,6 +6,7 @@ import com.twu.books.CheckedOutBook;
 import com.twu.movies.AvailableMovie;
 import com.twu.movies.CheckedOutMovie;
 import com.twu.movies.Movie;
+import com.twu.user.Customer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,13 +41,14 @@ public class LibraryTest {
     private CheckedOutMovie checkedOutOutMovieOne;
     private ArrayList<Book> availableBookArrayList;
     private List<Movie> availableMovies;
+    private Customer customer;
 
 
     @Before
     public void setUp() throws Exception {
         availableBookOne = new AvailableBook("Title 1", "Author 1", 1000);
         availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500);
-        checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000);
+        checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, customer);
 
         availableBookArrayList = new ArrayList<>();
         ArrayList<Book> checkedOutBooks = new ArrayList<>();
@@ -101,17 +103,17 @@ public class LibraryTest {
     @Test
     public void shouldBeAbleToCheckoutBookWhenBookIsPassed() throws Exception {
         availableBookOne = mock(AvailableBook.class);
-        library.checkoutBook(availableBookOne);
+        library.checkoutBook(availableBookOne, customer);
 
-        verify(availableBookOne).checkoutBook();
+        verify(availableBookOne).checkoutBook(customer);
     }
 
     @Test
     public void shouldBeAbleToReturnBookWhenBookIsPassed() throws Exception {
         checkedOutOutBookOne = mock(CheckedOutBook.class);
-        library.checkoutBook(checkedOutOutBookOne);
+        library.checkoutBook(checkedOutOutBookOne, customer);
 
-        verify(checkedOutOutBookOne).checkoutBook();
+        verify(checkedOutOutBookOne).checkoutBook(customer);
     }
 
     @Test

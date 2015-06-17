@@ -3,6 +3,7 @@ package com.twu;
 import com.twu.books.AvailableBook;
 import com.twu.books.Book;
 import com.twu.books.CheckedOutBook;
+import com.twu.user.Customer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,8 @@ public class BookTest {
     @Before
     public void setUp() throws Exception {
         firstBook = new AvailableBook("Title", "Author", 1000);
-        secondBook = new CheckedOutBook("Title", "Author", 1000);
+        Customer checkedOutTo = new Customer("123-4567", "Password");
+        secondBook = new CheckedOutBook("Title", "Author", 1000, checkedOutTo);
         thirdBook = new AvailableBook("Title", "Author", 1000);
     }
 
