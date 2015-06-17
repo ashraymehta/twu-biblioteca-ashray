@@ -39,10 +39,11 @@ public class LibraryTest {
     private AvailableMovie availableMovieOne;
     private AvailableMovie availableMovieTwo;
     private CheckedOutMovie checkedOutOutMovieOne;
-    private ArrayList<Book> availableBookArrayList;
+    private ArrayList<Book> availableBooks;
     private List<Movie> availableMovies;
     private Customer customer;
     private ArrayList<Book> checkedOutBooks;
+    private ArrayList<Movie> checkedOutMovies;
 
 
     @Before
@@ -51,10 +52,10 @@ public class LibraryTest {
         availableBookTwo = new AvailableBook("Title 2", "Author 2", 1500);
         checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, customer);
 
-        availableBookArrayList = new ArrayList<>();
+        availableBooks = new ArrayList<>();
         checkedOutBooks = new ArrayList<>();
-        availableBookArrayList.add(availableBookOne);
-        availableBookArrayList.add(availableBookTwo);
+        availableBooks.add(availableBookOne);
+        availableBooks.add(availableBookTwo);
         checkedOutBooks.add(checkedOutOutBookOne);
 
         allBooks = new ArrayList<>();
@@ -65,15 +66,18 @@ public class LibraryTest {
         checkedOutOutMovieOne = new CheckedOutMovie("The Dark Knight Rises", "Christopher Nolan", 2012, 9, customer);
 
         availableMovies = new ArrayList<>();
+        checkedOutMovies = new ArrayList<>();
 
-        allBooks.addAll(availableBookArrayList);
+        checkedOutMovies.add(checkedOutOutMovieOne);
+
+        allBooks.addAll(availableBooks);
         allBooks.addAll(checkedOutBooks);
+        allMovies.addAll(checkedOutMovies);
         allMovies.add(availableMovieOne);
         allMovies.add(availableMovieTwo);
-        allMovies.add(checkedOutOutMovieOne);
 
-        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher,
-                movieSearcher, checkedOutBooks);
+        library = new Library(availableBooks, availableMovies, allBooks, allMovies, bookSearcher,
+                movieSearcher, checkedOutBooks, checkedOutMovies);
     }
 
     @Test
@@ -103,6 +107,15 @@ public class LibraryTest {
         availableMovies.add(availableMovieTwo);
 
         assertTrue(actualResult.containsAll(availableMovies));
+    }
+
+    @Test
+    public void shouldReturnCheckedOutMovies() throws Exception {
+        List<Movie> actualResult = library.getCheckedOutMovies();
+        List<CheckedOutMovie> checkedOutMovies = new ArrayList<>();
+        checkedOutMovies.add(checkedOutOutMovieOne);
+
+        assertTrue(actualResult.equals(checkedOutMovies));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -145,8 +158,8 @@ public class LibraryTest {
 
     @Test
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
-        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher,
-                movieSearcher, checkedOutBooks);
+        library = new Library(availableBooks, availableMovies, allBooks, allMovies, bookSearcher,
+                movieSearcher, checkedOutBooks, checkedOutMovies);
         Movie movie = library.checkoutMovie(availableMovieOne, customer);
 
         assertTrue(movie instanceof CheckedOutMovie);

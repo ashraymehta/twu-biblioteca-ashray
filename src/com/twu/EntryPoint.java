@@ -36,6 +36,7 @@ public class EntryPoint {
     private static List<Movie> availableMovies;
     private static ReturnMovieView returnMovieView;
     private static QuitAction quitAction;
+    private static ArrayList<Movie> listOfCheckedOutMovies;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -47,7 +48,7 @@ public class EntryPoint {
         BookSearcher bookSearcher = new BookSearcher(nullBook);
         Movie nullMovie = new NullMovie();
         MovieSearcher movieSearcher = new MovieSearcher(nullMovie);
-        library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher, listOfCheckedOutBooks);
+        library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher, listOfCheckedOutBooks, listOfCheckedOutMovies);
         populateHashMaps();
 
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
@@ -73,6 +74,7 @@ public class EntryPoint {
     private static void initializeListOfMovies() {
         allMovies = new HashSet<>();
         availableMovies = new ArrayList<>();
+        listOfCheckedOutMovies = new ArrayList<>();
         AvailableMovie availableMovieOne = new AvailableMovie("Batman Begins", "Christopher Nolan", 2005, 9);
         AvailableMovie availableMovieTwo = new AvailableMovie("The Dark Knight", "Christopher Nolan", 2008, 9);
         availableMovies.add(availableMovieOne);
