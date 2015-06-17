@@ -15,12 +15,14 @@ import static org.mockito.Mockito.verify;
 public class LoginControllerTest {
     @Mock
     LoginView loginView;
+    @Mock
+    Authenticator authenticator;
 
     private LoginController loginController;
 
     @Before
     public void setUp() throws Exception {
-        loginController = new LoginController(loginView);
+        loginController = new LoginController(loginView, authenticator);
     }
 
     @Test
