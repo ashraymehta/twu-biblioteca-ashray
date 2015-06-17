@@ -13,4 +13,6 @@ public abstract class Messages {
 
     public static final String ENTER_LIBRARY_NUMBER = "Enter library number: ";
     public static final String ENTER_PASSWORD = "Enter password: ";
+    public static final String SUCCESSFUL_LOGIN = "Login successful!";
+    public static final String UNSUCCESSFUL_LOGIN = "Login unsuccessful. Please try again.";
 }

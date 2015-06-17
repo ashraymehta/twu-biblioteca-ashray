@@ -16,6 +16,8 @@ public abstract class AbstractUser {
             matchedList.add(this);
     }
 
+    public abstract String getLoginStatusMessage();
+
     @Override
     public String toString() {
         return String.format("%-10s", libraryNumber);

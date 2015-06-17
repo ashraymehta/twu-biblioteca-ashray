@@ -1,5 +1,6 @@
 package com.twu;
 
+import com.twu.user.NullUser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,10 +21,12 @@ public class LoginControllerTest {
     private LoginController loginController;
     private String libraryNumber;
     private String password;
+    private NullUser nullUser;
 
     @Before
     public void setUp() throws Exception {
-        loginController = new LoginController(loginView, authenticator);
+        nullUser = new NullUser();
+        loginController = new LoginController(loginView, authenticator, nullUser);
         libraryNumber = "LibraryNumber";
         password = "Password";
         when(loginView.getUserInput())
