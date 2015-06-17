@@ -3,7 +3,11 @@ package com.twu.user;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class LibrarianTest {
     private Librarian librarian;
@@ -25,6 +29,14 @@ public class LibrarianTest {
         String expectedString = "123-4567  ";
 
         assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void shouldAddToListIfCredentialsMatch() throws Exception {
+        List<AbstractUser> list = new ArrayList<AbstractUser>();
+        librarian.addToListIfCredentialsMatch("123-4567", "Password", list);
+
+        assertTrue(list.contains(librarian));
     }
 
     @Test

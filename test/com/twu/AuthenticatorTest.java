@@ -41,7 +41,7 @@ public class AuthenticatorTest {
 
     @Test
     public void shouldReturnNullUserWhenUserIsNotAuthenticated() throws Exception {
-        toBeLoggedIn = new Customer("2314214", "asjdnqw");
+        toBeLoggedIn = new Customer("2314214", "Hello!");
         AbstractUser actualResult = authenticator.login(toBeLoggedIn);
         AbstractUser expectedResult = nullUser;
 

@@ -1,5 +1,7 @@
 package com.twu.user;
 
+import java.util.List;
+
 public abstract class AbstractUser {
     protected String libraryNumber;
     protected String password;
@@ -7,6 +9,11 @@ public abstract class AbstractUser {
     public AbstractUser(String libraryNumber, String password) {
         this.libraryNumber = libraryNumber;
         this.password = password;
+    }
+
+    public void addToListIfCredentialsMatch(String libraryNumber, String password, List<AbstractUser> matchedList) {
+        if(this.libraryNumber.equals(libraryNumber) && this.password.equals(password))
+            matchedList.add(this);
     }
 
     @Override

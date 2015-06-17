@@ -14,12 +14,10 @@ public class Authenticator {
         this.nullUser = nullUser;
     }
 
-
     public AbstractUser login(AbstractUser toBeLoggedIn) {
         if(allUsers.contains(toBeLoggedIn))
             return toBeLoggedIn;
         else
             return nullUser;
-
     }
 }
