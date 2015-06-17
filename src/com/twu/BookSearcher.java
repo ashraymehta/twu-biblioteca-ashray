@@ -1,12 +1,12 @@
 package com.twu;
 
-import com.twu.book.Book;
-import com.twu.book.NullBook;
+import com.twu.books.Book;
+import com.twu.books.NullBook;
 
 import java.util.ArrayList;
 import java.util.List;
 
-// Searches a book title when a list of books is provided
+// Searches a books title when a list of books is provided
 public class BookSearcher {
 
     private NullBook nullBook;

@@ -1,8 +1,8 @@
 package com.twu;
 
-import com.twu.movie.AvailableMovie;
-import com.twu.movie.Movie;
-import com.twu.movie.NullMovie;
+import com.twu.movies.AvailableMovie;
+import com.twu.movies.Movie;
+import com.twu.movies.NullMovie;
 import org.junit.Before;
 import org.junit.Test;
 

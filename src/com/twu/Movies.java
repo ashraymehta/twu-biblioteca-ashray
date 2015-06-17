@@ -1,6 +1,6 @@
 package com.twu;
 
-import com.twu.movie.Movie;
+import com.twu.movies.Movie;
 
 import java.util.List;
 

@@ -1,14 +1,14 @@
 package com.twu;
 
-import com.twu.book.Book;
-import com.twu.movie.Movie;
+import com.twu.books.Book;
+import com.twu.movies.Movie;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-// Holds the available and the checked out books; provides APIs to checkoutBook and return a book
+// Holds the available and the checked out books; provides APIs to checkoutBook and return a books
 public class Library {
 
     private final ArrayList<Book> allBooks;

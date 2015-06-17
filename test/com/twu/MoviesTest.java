@@ -1,7 +1,7 @@
 package com.twu;
 
-import com.twu.movie.AvailableMovie;
-import com.twu.movie.Movie;
+import com.twu.movies.AvailableMovie;
+import com.twu.movies.Movie;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,11 +1,11 @@
 package com.twu;
 
-import com.twu.book.AvailableBook;
-import com.twu.book.Book;
-import com.twu.book.CheckedOutBook;
-import com.twu.movie.AvailableMovie;
-import com.twu.movie.CheckedOutMovie;
-import com.twu.movie.Movie;
+import com.twu.books.AvailableBook;
+import com.twu.books.Book;
+import com.twu.books.CheckedOutBook;
+import com.twu.movies.AvailableMovie;
+import com.twu.movies.CheckedOutMovie;
+import com.twu.movies.Movie;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

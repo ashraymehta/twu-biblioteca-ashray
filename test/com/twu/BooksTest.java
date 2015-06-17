@@ -1,7 +1,7 @@
 package com.twu;
 
-import com.twu.book.AvailableBook;
-import com.twu.book.Book;
+import com.twu.books.AvailableBook;
+import com.twu.books.Book;
 import org.junit.Test;
 
 import java.util.ArrayList;

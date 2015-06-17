@@ -1,13 +1,13 @@
 package com.twu;
 
-import com.twu.book.AvailableBook;
-import com.twu.book.Book;
-import com.twu.book.NullBook;
-import com.twu.menuaction.*;
-import com.twu.movie.AvailableMovie;
-import com.twu.movie.Movie;
-import com.twu.movie.NullMovie;
-import com.twu.view.*;
+import com.twu.books.AvailableBook;
+import com.twu.books.Book;
+import com.twu.books.NullBook;
+import com.twu.menuactions.*;
+import com.twu.movies.AvailableMovie;
+import com.twu.movies.Movie;
+import com.twu.movies.NullMovie;
+import com.twu.views.*;
 
 import java.io.PrintStream;
 import java.util.*;
@@ -95,6 +95,7 @@ public class EntryPoint {
         menuItemsMappedToSerials.put(7, "Quit");
         menuItemsMappedToMenuAction.put(7, quitAction);
     }
+
     private static void initializeStreams() {
         scanner = new Scanner(System.in);
         consoleOutStream = new PrintStream(System.out);

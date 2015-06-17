@@ -1,6 +1,6 @@
 package com.twu;
 
-import com.twu.menuaction.MenuAction;
+import com.twu.menuactions.MenuAction;
 
 import java.util.HashMap;
 

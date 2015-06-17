@@ -1,8 +1,8 @@
 package com.twu;
 
-import com.twu.book.AvailableBook;
-import com.twu.book.Book;
-import com.twu.book.CheckedOutBook;
+import com.twu.books.AvailableBook;
+import com.twu.books.Book;
+import com.twu.books.CheckedOutBook;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

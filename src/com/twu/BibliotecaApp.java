@@ -1,8 +1,8 @@
 package com.twu;
 
-import com.twu.menuaction.MenuAction;
-import com.twu.menuaction.QuitAction;
-import com.twu.view.MenuView;
+import com.twu.menuactions.MenuAction;
+import com.twu.menuactions.QuitAction;
+import com.twu.views.MenuView;
 
 // Invokes printing of welcome message, main menu and asks main menu to perform action upon selection
 public class BibliotecaApp {
