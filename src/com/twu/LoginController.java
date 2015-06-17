@@ -23,7 +23,7 @@ public class LoginController {
         loginView.printMessage(ENTER_PASSWORD);
         String password = loginView.getUserInput();
         AbstractUser user = authenticator.login(libraryNumber, password);
-        user.getLoginStatusMessage();
+        loginView.printMessage(user.getLoginStatusMessage());
         return null;
     }
 }

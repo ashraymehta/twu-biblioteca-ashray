@@ -75,4 +75,11 @@ public class LoginControllerTest {
 
         verify(user).getLoginStatusMessage();
     }
+
+    @Test
+    public void shouldPrintLoginStatusOfUser() throws Exception {
+        loginController.login();
+
+        verify(loginView).printMessage(Messages.SUCCESSFUL_LOGIN);
+    }
 }
