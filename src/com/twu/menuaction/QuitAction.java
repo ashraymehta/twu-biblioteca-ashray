@@ -5,4 +5,9 @@ public class QuitAction implements MenuAction {
     public void perform() {
         return;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null && this.getClass() == obj.getClass();
+    }
 }
