@@ -8,8 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.twu.Messages.ENTER_LIBRARY_NUMBER;
 import static com.twu.Messages.ENTER_PASSWORD;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoginControllerTest {
@@ -19,10 +18,17 @@ public class LoginControllerTest {
     Authenticator authenticator;
 
     private LoginController loginController;
+    private String libraryNumber;
+    private String password;
 
     @Before
     public void setUp() throws Exception {
         loginController = new LoginController(loginView, authenticator);
+        libraryNumber = "LibraryNumber";
+        password = "Password";
+        when(loginView.getUserInput())
+                .thenReturn(libraryNumber)
+                .thenReturn(password);
     }
 
     @Test
@@ -44,5 +50,12 @@ public class LoginControllerTest {
         loginController.login();
 
         verify(loginView).printMessage(ENTER_PASSWORD);
+    }
+
+    @Test
+    public void shouldTryToLoginAuthenticator() throws Exception {
+        loginController.login();
+
+        verify(authenticator).login(libraryNumber, password);
     }
 }

@@ -8,9 +8,11 @@ import static com.twu.Messages.ENTER_PASSWORD;
 public class LoginController {
 
     private LoginView loginView;
+    private Authenticator authenticator;
 
     public LoginController(LoginView loginView, Authenticator authenticator) {
         this.loginView = loginView;
+        this.authenticator = authenticator;
     }
 
     public AbstractUser login() {
@@ -18,6 +20,7 @@ public class LoginController {
         String libraryNumber = loginView.getUserInput();
         loginView.printMessage(ENTER_PASSWORD);
         String password = loginView.getUserInput();
+        authenticator.login(libraryNumber, password);
         return null;
     }
 }
