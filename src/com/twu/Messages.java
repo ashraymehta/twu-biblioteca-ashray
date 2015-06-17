@@ -10,4 +10,7 @@ public abstract class Messages {
     public static final String UNSUCCESSFUL_MOVIE_RETURN_MESSAGE = "That is not a valid movies to return.";
     public static final String UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE = "That books is not available.";
     public static final String UNSUCCESSFUL_MOVIE_CHECKOUT_MESSAGE = "That movies is not available.";
+
+    public static final String ENTER_LIBRARY_NUMBER = "Enter library number: ";
+    public static final String ENTER_PASSWORD = "Enter password: ";
 }
