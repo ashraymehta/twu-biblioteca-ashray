@@ -33,4 +33,11 @@ public class CheckedOutBookDetailsActionTest {
 
         verify(library).getCheckedOutBooks();
     }
+
+    @Test
+    public void shouldBeAbleToDisplayBooks() throws Exception {
+        checkedOutBookDetailsAction.perform(librarian);
+
+        verify(booksView).printListOfBooks();
+    }
 }

@@ -16,5 +16,6 @@ public class CheckedOutBookDetailsAction implements MenuAction {
     @Override
     public void perform(AbstractUser user) {
         library.getCheckedOutBooks();
+        booksView.printListOfBooks();
     }
 }
