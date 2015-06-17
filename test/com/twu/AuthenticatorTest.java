@@ -18,22 +18,17 @@ public class AuthenticatorTest {
     private Authenticator authenticator;
     private NullUser nullUser;
     private String libraryNumberOne;
-    private String libraryNumberTwo;
     private String passwordOne;
-    private String passwordTwo;
     private Customer customerOne;
-    private Customer customerTwo;
 
     @Before
     public void setUp() throws Exception {
         nullUser = new NullUser();
         Set<AbstractUser> users = new HashSet<>();
         customerOne = new Customer("123-4567", "Password");
-        customerTwo = new Customer("987-6543", "Password");
+        Customer customerTwo = new Customer("987-6543", "Password");
         libraryNumberOne = "123-4567";
-        libraryNumberTwo = "987-6543";
         passwordOne = "Password";
-        passwordTwo = "Password";
         users.add(customerOne);
         users.add(customerTwo);
         authenticator = new Authenticator(users, nullUser);
