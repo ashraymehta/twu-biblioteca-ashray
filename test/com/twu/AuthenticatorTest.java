@@ -17,15 +17,23 @@ import static junit.framework.Assert.assertEquals;
 public class AuthenticatorTest {
     private Authenticator authenticator;
     private NullUser nullUser;
-    private Customer toBeLoggedIn;
+    private String libraryNumberOne;
+    private String libraryNumberTwo;
+    private String passwordOne;
+    private String passwordTwo;
+    private Customer customerOne;
+    private Customer customerTwo;
 
     @Before
     public void setUp() throws Exception {
         nullUser = new NullUser();
         Set<AbstractUser> users = new HashSet<>();
-        Customer customerOne = new Customer("123-4567", "Password");
-        Customer customerTwo = new Customer("987-6543", "Password");
-        toBeLoggedIn = new Customer("123-4567", "Password");
+        customerOne = new Customer("123-4567", "Password");
+        customerTwo = new Customer("987-6543", "Password");
+        libraryNumberOne = "123-4567";
+        libraryNumberTwo = "987-6543";
+        passwordOne = "Password";
+        passwordTwo = "Password";
         users.add(customerOne);
         users.add(customerTwo);
         authenticator = new Authenticator(users, nullUser);
@@ -33,16 +41,17 @@ public class AuthenticatorTest {
 
     @Test
     public void shouldReturnGivenUserIfAuthenticated() throws Exception {
-        AbstractUser actualResult = authenticator.login(toBeLoggedIn);
-        AbstractUser expectedResult = toBeLoggedIn;
+        AbstractUser actualResult = authenticator.login(libraryNumberOne, passwordOne);
+        AbstractUser expectedResult = customerOne;
 
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void shouldReturnNullUserWhenUserIsNotAuthenticated() throws Exception {
-        toBeLoggedIn = new Customer("2314214", "Hello!");
-        AbstractUser actualResult = authenticator.login(toBeLoggedIn);
+        String incorrectLibraryNumber = "2314214";
+        String incorrectPassword = "Hello!";
+        AbstractUser actualResult = authenticator.login(incorrectLibraryNumber, incorrectPassword);
         AbstractUser expectedResult = nullUser;
 
         assertEquals(expectedResult, actualResult);
