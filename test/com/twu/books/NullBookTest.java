@@ -4,7 +4,11 @@ import com.twu.Messages;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 
 public class NullBookTest {
 
@@ -23,5 +27,23 @@ public class NullBookTest {
         String actualMessage = nullBook.getAppropriateCheckoutMessage();
 
         assertEquals(actualMessage, Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
+    }
+
+    @Test
+    public void shouldNotAddItselfToCheckedOutList() throws Exception {
+        NullBook book = new NullBook();
+        List<Book> checkedOutList = new ArrayList<>();
+        book.addToListIfCheckedOut(checkedOutList);
+
+        assertFalse(checkedOutList.contains(book));
+    }
+
+    @Test
+    public void shouldNotAddItselfToAvailableList() throws Exception {
+        NullBook book = new NullBook();
+        List<Book> availableList = new ArrayList<>();
+        book.addToListIfAvailable(availableList);
+
+        assertFalse(availableList.contains(book));
     }
 }

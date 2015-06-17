@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,11 +44,23 @@ public class CheckedOutBookTest {
         String title = "Harry Potter and the Philosopher's Stone";
         String author = "JK Rowling";
         int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished);
+        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, checkedOutTo);
         List<Book> availableList = new ArrayList<>();
         book.addToListIfAvailable(availableList);
 
-        assertTrue(availableList.contains(book));
+        assertFalse(availableList.contains(book));
+    }
+
+    @Test
+    public void shouldAddItselfToCheckedOutList() throws Exception {
+        String title = "Harry Potter and the Philosopher's Stone";
+        String author = "JK Rowling";
+        int yearPublished = 1997;
+        CheckedOutBook book = new CheckedOutBook(title, author, yearPublished, checkedOutTo);
+        List<Book> checkedOutList = new ArrayList<>();
+        book.addToListIfCheckedOut(checkedOutList);
+
+        assertTrue(checkedOutList.contains(book));
     }
 
     @Test

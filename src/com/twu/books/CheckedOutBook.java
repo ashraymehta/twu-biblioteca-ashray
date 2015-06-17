@@ -25,6 +25,11 @@ public class CheckedOutBook extends Book {
     }
 
     @Override
+    public void addToListIfCheckedOut(List<Book> checkedOutList) {
+        checkedOutList.add(this);
+    }
+
+    @Override
     public String getAppropriateCheckoutMessage() {
         return Messages.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
     }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
@@ -36,6 +37,18 @@ public class AvailableBookTest {
         book.addToListIfAvailable(availableList);
 
         assertTrue(availableList.contains(book));
+    }
+
+    @Test
+    public void shouldNotAddItselfToCheckedOutList() throws Exception {
+        String title = "Harry Potter and the Philosopher's Stone";
+        String author = "JK Rowling";
+        int yearPublished = 1997;
+        AvailableBook book = new AvailableBook(title, author, yearPublished);
+        List<Book> checkedOutList = new ArrayList<>();
+        book.addToListIfCheckedOut(checkedOutList);
+
+        assertFalse(checkedOutList.contains(book));
     }
 
     @Test

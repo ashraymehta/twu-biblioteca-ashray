@@ -25,6 +25,8 @@ public abstract class Book {
 
     public abstract void addToListIfAvailable(List<Book> availableList);
 
+    public abstract void addToListIfCheckedOut(List<Book> checkedOutList);
+
     public void addToListIfTitleMatches(List<Book> books, String titleToMatch) {
         if (title.toLowerCase().equals(titleToMatch.toLowerCase()))
             books.add(this);
