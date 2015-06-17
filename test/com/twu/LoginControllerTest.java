@@ -1,6 +1,8 @@
 package com.twu;
 
 import com.twu.user.AbstractUser;
+import com.twu.user.Customer;
+import com.twu.user.Librarian;
 import com.twu.user.NullUser;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.twu.Messages.ENTER_LIBRARY_NUMBER;
 import static com.twu.Messages.ENTER_PASSWORD;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -19,7 +22,7 @@ public class LoginControllerTest {
     @Mock
     Authenticator authenticator;
     @Mock
-    AbstractUser user;
+    Customer user;
 
     private LoginController loginController;
     private String libraryNumber;
@@ -98,5 +101,12 @@ public class LoginControllerTest {
         loginController.login();
 
         verify(authenticator, times(2)).login(libraryNumber, password);
+    }
+
+    @Test
+    public void shouldReturnTheLoggedInUser() throws Exception {
+        AbstractUser user = loginController.login();
+
+        assertTrue(user instanceof Customer || user instanceof Librarian);
     }
 }
