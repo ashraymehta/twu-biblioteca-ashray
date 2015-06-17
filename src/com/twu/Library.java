@@ -58,10 +58,6 @@ public class Library {
         return toBeReturned;
     }
 
-    public Book searchBook(String title) {
-        return bookSearcher.search(allBooks, title);
-    }
-
     public Movie checkoutMovie(Movie movie) {
         allMovies.remove(movie);
         movie = movie.checkout();
@@ -74,6 +70,10 @@ public class Library {
         movie = movie.returnMovie();
         allMovies.add(movie);
         return movie;
+    }
+
+    public Book searchBook(String title) {
+        return bookSearcher.search(allBooks, title);
     }
 
     public Movie searchMovie(String movieName) {
