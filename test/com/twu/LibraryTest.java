@@ -42,6 +42,7 @@ public class LibraryTest {
     private ArrayList<Book> availableBookArrayList;
     private List<Movie> availableMovies;
     private Customer customer;
+    private ArrayList<Book> checkedOutBooks;
 
 
     @Before
@@ -51,7 +52,7 @@ public class LibraryTest {
         checkedOutOutBookOne = new CheckedOutBook("Title 3", "Author 3", 2000, customer);
 
         availableBookArrayList = new ArrayList<>();
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks = new ArrayList<>();
         availableBookArrayList.add(availableBookOne);
         availableBookArrayList.add(availableBookTwo);
         checkedOutBooks.add(checkedOutOutBookOne);
@@ -71,7 +72,8 @@ public class LibraryTest {
         allMovies.add(availableMovieTwo);
         allMovies.add(checkedOutOutMovieOne);
 
-        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher);
+        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher,
+                movieSearcher, checkedOutBooks);
     }
 
     @Test
@@ -82,6 +84,15 @@ public class LibraryTest {
         availableBooks.add(availableBookTwo);
 
         assertTrue(actualResult.equals(availableBooks));
+    }
+
+    @Test
+    public void shouldReturnCheckedOutBooks() throws Exception {
+        List<Book> actualResult = library.getCheckedOutBooks();
+        List<CheckedOutBook> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(checkedOutOutBookOne);
+
+        assertTrue(actualResult.equals(checkedOutBooks));
     }
 
     @Test
@@ -134,7 +145,8 @@ public class LibraryTest {
 
     @Test
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
-        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher);
+        library = new Library(availableBookArrayList, availableMovies, allBooks, allMovies, bookSearcher,
+                movieSearcher, checkedOutBooks);
         Movie movie = library.checkoutMovie(availableMovieOne, customer);
 
         assertTrue(movie instanceof CheckedOutMovie);
