@@ -6,12 +6,11 @@ import com.twu.user.AbstractUser;
 import com.twu.views.BooksView;
 
 // Invokes the printing of list of books
-public class ListBooksAction implements MenuAction {
-
+public class ListAvailableBooksAction implements MenuAction {
     private final BooksView booksView;
     private final Library library;
 
-    public ListBooksAction(BooksView booksView, Library library) {
+    public ListAvailableBooksAction(BooksView booksView, Library library) {
         this.booksView = booksView;
         this.library = library;
     }

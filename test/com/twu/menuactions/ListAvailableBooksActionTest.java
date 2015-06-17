@@ -11,7 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ListBooksActionTest {
+public class ListAvailableBooksActionTest {
     @Mock
     Library library;
     @Mock
@@ -21,16 +21,16 @@ public class ListBooksActionTest {
 
     @Test
     public void shouldBeAbleToDisplayList() throws Exception {
-        ListBooksAction listBooksAction = new ListBooksAction(booksViewStub, library);
-        listBooksAction.perform(abstractUser);
+        ListAvailableBooksAction listAvailableBooksAction = new ListAvailableBooksAction(booksViewStub, library);
+        listAvailableBooksAction.perform(abstractUser);
 
         verify(booksViewStub).printListOfBooks();
     }
 
     @Test
     public void shouldRefreshBooksFromLibrary() throws Exception {
-        ListBooksAction listBooksAction = new ListBooksAction(booksViewStub, library);
-        listBooksAction.perform(abstractUser);
+        ListAvailableBooksAction listAvailableBooksAction = new ListAvailableBooksAction(booksViewStub, library);
+        listAvailableBooksAction.perform(abstractUser);
 
         verify(library).getAvailableBooks();
     }

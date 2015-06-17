@@ -80,4 +80,8 @@ public class Library {
     public Movie searchMovie(String movieName) {
         return movieSearcher.search(allMovies, movieName);
     }
+
+    public List<Books> getCheckedOutBooks() {
+        return null;
+    }
 }

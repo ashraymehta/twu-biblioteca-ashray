@@ -1,6 +1,6 @@
 package com.twu;
 
-import com.twu.menuactions.ListBooksAction;
+import com.twu.menuactions.ListAvailableBooksAction;
 import com.twu.menuactions.MenuAction;
 import com.twu.menuactions.QuitAction;
 import com.twu.user.Customer;
@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class MenuTest {
 
     @Mock
-    ListBooksAction listBooksAction;
+    ListAvailableBooksAction listAvailableBooksAction;
     @Mock
     QuitAction quitAction;
     private HashMap<Integer, MenuAction> menuItemsMappedToMenuAction;
@@ -32,7 +32,7 @@ public class MenuTest {
         menuItemsMappedToSerials = new HashMap<>();
         menuItemsMappedToMenuAction = new HashMap<>();
         menuItemsMappedToSerials.put(1, "List books");
-        menuItemsMappedToMenuAction.put(1, listBooksAction);
+        menuItemsMappedToMenuAction.put(1, listAvailableBooksAction);
         menuItemsMappedToSerials.put(2, "Quit");
         menuItemsMappedToMenuAction.put(2, quitAction);
     }
@@ -54,7 +54,7 @@ public class MenuTest {
         Customer customer = new Customer("123-4567", "Password");
         menu.performActionForInput(customer,1);
 
-        Mockito.verify(listBooksAction).perform(customer);
+        Mockito.verify(listAvailableBooksAction).perform(customer);
     }
 
     @Test
