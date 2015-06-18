@@ -49,8 +49,10 @@ public class EntryPoint {
     private static Customer checkedOutTo;
     private static CustomerDetailsView customerDetailsView;
     private static CheckedOutBookDetailsView checkedOutBookDetailsView;
+    private static HashSet<AbstractUser> allUsers;
 
     public static void main(String[] args) {
+        allUsers = initializeAllUsers();
         initializeStreams();
         initializeListOfBooks();
         initializeListOfMovies();
@@ -69,7 +71,6 @@ public class EntryPoint {
         librarianMenuView = new MenuView(librarianMenu, scanner, printStream);
         ConsoleOut consoleOut = new ConsoleOut(printStream);
 
-        HashSet<AbstractUser> allUsers = initializeAllUsers();
         Authenticator authenticator = new Authenticator(allUsers, nullUser);
         LoginView loginView = new LoginView(printStream, scanner);
         LoginController loginController = new LoginController(loginView, authenticator, nullUser);
@@ -87,6 +88,16 @@ public class EntryPoint {
         allUsers.add(new Customer("111-1111", "11111", "AnotherName", "11111@gmail.com", "9564347"));
         allUsers.add(new Librarian("000-0000", "0000"));
         return allUsers;
+    }
+
+    private static void initializeListOfBooks() {
+        listOfAvailableBooks = getAvailableBooks();
+        availableBooks = new Books(listOfAvailableBooks);
+        listOfCheckedOutBooks = new ArrayList<>();
+        listOfCheckedOutBooks.add(new CheckedOutBook("The Silkworm", "Robert Galbraith", 2014, checkedOutTo));
+        allBooks = new ArrayList<>();
+        allBooks.addAll(listOfAvailableBooks);
+        allBooks.addAll(listOfCheckedOutBooks);
     }
 
     private static void initializeListOfMovies() {
@@ -159,16 +170,6 @@ public class EntryPoint {
     private static void initializeStreams() {
         scanner = new Scanner(System.in);
         printStream = new PrintStream(System.out);
-    }
-
-    private static void initializeListOfBooks() {
-        listOfAvailableBooks = getAvailableBooks();
-        availableBooks = new Books(listOfAvailableBooks);
-        listOfCheckedOutBooks = new ArrayList<>();
-        listOfCheckedOutBooks.add(new CheckedOutBook("The Silkworm", "Robert Galbraith", 2014, checkedOutTo));
-        allBooks = new ArrayList<>();
-        allBooks.addAll(listOfAvailableBooks);
-        allBooks.addAll(listOfCheckedOutBooks);
     }
 
     private static ArrayList<Book> getAvailableBooks() {
