@@ -18,4 +18,10 @@ public class Customer extends AbstractUser {
     public String getLoginStatusMessage() {
         return Messages.SUCCESSFUL_LOGIN;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("%-30s", name) + String.format("%-30s", email_address) +
+                String.format("%-15s", phone_number);
+    }
 }
