@@ -2,6 +2,7 @@ package com.twu.views;
 
 import com.twu.Menu;
 import com.twu.menuactions.MenuAction;
+import com.twu.menuactions.NullAction;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,9 +20,11 @@ import static org.mockito.Mockito.when;
 public class MenuViewTest {
 
     ByteArrayOutputStream outputStream;
+    private NullAction nullAction;
 
     @Before
     public void setUp() throws Exception {
+        nullAction = new NullAction();
         outputStream = new ByteArrayOutputStream();
     }
 
@@ -30,7 +33,7 @@ public class MenuViewTest {
         InputStream inputStream = mock(InputStream.class);
         Menu menuStub = mock(Menu.class);
         when(menuStub.toString()).thenReturn("1. List books");
-        MenuView menuView = new MenuView(menuStub, new Scanner(inputStream), new PrintStream(outputStream));
+        MenuView menuView = new MenuView(menuStub, new Scanner(inputStream), new PrintStream(outputStream), nullAction);
         menuView.printMainMenu();
 
         String actualOutput = outputStream.toString();
@@ -47,7 +50,7 @@ public class MenuViewTest {
         HashMap<Integer, String> menuItemsMappedToSerials = new HashMap<>();
         Scanner scanner = new Scanner(byteArrayInputStream);
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
-        MenuView menuView = new MenuView(menu, scanner, new PrintStream(outputStream));
+        MenuView menuView = new MenuView(menu, scanner, new PrintStream(outputStream), nullAction);
 
         int actualInput = menuView.getSelection();
         int expectedInput = 5;
@@ -60,7 +63,7 @@ public class MenuViewTest {
         System.setOut(new PrintStream(outputStream));
         Menu menu = mock(Menu.class);
         Scanner scanner = new Scanner(System.in);
-        MenuView menuView = new MenuView(menu, scanner, new PrintStream(outputStream));
+        MenuView menuView = new MenuView(menu, scanner, new PrintStream(outputStream), nullAction);
         menuView.printInvalidSelectionMessage();
 
         String actualOutput = outputStream.toString();

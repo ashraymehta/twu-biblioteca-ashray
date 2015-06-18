@@ -2,6 +2,7 @@ package com.twu.views;
 
 import com.twu.Menu;
 import com.twu.menuactions.MenuAction;
+import com.twu.menuactions.NullAction;
 import com.twu.user.AbstractUser;
 
 import java.io.PrintStream;
@@ -13,11 +14,13 @@ public class MenuView {
     private Menu menu;
     private Scanner scanner;
     private PrintStream printStream;
+    private NullAction nullAction;
 
-    public MenuView(Menu menu, Scanner scanner, PrintStream printStream) {
+    public MenuView(Menu menu, Scanner scanner, PrintStream printStream, NullAction nullAction) {
         this.menu = menu;
         this.scanner = scanner;
         this.printStream = printStream;
+        this.nullAction = nullAction;
     }
 
     public void printMainMenu() {
@@ -40,7 +43,7 @@ public class MenuView {
             return menu.performActionForInput(user, selection);
         else
             printInvalidSelectionMessage();
-        return null;
+        return nullAction;
     }
 
     public void printInvalidSelectionMessage() {

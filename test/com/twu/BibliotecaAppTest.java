@@ -34,21 +34,27 @@ public class BibliotecaAppTest {
     Customer customer;
     @Mock
     LogoutAction logoutAction;
+    @Mock
+    LibrarianController librarianController;
+    @Mock
+    CustomerController customerController;
 
     private BibliotecaApp bibliotecaApp;
     private QuitAction quitAction;
+    private Customer customerOne;
 
     @Before
     public void setUp() throws Exception {
         quitAction = new QuitAction();
         HashSet<AbstractUser> allUsers = new HashSet<>();
-        Customer customerOne = new Customer("123-4567", "Password", "Name1", "Email1", "Phone1");
+        customerOne = new Customer("123-4567", "Password", "Name1", "Email1", "Phone1");
         Customer customerTwo = new Customer("111-1111", "11111", "Name2", "Email2", "Phone2");
         allUsers.add(customerOne);
         allUsers.add(customerTwo);
-        when(loginController.login()).thenReturn(customer);
-        when(customerMenuView.performActionUponSelection(customer)).thenReturn(quitAction);
-        bibliotecaApp = new BibliotecaApp(consoleOut, customerMenuView, librarianMenuView, quitAction, loginController, logoutAction);
+        when(loginController.login()).thenReturn(customerOne);
+        when(librarianController.execute(customerOne)).thenReturn(quitAction);
+        when(customerController.execute(customerOne)).thenReturn(quitAction);
+        bibliotecaApp = new BibliotecaApp(consoleOut, quitAction, loginController, librarianController, customerController);
     }
 
     @Test
@@ -59,37 +65,23 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void shouldPrintMainMenu() throws Exception {
-        bibliotecaApp.start();
-
-        verify(customerMenuView).printMainMenu();
-    }
-
-    @Test
-    public void shouldPerformActionUponSelection() throws Exception {
-        bibliotecaApp.start();
-
-        verify(customerMenuView).performActionUponSelection(customer);
-    }
-
-    @Test
     public void shouldGetOutOfLoopUponQuitSelection() throws Exception {
         bibliotecaApp.start();
 
-        verify(customerMenuView, times(1)).performActionUponSelection(customer);
+        verify(customerController, times(1)).execute(customerOne);
     }
 
     @Test
     public void shouldGetOutOfLoopUponLogoutSelection() throws Exception {
         customerMenuView = mock(MenuView.class);
         LogoutAction logoutAction = new LogoutAction();
-        bibliotecaApp = new BibliotecaApp(consoleOut, customerMenuView, librarianMenuView,
-                quitAction, loginController, logoutAction);
-        when(customerMenuView.performActionUponSelection(customer))
+        bibliotecaApp = new BibliotecaApp(consoleOut,
+                quitAction, loginController, librarianController, customerController);
+        when(librarianController.execute(customerOne)).thenReturn(quitAction)
                 .thenReturn(logoutAction)
                 .thenReturn(new QuitAction());
         bibliotecaApp.start();
 
-        verify(customerMenuView, times(2)).performActionUponSelection(customer);
+        verify(customerController, times(1)).execute(customerOne);
     }
 }

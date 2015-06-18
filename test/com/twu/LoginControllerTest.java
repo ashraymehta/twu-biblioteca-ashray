@@ -4,6 +4,7 @@ import com.twu.user.AbstractUser;
 import com.twu.user.Customer;
 import com.twu.user.Librarian;
 import com.twu.user.NullUser;
+import com.twu.views.LoginView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

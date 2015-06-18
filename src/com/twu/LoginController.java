@@ -2,6 +2,7 @@ package com.twu;
 
 import com.twu.user.AbstractUser;
 import com.twu.user.NullUser;
+import com.twu.views.LoginView;
 
 import static com.twu.Messages.ENTER_LIBRARY_NUMBER;
 import static com.twu.Messages.ENTER_PASSWORD;

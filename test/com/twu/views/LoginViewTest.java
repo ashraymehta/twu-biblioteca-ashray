@@ -1,4 +1,4 @@
-package com.twu;
+package com.twu.views;
 
 import org.junit.Before;
 import org.junit.Test;

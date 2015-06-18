@@ -43,43 +43,61 @@ public class EntryPoint {
     private static MenuView librarianMenuView;
     private static HashMap<Integer, String> librarianMenuItemsMappedToSerials;
     private static HashMap<Integer, MenuAction> librarianMenuItemsMappedToMenuAction;
-    private static BooksView checkedOutBooksView;
-    private static MoviesView checkedOutMoviesView;
-    private static Movies checkedOutMovies;
     private static Customer checkedOutTo;
     private static CustomerDetailsView customerDetailsView;
     private static CheckedOutBookDetailsView checkedOutBookDetailsView;
-    private static HashSet<AbstractUser> allUsers;
     private static CheckedOutMovieDetailsView checkedOutMovieDetailsView;
+    private static LogoutAction logoutAction;
+    private static MenuView customerMenuView;
+    private static Menu customerMenu;
+    private static Menu librarianMenu;
+    private static NullAction nullAction;
+    private static NullBook nullBook;
+    private static NullUser nullUser;
+    private static NullMovie nullMovie;
 
     public static void main(String[] args) {
-        allUsers = initializeAllUsers();
+        HashSet<AbstractUser> allUsers = initializeAllUsers();
+        initializeActions();
         initializeStreams();
         initializeListOfBooks();
         initializeListOfMovies();
+        initializeNullObjects();
+        library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies,
+                new BookSearcher(nullBook), new MovieSearcher(nullMovie), listOfCheckedOutBooks,
+                listOfCheckedOutMovies, nullBook, nullMovie);
         initializeViews();
-        NullBook nullBook = new NullBook();
-        NullUser nullUser = new NullUser();
-        BookSearcher bookSearcher = new BookSearcher(nullBook);
-        Movie nullMovie = new NullMovie();
-        MovieSearcher movieSearcher = new MovieSearcher(nullMovie);
-        library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher, listOfCheckedOutBooks, listOfCheckedOutMovies, nullBook, nullMovie);
         populateHashMaps();
-
-        Menu customerMenu = new Menu(customerMenuItemsMappedToMenuAction, customerMenuItemsMappedToSerials);
-        Menu librarianMenu = new Menu(librarianMenuItemsMappedToMenuAction, librarianMenuItemsMappedToSerials);
-        MenuView customerMenuView = new MenuView(customerMenu, scanner, printStream);
-        librarianMenuView = new MenuView(librarianMenu, scanner, printStream);
-        ConsoleOut consoleOut = new ConsoleOut(printStream);
+        initializeMenu();
+        customerMenuView = new MenuView(customerMenu, scanner, printStream, nullAction);
+        librarianMenuView = new MenuView(librarianMenu, scanner, printStream, nullAction);
 
         Authenticator authenticator = new Authenticator(allUsers, nullUser);
         LoginView loginView = new LoginView(printStream, scanner);
         LoginController loginController = new LoginController(loginView, authenticator, nullUser);
 
-        LogoutAction logoutAction = new LogoutAction();
+        LibrarianController librarianController = new LibrarianController(librarianMenuView, quitAction, logoutAction, nullAction);
+        CustomerController customerController = new CustomerController(customerMenuView, quitAction, logoutAction, nullAction);
 
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, customerMenuView, librarianMenuView, quitAction, loginController, logoutAction);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new ConsoleOut(printStream), quitAction, loginController, librarianController, customerController);
         bibliotecaApp.start();
+    }
+
+    private static void initializeNullObjects() {
+        nullBook = new NullBook();
+        nullUser = new NullUser();
+        nullMovie = new NullMovie();
+    }
+
+    private static void initializeActions() {
+        logoutAction = new LogoutAction();
+        nullAction = new NullAction();
+        quitAction = new QuitAction();
+    }
+
+    private static void initializeMenu() {
+        customerMenu = new Menu(customerMenuItemsMappedToMenuAction, customerMenuItemsMappedToSerials);
+        librarianMenu = new Menu(librarianMenuItemsMappedToMenuAction, librarianMenuItemsMappedToSerials);
     }
 
     private static HashSet<AbstractUser> initializeAllUsers() {
@@ -92,10 +110,10 @@ public class EntryPoint {
     }
 
     private static void initializeListOfBooks() {
-        listOfAvailableBooks = getAvailableBooks();
-        availableBooks = new Books(listOfAvailableBooks);
         listOfCheckedOutBooks = new ArrayList<>();
+        listOfAvailableBooks = getAvailableBooks();
         listOfCheckedOutBooks.add(new CheckedOutBook("The Silkworm", "Robert Galbraith", 2014, checkedOutTo));
+        availableBooks = new Books(listOfAvailableBooks);
         allBooks = new ArrayList<>();
         allBooks.addAll(listOfAvailableBooks);
         allBooks.addAll(listOfCheckedOutBooks);
@@ -118,10 +136,10 @@ public class EntryPoint {
 
     private static void initializeViews() {
         Books checkedOutBooks = new Books(listOfCheckedOutBooks);
-        checkedOutMovies = new Movies(listOfCheckedOutMovies);
+        Movies checkedOutMovies = new Movies(listOfCheckedOutMovies);
         availableBooksView = new BooksView(availableBooks, printStream);
-        checkedOutBooksView = new BooksView(checkedOutBooks, printStream);
-        checkedOutMoviesView = new MoviesView(checkedOutMovies, printStream);
+        new BooksView(checkedOutBooks, printStream);
+        new MoviesView(checkedOutMovies, printStream);
         returnBookView = new ReturnBookView(checkedOutBooks, scanner, printStream);
         returnMovieView = new ReturnMovieView(scanner, printStream);
         checkoutBookView = new CheckoutBookView(availableBooks, scanner, printStream);
@@ -134,8 +152,7 @@ public class EntryPoint {
 
     private static void populateHashMaps() {
         CheckoutBookAction checkoutBookAction = new CheckoutBookAction(checkoutBookView, library);
-        MenuAction returnBookAction = new ReturnBookAction(returnBookView, library);
-        quitAction = new QuitAction();
+        ReturnBookAction returnBookAction = new ReturnBookAction(returnBookView, library);
         customerMenuItemsMappedToSerials = new HashMap<>();
         customerMenuItemsMappedToMenuAction = new HashMap<>();
         customerMenuItemsMappedToSerials.put(1, "List Books");

@@ -1,4 +1,4 @@
-package com.twu;
+package com.twu.views;
 
 import java.io.PrintStream;
 import java.util.Scanner;
