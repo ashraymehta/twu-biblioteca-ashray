@@ -1,5 +1,7 @@
 package com.twu.views;
 
+import com.twu.user.AbstractUser;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -14,5 +16,9 @@ public class CheckedOutBookDetailsView {
 
     public String getUserInput() {
         return scanner.nextLine();
+    }
+
+    public void printUserDetails(AbstractUser user) {
+        printStream.println(user);
     }
 }
