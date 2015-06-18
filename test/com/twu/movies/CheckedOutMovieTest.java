@@ -21,7 +21,7 @@ public class CheckedOutMovieTest {
     @Before
     public void setUp() throws Exception {
         checkedOutMovies = new ArrayList<>();
-        customer = new Customer("123-4567", "Password", "Name", "Emails", "Phones");
+        customer = new Customer("123-4567", "Password", "Name", "Email", "Phone");
         checkedOutMovie = new CheckedOutMovie("Batman Begins", "Christopher Nolan", 2005, 9, customer);
     }
 
@@ -29,7 +29,8 @@ public class CheckedOutMovieTest {
     public void shouldPresentMovieDetailsAsString() throws Exception {
         String actualString = checkedOutMovie.toString();
         String expectedString = "Batman Begins                                     " +
-                "Christopher Nolan             " + "2005      " + "9    " + "123-4567  ";
+                "Christopher Nolan             2005      9    123-4567  " +
+                "Name                          Email                         Phone          ";
 
         assertEquals(expectedString, actualString);
     }

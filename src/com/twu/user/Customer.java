@@ -17,6 +17,7 @@ public class Customer extends AbstractUser {
     @Override
     public String getLoginStatusMessage() {
         return Messages.SUCCESSFUL_LOGIN;
+
     }
 
     @Override
