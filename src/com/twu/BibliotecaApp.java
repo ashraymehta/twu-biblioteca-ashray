@@ -7,7 +7,6 @@ import com.twu.user.Librarian;
 
 // Invokes printing of welcome message, main menu and asks main menu to perform action upon selection
 public class BibliotecaApp {
-
     private ConsoleOut consoleOut;
     private QuitAction quitAction;
     private LoginController loginController;
