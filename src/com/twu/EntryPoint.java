@@ -72,7 +72,9 @@ public class EntryPoint {
         LoginView loginView = new LoginView(consoleOutStream, scanner);
         LoginController loginController = new LoginController(loginView, authenticator, nullUser);
 
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, customerMenuView, librarianMenuView, quitAction, loginController);
+        LogoutAction logoutAction = new LogoutAction();
+
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(consoleOut, customerMenuView, librarianMenuView, quitAction, loginController, logoutAction);
         bibliotecaApp.start();
     }
 
@@ -131,8 +133,10 @@ public class EntryPoint {
         customerMenuItemsMappedToMenuAction.put(5, new CheckoutMovieAction(checkoutMovieView, library));
         customerMenuItemsMappedToSerials.put(6, "Return Movie");
         customerMenuItemsMappedToMenuAction.put(6, new ReturnMovieAction(returnMovieView, library));
-        customerMenuItemsMappedToSerials.put(7, "Quit");
-        customerMenuItemsMappedToMenuAction.put(7, quitAction);
+        customerMenuItemsMappedToSerials.put(7, "Logout");
+        customerMenuItemsMappedToMenuAction.put(7, new LogoutAction());
+        customerMenuItemsMappedToSerials.put(8, "Quit");
+        customerMenuItemsMappedToMenuAction.put(8, quitAction);
 
         librarianMenuItemsMappedToSerials = new HashMap<>();
         librarianMenuItemsMappedToMenuAction = new HashMap<>();
@@ -140,8 +144,10 @@ public class EntryPoint {
         librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBooksView, library));
         librarianMenuItemsMappedToSerials.put(2, "View checked out movie details");
         librarianMenuItemsMappedToMenuAction.put(2, new CheckedOutMovieDetailsAction(checkedOutMoviesView, library));
-        librarianMenuItemsMappedToSerials.put(3, "Quit");
-        librarianMenuItemsMappedToMenuAction.put(3, new QuitAction());
+        librarianMenuItemsMappedToSerials.put(3, "Logout");
+        librarianMenuItemsMappedToMenuAction.put(3, new LogoutAction());
+        librarianMenuItemsMappedToSerials.put(4, "Quit");
+        librarianMenuItemsMappedToMenuAction.put(4, new QuitAction());
     }
 
     private static void initializeStreams() {
