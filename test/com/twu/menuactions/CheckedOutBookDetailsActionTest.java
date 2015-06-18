@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.books.Book;
 import com.twu.user.AbstractUser;
 import com.twu.views.BooksView;
 import com.twu.views.CheckedOutBookDetailsView;
@@ -22,6 +23,8 @@ public class CheckedOutBookDetailsActionTest {
     @Mock
     AbstractUser user;
     @Mock
+    Book book;
+    @Mock
     CheckedOutBookDetailsView checkedOutBookDetailsView;
 
     private CheckedOutBookDetailsAction checkedOutBookDetailsAction;
@@ -30,6 +33,7 @@ public class CheckedOutBookDetailsActionTest {
     public void setUp() throws Exception {
         checkedOutBookDetailsAction = new CheckedOutBookDetailsAction(checkedOutBookDetailsView, library);
         when(checkedOutBookDetailsView.getUserInput()).thenReturn("Title");
+        when(library.searchCheckedOutBook("Title")).thenReturn(book);
     }
 
     @Test
@@ -40,9 +44,16 @@ public class CheckedOutBookDetailsActionTest {
     }
 
     @Test
-    public void shouldSearchForBook() {
+    public void shouldSearchForCheckedOutBook() {
         checkedOutBookDetailsAction.perform(user);
 
-        verify(library).searchBook("Title");
+        verify(library).searchCheckedOutBook("Title");
+    }
+
+    @Test
+    public void shouldPrintBookDetails() {
+        checkedOutBookDetailsAction.perform(user);
+
+        verify(checkedOutBookDetailsView).printBookDetails(book);
     }
 }

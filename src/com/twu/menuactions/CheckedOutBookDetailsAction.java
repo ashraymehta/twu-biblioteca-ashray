@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.books.Book;
 import com.twu.user.AbstractUser;
 import com.twu.views.CheckedOutBookDetailsView;
 
@@ -17,6 +18,7 @@ public class CheckedOutBookDetailsAction implements MenuAction {
     @Override
     public void perform(AbstractUser user) {
         String title = checkedOutBookDetailsView.getUserInput();
-        library.searchBook(title);
+        Book book = library.searchCheckedOutBook(title);
+        checkedOutBookDetailsView.printBookDetails(book);
     }
 }

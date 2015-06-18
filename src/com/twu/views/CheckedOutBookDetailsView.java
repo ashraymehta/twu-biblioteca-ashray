@@ -19,8 +19,8 @@ public class CheckedOutBookDetailsView {
         return scanner.nextLine();
     }
 
-    public void printBookDetails(Book user) {
-        printStream.println(user);
+    public void printBookDetails(Book book) {
+        printStream.println(book);
     }
 
     public void printNoBookFoundMessage() {

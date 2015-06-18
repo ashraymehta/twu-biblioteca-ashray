@@ -40,7 +40,7 @@ public class CheckedOutBookDetailsViewTest {
     }
 
     @Test
-    public void shouldBeAbleToPrintUserDetails() throws Exception {
+    public void shouldBeAbleToPrintBookDetails() throws Exception {
         checkedOutBookDetailsView.printBookDetails(book);
 
         verify(printStream).println(book);
