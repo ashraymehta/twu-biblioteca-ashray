@@ -147,7 +147,7 @@ public class EntryPoint {
         librarianMenuItemsMappedToSerials = new HashMap<>();
         librarianMenuItemsMappedToMenuAction = new HashMap<>();
         librarianMenuItemsMappedToSerials.put(1, "View checked out book details");
-        librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBookDetailsView));
+        librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBookDetailsView, library));
         librarianMenuItemsMappedToSerials.put(2, "View checked out movie details");
         librarianMenuItemsMappedToMenuAction.put(2, new CheckedOutMovieDetailsAction(checkedOutMoviesView, library));
         librarianMenuItemsMappedToSerials.put(3, "Logout");

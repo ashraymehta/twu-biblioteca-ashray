@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CheckedOutBookDetailsActionTest {
@@ -27,7 +28,8 @@ public class CheckedOutBookDetailsActionTest {
 
     @Before
     public void setUp() throws Exception {
-        checkedOutBookDetailsAction = new CheckedOutBookDetailsAction(checkedOutBookDetailsView);
+        checkedOutBookDetailsAction = new CheckedOutBookDetailsAction(checkedOutBookDetailsView, library);
+        when(checkedOutBookDetailsView.getUserInput()).thenReturn("Title");
     }
 
     @Test
@@ -35,5 +37,12 @@ public class CheckedOutBookDetailsActionTest {
         checkedOutBookDetailsAction.perform(user);
 
         verify(checkedOutBookDetailsView).getUserInput();
+    }
+
+    @Test
+    public void shouldSearchForBook() {
+        checkedOutBookDetailsAction.perform(user);
+
+        verify(library).searchBook("Title");
     }
 }
