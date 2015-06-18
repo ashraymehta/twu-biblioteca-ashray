@@ -6,8 +6,11 @@ import com.twu.user.Customer;
 import java.util.List;
 
 public class CheckedOutMovie extends Movie {
+    private Customer checkedOutTo;
+
     public CheckedOutMovie(String name, String director, int year, int movieRating, Customer customer) {
         super(name, director, year, movieRating);
+        checkedOutTo = customer;
     }
 
     public static CheckedOutMovie create(AvailableMovie availableMovie, Customer customer) {
@@ -43,5 +46,10 @@ public class CheckedOutMovie extends Movie {
     @Override
     public void addToListIfCheckedOut(List<Movie> checkedOutMovies) {
         checkedOutMovies.add(this);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("%-10s", checkedOutTo);
     }
 }
