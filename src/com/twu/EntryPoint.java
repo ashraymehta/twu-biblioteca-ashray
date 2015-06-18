@@ -48,6 +48,7 @@ public class EntryPoint {
     private static Movies checkedOutMovies;
     private static Customer checkedOutTo;
     private static CustomerDetailsView customerDetailsView;
+    private static CheckedOutBookDetailsView checkedOutBookDetailsView;
 
     public static void main(String[] args) {
         initializeStreams();
@@ -115,6 +116,7 @@ public class EntryPoint {
         checkoutMovieView = new CheckoutMovieView(scanner, printStream);
         moviesView = new MoviesView(new Movies(availableMovies), printStream);
         customerDetailsView = new CustomerDetailsView(printStream);
+        checkedOutBookDetailsView = new CheckedOutBookDetailsView(scanner, printStream);
     }
 
     private static void populateHashMaps() {
@@ -145,7 +147,7 @@ public class EntryPoint {
         librarianMenuItemsMappedToSerials = new HashMap<>();
         librarianMenuItemsMappedToMenuAction = new HashMap<>();
         librarianMenuItemsMappedToSerials.put(1, "View checked out book details");
-        librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBooksView, library));
+        librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBookDetailsView));
         librarianMenuItemsMappedToSerials.put(2, "View checked out movie details");
         librarianMenuItemsMappedToMenuAction.put(2, new CheckedOutMovieDetailsAction(checkedOutMoviesView, library));
         librarianMenuItemsMappedToSerials.put(3, "Logout");

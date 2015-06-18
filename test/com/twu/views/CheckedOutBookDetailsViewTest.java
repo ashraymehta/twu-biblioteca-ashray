@@ -21,13 +21,12 @@ public class CheckedOutBookDetailsViewTest {
     @Mock
     AbstractUser user;
 
-    private Scanner scanner;
     private CheckedOutBookDetailsView checkedOutBookDetailsView;
 
     @Before
     public void setUp() throws Exception {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Title".getBytes());
-        scanner = new Scanner(byteArrayInputStream);
+        Scanner scanner = new Scanner(byteArrayInputStream);
         checkedOutBookDetailsView = new CheckedOutBookDetailsView(scanner, printStream);
     }
 

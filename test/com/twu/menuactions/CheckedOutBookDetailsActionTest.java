@@ -1,8 +1,9 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
-import com.twu.user.Librarian;
+import com.twu.user.AbstractUser;
 import com.twu.views.BooksView;
+import com.twu.views.CheckedOutBookDetailsView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,26 +19,21 @@ public class CheckedOutBookDetailsActionTest {
     @Mock
     Library library;
     @Mock
-    Librarian librarian;
+    AbstractUser user;
+    @Mock
+    CheckedOutBookDetailsView checkedOutBookDetailsView;
 
     private CheckedOutBookDetailsAction checkedOutBookDetailsAction;
 
     @Before
     public void setUp() throws Exception {
-        checkedOutBookDetailsAction = new CheckedOutBookDetailsAction(booksView, library);
+        checkedOutBookDetailsAction = new CheckedOutBookDetailsAction(checkedOutBookDetailsView);
     }
 
     @Test
-    public void shouldGetCheckedOutBooksFromLibrary() throws Exception {
-        checkedOutBookDetailsAction.perform(librarian);
+    public void shouldGetBookTitleFromUser() throws Exception {
+        checkedOutBookDetailsAction.perform(user);
 
-        verify(library).getCheckedOutBooks();
-    }
-
-    @Test
-    public void shouldBeAbleToDisplayBooks() throws Exception {
-        checkedOutBookDetailsAction.perform(librarian);
-
-        verify(booksView).printListOfBooks();
+        verify(checkedOutBookDetailsView).getUserInput();
     }
 }
