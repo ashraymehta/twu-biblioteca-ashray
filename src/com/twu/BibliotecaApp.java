@@ -15,7 +15,8 @@ public class BibliotecaApp {
     private QuitAction quitAction;
     private LoginController loginController;
 
-    public BibliotecaApp(ConsoleOut consoleOut, MenuView customerMenuView, MenuView librarianMenuView, QuitAction quitAction, LoginController loginController) {
+    public BibliotecaApp(ConsoleOut consoleOut, MenuView customerMenuView, MenuView librarianMenuView,
+                         QuitAction quitAction, LoginController loginController) {
         this.consoleOut = consoleOut;
         this.customerMenuView = customerMenuView;
         this.librarianMenuView = librarianMenuView;
@@ -27,12 +28,12 @@ public class BibliotecaApp {
         consoleOut.printWelcomeMessage();
         AbstractUser user = loginController.login();
         MenuView menuView = customerMenuView;
-        if(user instanceof Librarian)
+        if (user instanceof Librarian)
             menuView = librarianMenuView;
         MenuAction actionTaken = null;
-        while (!quitAction.equals(actionTaken)) {
+        do {
             menuView.printMainMenu();
             actionTaken = menuView.performActionUponSelection(user);
-        }
+        } while (!quitAction.equals(actionTaken));
     }
 }
