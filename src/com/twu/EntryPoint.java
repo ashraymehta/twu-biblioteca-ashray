@@ -98,8 +98,6 @@ public class EntryPoint {
         initalMenuItemsMappedToSerials.put(3, "Login");
         initalMenuItemsMappedToMenuAction.put(3, new LoginAction(loginController, librarianController,
                 customerController, logoutAction));
-        initalMenuItemsMappedToSerials.put(4, "Quit");
-        initalMenuItemsMappedToMenuAction.put(4, quitAction);
 
         initialMenu = new Menu(initalMenuItemsMappedToMenuAction, initalMenuItemsMappedToSerials);
 
@@ -199,19 +197,19 @@ public class EntryPoint {
         customerMenuItemsMappedToMenuAction.put(7, new CustomerDetailsAction(customerDetailsView));
         customerMenuItemsMappedToSerials.put(8, "Logout");
         customerMenuItemsMappedToMenuAction.put(8, new LogoutAction());
-        customerMenuItemsMappedToSerials.put(9, "Quit");
-        customerMenuItemsMappedToMenuAction.put(9, quitAction);
 
         librarianMenuItemsMappedToSerials = new HashMap<>();
         librarianMenuItemsMappedToMenuAction = new HashMap<>();
-        librarianMenuItemsMappedToSerials.put(1, "View checked out book details");
-        librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBookDetailsView, library));
-        librarianMenuItemsMappedToSerials.put(2, "View checked out movie details");
-        librarianMenuItemsMappedToMenuAction.put(2, new CheckedOutMovieDetailsAction(checkedOutMovieDetailsView, library));
-        librarianMenuItemsMappedToSerials.put(3, "Logout");
-        librarianMenuItemsMappedToMenuAction.put(3, new LogoutAction());
-        librarianMenuItemsMappedToSerials.put(4, "Quit");
-        librarianMenuItemsMappedToMenuAction.put(4, new QuitAction());
+        librarianMenuItemsMappedToSerials.putAll(customerMenuItemsMappedToSerials);
+        librarianMenuItemsMappedToMenuAction.putAll(customerMenuItemsMappedToMenuAction);
+        librarianMenuItemsMappedToSerials.put(9, "View checked out book details");
+        librarianMenuItemsMappedToMenuAction.put(9, new CheckedOutBookDetailsAction(checkedOutBookDetailsView, library));
+        librarianMenuItemsMappedToSerials.put(10, "View checked out movie details");
+        librarianMenuItemsMappedToMenuAction.put(10, new CheckedOutMovieDetailsAction(checkedOutMovieDetailsView, library));
+        librarianMenuItemsMappedToSerials.put(11, "Logout");
+        librarianMenuItemsMappedToMenuAction.put(11, new LogoutAction());
+        librarianMenuItemsMappedToSerials.put(12, "Quit");
+        librarianMenuItemsMappedToMenuAction.put(12, new QuitAction());
     }
 
     private static void initializeStreams() {

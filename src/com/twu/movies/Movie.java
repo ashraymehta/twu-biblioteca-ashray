@@ -1,5 +1,6 @@
 package com.twu.movies;
 
+import com.twu.user.AbstractUser;
 import com.twu.user.Customer;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public abstract class Movie {
         return result;
     }
 
-    public abstract Movie checkout(Customer customer);
+    public abstract Movie checkout(AbstractUser customer);
 
     public abstract String getAppropriateCheckoutMessage();
 

@@ -1,25 +1,25 @@
 package com.twu.movies;
 
 import com.twu.Messages;
-import com.twu.user.Customer;
+import com.twu.user.AbstractUser;
 
 import java.util.List;
 
 public class CheckedOutMovie extends Movie {
-    private Customer checkedOutTo;
+    private AbstractUser checkedOutTo;
 
-    public CheckedOutMovie(String name, String director, int year, int movieRating, Customer customer) {
+    public CheckedOutMovie(String name, String director, int year, int movieRating, AbstractUser customer) {
         super(name, director, year, movieRating);
         checkedOutTo = customer;
     }
 
-    public static CheckedOutMovie create(AvailableMovie availableMovie, Customer customer) {
+    public static CheckedOutMovie create(AvailableMovie availableMovie, AbstractUser customer) {
         return new CheckedOutMovie(availableMovie.name, availableMovie.director, availableMovie.year,
                 availableMovie.movieRating, customer);
     }
 
     @Override
-    public Movie checkout(Customer customer) {
+    public Movie checkout(AbstractUser customer) {
         return null;
     }
 

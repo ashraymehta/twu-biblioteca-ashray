@@ -1,20 +1,21 @@
 package com.twu.books;
 
 import com.twu.Messages;
+import com.twu.user.AbstractUser;
 import com.twu.user.Customer;
 
 import java.util.List;
 
 // Represents a books that is currently not in the library
 public class CheckedOutBook extends Book {
-    private Customer checkedOutTo;
+    private AbstractUser checkedOutTo;
 
-    public CheckedOutBook(String title, String author, int yearPublished, Customer checkedOutTo) {
+    public CheckedOutBook(String title, String author, int yearPublished, AbstractUser checkedOutTo) {
         super(title, author, yearPublished);
         this.checkedOutTo = checkedOutTo;
     }
 
-    public static CheckedOutBook create(AvailableBook availableBook, Customer customer) {
+    public static CheckedOutBook create(AvailableBook availableBook, AbstractUser customer) {
         return new CheckedOutBook(availableBook.title, availableBook.author,
                 availableBook.yearPublished, customer);
     }
