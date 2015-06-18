@@ -3,6 +3,7 @@ package com.twu;
 import com.twu.books.AvailableBook;
 import com.twu.books.Book;
 import com.twu.books.CheckedOutBook;
+import com.twu.books.NullBook;
 import com.twu.movies.AvailableMovie;
 import com.twu.movies.CheckedOutMovie;
 import com.twu.movies.Movie;
@@ -18,9 +19,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LibraryTest {
@@ -76,8 +79,10 @@ public class LibraryTest {
         allMovies.add(availableMovieOne);
         allMovies.add(availableMovieTwo);
 
+        when(bookSearcher.search(allBooks, "Title 3")).thenReturn(checkedOutOutBookOne);
+
         library = new Library(availableBooks, availableMovies, allBooks, allMovies, bookSearcher,
-                movieSearcher, checkedOutBooks, checkedOutMovies);
+                movieSearcher, checkedOutBooks, checkedOutMovies, new NullBook());
     }
 
     @Test
@@ -159,7 +164,7 @@ public class LibraryTest {
     @Test
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
         library = new Library(availableBooks, availableMovies, allBooks, allMovies, bookSearcher,
-                movieSearcher, checkedOutBooks, checkedOutMovies);
+                movieSearcher, checkedOutBooks, checkedOutMovies, new NullBook());
         Movie movie = library.checkoutMovie(availableMovieOne, customer);
 
         assertTrue(movie instanceof CheckedOutMovie);
@@ -178,5 +183,12 @@ public class LibraryTest {
         Movie returnedMovie = library.returnMovie(checkedOutOutMovieOne);
 
         assertTrue(returnedMovie instanceof AvailableMovie);
+    }
+
+    @Test
+    public void shouldBeAbleToSearchCheckedOutBooks() throws Exception {
+        Book actualResult = library.searchCheckedOutBook("Title 3");
+
+        assertEquals(checkedOutOutBookOne, actualResult);
     }
 }

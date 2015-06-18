@@ -20,9 +20,10 @@ public class Library {
     private final List<Movie> availableMovies;
     private ArrayList<Book> checkedOutBooks;
     private ArrayList<Movie> checkedOutMovies;
+    private Book nullBook;
 
     public Library(ArrayList<Book> availableBooks, List<Movie> availableMovies, ArrayList<Book> allBooks,
-                   Set<Movie> allMovies, BookSearcher bookSearcher, MovieSearcher movieSearcher, ArrayList<Book> checkedOutBooks, ArrayList<Movie> checkedOutMovies) {
+                   Set<Movie> allMovies, BookSearcher bookSearcher, MovieSearcher movieSearcher, ArrayList<Book> checkedOutBooks, ArrayList<Movie> checkedOutMovies, Book nullBook) {
         this.availableBooks = availableBooks;
         this.allBooks = allBooks;
         this.allMovies = allMovies;
@@ -31,6 +32,7 @@ public class Library {
         this.availableMovies = availableMovies;
         this.checkedOutBooks = checkedOutBooks;
         this.checkedOutMovies = checkedOutMovies;
+        this.nullBook = nullBook;
     }
 
     public List<Book> getAvailableBooks() {
@@ -95,6 +97,16 @@ public class Library {
 
     public Book searchBook(String title) {
         return bookSearcher.search(allBooks, title);
+    }
+
+    public Book searchCheckedOutBook(String title) {
+        checkedOutBooks.clear();
+        Book found = searchBook(title);
+        found.addToListIfCheckedOut(checkedOutBooks);
+        if (checkedOutBooks.size() > 0)
+            return checkedOutBooks.get(0);
+        else
+            return nullBook;
     }
 
     public Movie searchMovie(String movieName) {
