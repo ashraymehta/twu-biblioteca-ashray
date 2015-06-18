@@ -80,6 +80,7 @@ public class LibraryTest {
         allMovies.add(availableMovieTwo);
 
         when(bookSearcher.search(allBooks, "Title 3")).thenReturn(checkedOutOutBookOne);
+        when(bookSearcher.search(allBooks, "Title 1")).thenReturn(new NullBook());
 
         library = new Library(availableBooks, availableMovies, allBooks, allMovies, bookSearcher,
                 movieSearcher, checkedOutBooks, checkedOutMovies, new NullBook());
@@ -190,5 +191,12 @@ public class LibraryTest {
         Book actualResult = library.searchCheckedOutBook("Title 3");
 
         assertEquals(checkedOutOutBookOne, actualResult);
+    }
+
+    @Test
+    public void shouldReturnNullBooksWhenCheckedOutBookNotFound() throws Exception {
+        Book actualResult = library.searchCheckedOutBook("Title 1");
+
+        assertEquals(new NullBook(), actualResult);
     }
 }
