@@ -1,6 +1,7 @@
 package com.twu.views;
 
-import com.twu.user.AbstractUser;
+import com.twu.Messages;
+import com.twu.books.Book;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ public class CheckedOutBookDetailsViewTest {
     @Mock
     PrintStream printStream;
     @Mock
-    AbstractUser user;
+    Book book;
 
     private CheckedOutBookDetailsView checkedOutBookDetailsView;
 
@@ -40,8 +41,15 @@ public class CheckedOutBookDetailsViewTest {
 
     @Test
     public void shouldBeAbleToPrintUserDetails() throws Exception {
-        checkedOutBookDetailsView.printUserDetails(user);
+        checkedOutBookDetailsView.printBookDetails(book);
 
-        verify(printStream).println(user);
+        verify(printStream).println(book);
+    }
+
+    @Test
+    public void shouldBeAbleToPrintNoBookFoundMessage() throws Exception {
+        checkedOutBookDetailsView.printNoBookFoundMessage();
+
+        verify(printStream).println(Messages.NO_BOOK_FOUND);
     }
 }

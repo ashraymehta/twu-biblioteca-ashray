@@ -15,4 +15,5 @@ public abstract class Messages {
     public static final String ENTER_PASSWORD = "Enter password: ";
     public static final String SUCCESSFUL_LOGIN = "Login successful!";
     public static final String UNSUCCESSFUL_LOGIN = "Login unsuccessful. Please try again.";
+    public static final String NO_BOOK_FOUND = "No book found.";
 }

@@ -1,6 +1,7 @@
 package com.twu.views;
 
-import com.twu.user.AbstractUser;
+import com.twu.Messages;
+import com.twu.books.Book;
 
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -18,7 +19,11 @@ public class CheckedOutBookDetailsView {
         return scanner.nextLine();
     }
 
-    public void printUserDetails(AbstractUser user) {
+    public void printBookDetails(Book user) {
         printStream.println(user);
+    }
+
+    public void printNoBookFoundMessage() {
+        printStream.println(Messages.NO_BOOK_FOUND);
     }
 }
