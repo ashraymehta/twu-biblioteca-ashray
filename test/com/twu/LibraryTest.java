@@ -7,6 +7,7 @@ import com.twu.books.NullBook;
 import com.twu.movies.AvailableMovie;
 import com.twu.movies.CheckedOutMovie;
 import com.twu.movies.Movie;
+import com.twu.movies.NullMovie;
 import com.twu.user.Customer;
 import org.junit.Before;
 import org.junit.Test;
@@ -81,9 +82,11 @@ public class LibraryTest {
 
         when(bookSearcher.search(allBooks, "Title 3")).thenReturn(checkedOutOutBookOne);
         when(bookSearcher.search(allBooks, "Title 1")).thenReturn(new NullBook());
+        when(movieSearcher.search(allMovies, "Title 3")).thenReturn(checkedOutOutMovieOne);
+        when(movieSearcher.search(allMovies, "Title 1")).thenReturn(new NullMovie());
 
         library = new Library(availableBooks, availableMovies, allBooks, allMovies, bookSearcher,
-                movieSearcher, checkedOutBooks, checkedOutMovies, new NullBook());
+                movieSearcher, checkedOutBooks, checkedOutMovies, new NullBook(), new NullMovie());
     }
 
     @Test
@@ -165,7 +168,7 @@ public class LibraryTest {
     @Test
     public void shouldAddCheckedOutMovieToMovies() throws Exception {
         library = new Library(availableBooks, availableMovies, allBooks, allMovies, bookSearcher,
-                movieSearcher, checkedOutBooks, checkedOutMovies, new NullBook());
+                movieSearcher, checkedOutBooks, checkedOutMovies, new NullBook(), new NullMovie());
         Movie movie = library.checkoutMovie(availableMovieOne, customer);
 
         assertTrue(movie instanceof CheckedOutMovie);
@@ -194,9 +197,23 @@ public class LibraryTest {
     }
 
     @Test
+    public void shouldBeAbleToSearchCheckedOutMovies() throws Exception {
+        Movie actualResult = library.searchCheckedOutMovie("Title 3");
+
+        assertEquals(checkedOutOutMovieOne, actualResult);
+    }
+
+    @Test
     public void shouldReturnNullBooksWhenCheckedOutBookNotFound() throws Exception {
         Book actualResult = library.searchCheckedOutBook("Title 1");
 
         assertEquals(new NullBook(), actualResult);
+    }
+
+    @Test
+    public void shouldReturnNullMoviesWhenCheckedOutMovieNotFound() throws Exception {
+        Movie actualResult = library.searchCheckedOutMovie("Title 1");
+
+        assertEquals(new NullMovie(), actualResult);
     }
 }

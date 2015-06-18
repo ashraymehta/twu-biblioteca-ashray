@@ -50,6 +50,7 @@ public class EntryPoint {
     private static CustomerDetailsView customerDetailsView;
     private static CheckedOutBookDetailsView checkedOutBookDetailsView;
     private static HashSet<AbstractUser> allUsers;
+    private static CheckedOutMovieDetailsView checkedOutMovieDetailsView;
 
     public static void main(String[] args) {
         allUsers = initializeAllUsers();
@@ -62,7 +63,7 @@ public class EntryPoint {
         BookSearcher bookSearcher = new BookSearcher(nullBook);
         Movie nullMovie = new NullMovie();
         MovieSearcher movieSearcher = new MovieSearcher(nullMovie);
-        library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher, listOfCheckedOutBooks, listOfCheckedOutMovies, nullBook);
+        library = new Library(listOfAvailableBooks, availableMovies, allBooks, allMovies, bookSearcher, movieSearcher, listOfCheckedOutBooks, listOfCheckedOutMovies, nullBook, nullMovie);
         populateHashMaps();
 
         Menu customerMenu = new Menu(customerMenuItemsMappedToMenuAction, customerMenuItemsMappedToSerials);
@@ -128,6 +129,7 @@ public class EntryPoint {
         moviesView = new MoviesView(new Movies(availableMovies), printStream);
         customerDetailsView = new CustomerDetailsView(printStream);
         checkedOutBookDetailsView = new CheckedOutBookDetailsView(scanner, printStream);
+        checkedOutMovieDetailsView = new CheckedOutMovieDetailsView(scanner, printStream);
     }
 
     private static void populateHashMaps() {
@@ -160,7 +162,7 @@ public class EntryPoint {
         librarianMenuItemsMappedToSerials.put(1, "View checked out book details");
         librarianMenuItemsMappedToMenuAction.put(1, new CheckedOutBookDetailsAction(checkedOutBookDetailsView, library));
         librarianMenuItemsMappedToSerials.put(2, "View checked out movie details");
-        librarianMenuItemsMappedToMenuAction.put(2, new CheckedOutMovieDetailsAction(checkedOutMoviesView, library));
+        librarianMenuItemsMappedToMenuAction.put(2, new CheckedOutMovieDetailsAction(checkedOutMovieDetailsView, library));
         librarianMenuItemsMappedToSerials.put(3, "Logout");
         librarianMenuItemsMappedToMenuAction.put(3, new LogoutAction());
         librarianMenuItemsMappedToSerials.put(4, "Quit");

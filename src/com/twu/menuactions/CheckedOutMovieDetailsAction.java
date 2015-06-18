@@ -1,21 +1,23 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.movies.Movie;
 import com.twu.user.AbstractUser;
-import com.twu.views.MoviesView;
+import com.twu.views.CheckedOutMovieDetailsView;
 
 public class CheckedOutMovieDetailsAction implements MenuAction {
-    private final MoviesView moviesView;
-    private final Library library;
+    private CheckedOutMovieDetailsView checkedOutMovieDetailsView;
+    private Library library;
 
-    public CheckedOutMovieDetailsAction(MoviesView moviesView, Library library) {
-        this.moviesView = moviesView;
+    public CheckedOutMovieDetailsAction(CheckedOutMovieDetailsView checkedOutMovieDetailsView, Library library) {
+        this.checkedOutMovieDetailsView = checkedOutMovieDetailsView;
         this.library = library;
     }
 
     @Override
     public void perform(AbstractUser user) {
-        library.getCheckedOutMovies();
-        moviesView.printListOfMovies();
+        String title = checkedOutMovieDetailsView.getUserInput();
+        Movie movie = library.searchCheckedOutMovie(title);
+        checkedOutMovieDetailsView.printMovieDetails(movie);
     }
 }
