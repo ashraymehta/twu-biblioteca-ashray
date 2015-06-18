@@ -55,6 +55,13 @@ public class EntryPoint {
     private static NullBook nullBook;
     private static NullUser nullUser;
     private static NullMovie nullMovie;
+    private static MenuView initialMenuView;
+    private static Menu initialMenu;
+    private static HashMap<Integer, MenuAction> initalMenuItemsMappedToMenuAction;
+    private static HashMap<Integer, String> initalMenuItemsMappedToSerials;
+    private static LoginController loginController;
+    private static LibrarianController librarianController;
+    private static CustomerController customerController;
 
     public static void main(String[] args) {
         HashSet<AbstractUser> allUsers = initializeAllUsers();
@@ -69,17 +76,38 @@ public class EntryPoint {
         initializeViews();
         populateHashMaps();
         initializeMenu();
-        customerMenuView = new MenuView(customerMenu, scanner, printStream, nullAction);
-        librarianMenuView = new MenuView(librarianMenu, scanner, printStream, nullAction);
 
         Authenticator authenticator = new Authenticator(allUsers, nullUser);
         LoginView loginView = new LoginView(printStream, scanner);
-        LoginController loginController = new LoginController(loginView, authenticator, nullUser);
 
-        LibrarianController librarianController = new LibrarianController(librarianMenuView, quitAction, logoutAction, nullAction);
-        CustomerController customerController = new CustomerController(customerMenuView, quitAction, logoutAction, nullAction);
 
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new ConsoleOut(printStream), quitAction, loginController, librarianController, customerController);
+        loginController = new LoginController(loginView, authenticator, nullUser);
+
+        customerMenuView = new MenuView(customerMenu, scanner, printStream, nullAction);
+        librarianMenuView = new MenuView(librarianMenu, scanner, printStream, nullAction);
+
+        librarianController = new LibrarianController(librarianMenuView, quitAction, logoutAction, nullAction);
+        customerController = new CustomerController(customerMenuView, quitAction, logoutAction, nullAction);
+
+        initalMenuItemsMappedToSerials = new HashMap<>();
+        initalMenuItemsMappedToMenuAction = new HashMap<>();
+        initalMenuItemsMappedToSerials.put(1, "List Books");
+        initalMenuItemsMappedToMenuAction.put(1, new ListAvailableBooksAction(availableBooksView, library));
+        initalMenuItemsMappedToSerials.put(2, "List movies");
+        initalMenuItemsMappedToMenuAction.put(2, new ListMoviesAction(moviesView, library));
+        initalMenuItemsMappedToSerials.put(3, "Login");
+        initalMenuItemsMappedToMenuAction.put(3, new LoginAction(loginController, librarianController,
+                customerController, logoutAction));
+        initalMenuItemsMappedToSerials.put(4, "Quit");
+        initalMenuItemsMappedToMenuAction.put(4, quitAction);
+
+        initialMenu = new Menu(initalMenuItemsMappedToMenuAction, initalMenuItemsMappedToSerials);
+
+        initialMenuView = new MenuView(initialMenu, scanner, printStream, nullAction);
+
+
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new ConsoleOut(printStream), quitAction, loginController,
+                librarianController, customerController, initialMenuView);
         bibliotecaApp.start();
     }
 

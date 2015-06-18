@@ -32,20 +32,18 @@ public class LoginActionTest {
     @Mock
     Customer customer;
     @Mock
-    LogoutAction logoutAction;
-    @Mock
     LibrarianController librarianController;
     @Mock
     CustomerController customerController;
 
     private LoginAction loginAction;
-    private QuitAction quitAction;
+    private LogoutAction logoutAction;
     private Customer customerOne;
     private NullUser nullUser;
 
     @Before
     public void setUp() throws Exception {
-        quitAction = new QuitAction();
+        logoutAction = new LogoutAction();
         nullUser = new NullUser();
         HashSet<AbstractUser> allUsers = new HashSet<>();
         customerOne = new Customer("123-4567", "Password", "Name1", "Email1", "Phone1");
@@ -53,9 +51,9 @@ public class LoginActionTest {
         allUsers.add(customerOne);
         allUsers.add(customerTwo);
         when(loginController.login()).thenReturn(customerOne);
-        when(librarianController.execute(customerOne)).thenReturn(quitAction);
-        when(customerController.execute(customerOne)).thenReturn(quitAction);
-        loginAction = new LoginAction(loginController, librarianController, customerController, quitAction);
+        when(librarianController.execute(customerOne)).thenReturn(logoutAction);
+        when(customerController.execute(customerOne)).thenReturn(logoutAction);
+        loginAction = new LoginAction(loginController, librarianController, customerController, logoutAction);
     }
 
     @Test
@@ -68,13 +66,12 @@ public class LoginActionTest {
     @Test
     public void shouldGetOutOfLoopUponLogoutSelection() throws Exception {
         customerMenuView = mock(MenuView.class);
-        loginAction = new LoginAction(loginController, librarianController, customerController, quitAction);
-        when(librarianController.execute(customerOne)).thenReturn(quitAction)
+        loginAction = new LoginAction(loginController, librarianController, customerController, logoutAction);
+        when(librarianController.execute(customerOne)).thenReturn(logoutAction)
                 .thenReturn(logoutAction)
                 .thenReturn(new QuitAction());
         loginAction.perform(nullUser);
 
         verify(customerController, times(1)).execute(customerOne);
     }
-
 }

@@ -10,14 +10,14 @@ public class LoginAction implements MenuAction {
     private LoginController loginController;
     private LibrarianController librarianController;
     private CustomerController customerController;
-    private QuitAction quitAction;
+    private LogoutAction logoutAction;
 
     public LoginAction(LoginController loginController, LibrarianController librarianController,
-                       CustomerController customerController, QuitAction quitAction) {
+                       CustomerController customerController, LogoutAction logoutAction) {
         this.loginController = loginController;
         this.librarianController = librarianController;
         this.customerController = customerController;
-        this.quitAction = quitAction;
+        this.logoutAction = logoutAction;
     }
 
     @Override
@@ -29,6 +29,6 @@ public class LoginAction implements MenuAction {
                 lastActionTaken = librarianController.execute(user);
             else
                 lastActionTaken = customerController.execute(user);
-        } while (!lastActionTaken.equals(quitAction));
+        } while (!lastActionTaken.equals(logoutAction) && !lastActionTaken.equals(new NullAction()));
     }
 }
