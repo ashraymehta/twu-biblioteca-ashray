@@ -21,7 +21,7 @@ public class CheckedOutMovieTest {
     @Before
     public void setUp() throws Exception {
         checkedOutMovies = new ArrayList<>();
-        customer = new Customer("123-4567", "Password");
+        customer = new Customer("123-4567", "Password", "Name", "Emails", "Phones");
         checkedOutMovie = new CheckedOutMovie("Batman Begins", "Christopher Nolan", 2005, 9, customer);
     }
 

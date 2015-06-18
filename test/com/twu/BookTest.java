@@ -18,7 +18,7 @@ public class BookTest {
     @Before
     public void setUp() throws Exception {
         firstBook = new AvailableBook("Title", "Author", 1000);
-        Customer checkedOutTo = new Customer("123-4567", "Password");
+        Customer checkedOutTo = new Customer("123-4567", "Password", "Name", "Email", "123423");
         secondBook = new CheckedOutBook("Title", "Author", 1000, checkedOutTo);
         thirdBook = new AvailableBook("Title", "Author", 1000);
     }

@@ -21,7 +21,7 @@ public class CheckedOutBookTest {
 
     @Before
     public void setUp() throws Exception {
-        checkedOutTo = new Customer("123-4567", "Password");
+        checkedOutTo = new Customer("123-4567", "Password", "Name", "Email", "98901234");
     }
 
     @Test

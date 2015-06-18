@@ -51,7 +51,7 @@ public class MenuTest {
     @Test
     public void shouldPrintListOfBooksOnOneInput() throws Exception {
         Menu menu = new Menu(menuItemsMappedToMenuAction, menuItemsMappedToSerials);
-        Customer customer = new Customer("123-4567", "Password");
+        Customer customer = new Customer("123-4567", "Password", "Name", "Name@gmail.com", "1234567");
         menu.performActionForInput(customer,1);
 
         Mockito.verify(listAvailableBooksAction).perform(customer);

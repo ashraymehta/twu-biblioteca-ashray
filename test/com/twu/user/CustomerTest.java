@@ -17,10 +17,13 @@ public class CustomerTest {
 
     @Before
     public void setUp() throws Exception {
-        customer = new Customer("123-4567", "Password");
-        firstCustomer = new Customer("123-4567", "Password");
-        secondCustomer = new Customer("123-4567", "Password");
-        thirdCustomer = new Customer("123-4567", "Password");
+        String name = "Name";
+        String email_address = "Email";
+        String phone_number = "987898789";
+        customer = new Customer("123-4567", "Password", name, email_address, phone_number);
+        firstCustomer = new Customer("123-4567", "Password", name, email_address, phone_number);
+        secondCustomer = new Customer("123-4567", "Password", name, email_address, phone_number);
+        thirdCustomer = new Customer("123-4567", "Password", name, email_address, phone_number);
     }
 
     @Test

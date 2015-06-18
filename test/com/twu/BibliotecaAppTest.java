@@ -42,8 +42,8 @@ public class BibliotecaAppTest {
     public void setUp() throws Exception {
         quitAction = new QuitAction();
         HashSet<AbstractUser> allUsers = new HashSet<>();
-        Customer customerOne = new Customer("123-4567", "Password");
-        Customer customerTwo = new Customer("111-1111", "11111");
+        Customer customerOne = new Customer("123-4567", "Password", "Name1", "Email1", "Phone1");
+        Customer customerTwo = new Customer("111-1111", "11111", "Name2", "Email2", "Phone2");
         allUsers.add(customerOne);
         allUsers.add(customerTwo);
         when(loginController.login()).thenReturn(customer);

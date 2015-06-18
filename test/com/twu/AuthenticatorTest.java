@@ -25,8 +25,8 @@ public class AuthenticatorTest {
     public void setUp() throws Exception {
         nullUser = new NullUser();
         Set<AbstractUser> users = new HashSet<>();
-        customerOne = new Customer("123-4567", "Password");
-        Customer customerTwo = new Customer("987-6543", "Password");
+        customerOne = new Customer("123-4567", "Password", "Name1", "Email1", "Phone1");
+        Customer customerTwo = new Customer("987-6543", "Password", "Name2", "Email2", "Phone2");
         libraryNumberOne = "123-4567";
         passwordOne = "Password";
         users.add(customerOne);

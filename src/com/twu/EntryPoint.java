@@ -80,9 +80,9 @@ public class EntryPoint {
 
     private static HashSet<AbstractUser> initializeAllUsers() {
         HashSet<AbstractUser> allUsers = new HashSet<>();
-        checkedOutTo = new Customer("123-4567", "Password");
+        checkedOutTo = new Customer("123-4567", "Password", "Name", "name@gmail.com", "98789098");
         allUsers.add(checkedOutTo);
-        allUsers.add(new Customer("111-1111", "11111"));
+        allUsers.add(new Customer("111-1111", "11111", "AnotherName", "11111@gmail.com", "9564347"));
         allUsers.add(new Librarian("000-0000", "0000"));
         return allUsers;
     }
