@@ -104,8 +104,8 @@ public class EntryPoint {
         initialMenuView = new MenuView(initialMenu, scanner, printStream, nullAction);
 
 
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new ConsoleOut(printStream), quitAction, loginController,
-                librarianController, customerController, initialMenuView);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new ConsoleOut(printStream), quitAction,
+                initialMenuView);
         bibliotecaApp.start();
     }
 
