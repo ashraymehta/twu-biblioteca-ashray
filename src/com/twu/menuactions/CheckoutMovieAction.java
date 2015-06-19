@@ -3,7 +3,6 @@ package com.twu.menuactions;
 import com.twu.Library;
 import com.twu.movies.Movie;
 import com.twu.user.AbstractUser;
-import com.twu.user.Customer;
 import com.twu.views.CheckoutMovieView;
 
 // Invokes printing of movies, checkoutMovie of books and print successful or unsuccessful messages
@@ -21,7 +20,7 @@ public class CheckoutMovieAction implements MenuAction {
     public MenuAction perform(AbstractUser user) {
         String movieName = checkoutMovieView.getMovieName();
         Movie matchingMovie = library.searchMovie(movieName);
-        matchingMovie = library.checkoutMovie(matchingMovie, (Customer) user);
+        matchingMovie = library.checkoutMovie(matchingMovie, user);
         checkoutMovieView.printMessage(matchingMovie.getAppropriateCheckoutMessage());
         return this;
     }
