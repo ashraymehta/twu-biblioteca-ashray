@@ -15,7 +15,7 @@ public class Menu {
         this.menuItemsMappedToSerials = menuItemsMappedToSerials;
     }
 
-    public MenuAction performActionForInput(AbstractUser user, int userInput) {
+    public MenuAction performCorrespondingAction(AbstractUser user, int userInput) {
         MenuAction menuAction = menuItemsMappedToMenuAction.get(userInput);
         return menuAction.perform(user);
     }

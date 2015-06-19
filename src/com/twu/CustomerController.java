@@ -22,7 +22,7 @@ public class CustomerController {
         MenuAction actionTaken;
         do {
             customerMenuView.printMainMenu();
-            actionTaken = customerMenuView.performActionUponSelection(user);
+            actionTaken = customerMenuView.getSelectionAndPerformAction(user);
         } while (!quitAction.equals(actionTaken) && !logoutAction.equals(actionTaken) &&
                 !nullAction.equals(actionTaken));
         return actionTaken;

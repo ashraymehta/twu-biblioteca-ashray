@@ -21,7 +21,7 @@ public class LibrarianController {
         MenuAction actionTaken;
         do {
             librarianMenuView.printMainMenu();
-            actionTaken = librarianMenuView.performActionUponSelection(user);
+            actionTaken = librarianMenuView.getSelectionAndPerformAction(user);
         } while (!quitAction.equals(actionTaken) && !logoutAction.equals(actionTaken) &&
                 !nullAction.equals(actionTaken));
         return actionTaken;

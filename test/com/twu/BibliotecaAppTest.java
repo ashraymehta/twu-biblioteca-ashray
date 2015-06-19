@@ -3,6 +3,7 @@ package com.twu;
 
 import com.twu.menuactions.ListAvailableBooksAction;
 import com.twu.menuactions.QuitAction;
+import com.twu.user.NullUser;
 import com.twu.views.MenuView;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,13 +22,15 @@ public class BibliotecaAppTest {
 
     private QuitAction quitAction;
     private BibliotecaApp bibliotecaApp;
+    private NullUser nullUser;
 
     @Before
     public void setUp() throws Exception {
         quitAction = new QuitAction();
-        when(initialMenuView.performActionUponSelection(null))
+        nullUser = new NullUser();
+        when(initialMenuView.getSelectionAndPerformAction(null))
                 .thenReturn(quitAction);
-        bibliotecaApp = new BibliotecaApp(consoleOut, quitAction, initialMenuView);
+        bibliotecaApp = new BibliotecaApp(consoleOut, quitAction, initialMenuView, nullUser);
     }
 
     @Test
@@ -48,17 +51,17 @@ public class BibliotecaAppTest {
     public void shouldPerformActionUponSelection() throws Exception {
         bibliotecaApp.start();
 
-        verify(initialMenuView).performActionUponSelection(null);
+        verify(initialMenuView).getSelectionAndPerformAction(null);
     }
 
     @Test
     public void shouldQuitWhenQuitActionIsEncountered() throws Exception {
-        when(initialMenuView.performActionUponSelection(null))
+        when(initialMenuView.getSelectionAndPerformAction(null))
                 .thenReturn(mock(ListAvailableBooksAction.class))
                 .thenReturn(quitAction);
-        bibliotecaApp = new BibliotecaApp(consoleOut, quitAction, initialMenuView);
+        bibliotecaApp = new BibliotecaApp(consoleOut, quitAction, initialMenuView, nullUser);
         bibliotecaApp.start();
 
-        verify(initialMenuView, times(2)).performActionUponSelection(null);
+        verify(initialMenuView, times(2)).getSelectionAndPerformAction(null);
     }
 }

@@ -37,10 +37,10 @@ public class MenuView {
         }
     }
 
-    public MenuAction performActionUponSelection(AbstractUser user) {
+    public MenuAction getSelectionAndPerformAction(AbstractUser user) {
         int selection = getSelection();
         if (menu.hasActionAtPosition(selection))
-            return menu.performActionForInput(user, selection);
+            return menu.performCorrespondingAction(user, selection);
         else
             printInvalidSelectionMessage();
         return nullAction;

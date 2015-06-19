@@ -37,7 +37,7 @@ public class LibrarianControllerTest {
         Customer customerTwo = new Customer("111-1111", "11111", "Name2", "Email2", "Phone2");
         allUsers.add(customerOne);
         allUsers.add(customerTwo);
-        when(librarianMenuView.performActionUponSelection(librarian)).thenReturn(quitAction);
+        when(librarianMenuView.getSelectionAndPerformAction(librarian)).thenReturn(quitAction);
         controller = new LibrarianController(librarianMenuView, quitAction, logoutAction, nullAction);
     }
 
@@ -52,14 +52,14 @@ public class LibrarianControllerTest {
     public void shouldPerformActionUponSelection() throws Exception {
         controller.execute(librarian);
 
-        verify(librarianMenuView).performActionUponSelection(librarian);
+        verify(librarianMenuView).getSelectionAndPerformAction(librarian);
     }
 
     @Test
     public void shouldGetOutOfLoopUponQuitSelection() throws Exception {
         controller.execute(librarian);
 
-        verify(librarianMenuView, times(1)).performActionUponSelection(librarian);
+        verify(librarianMenuView, times(1)).getSelectionAndPerformAction(librarian);
     }
 
     @Test
@@ -67,12 +67,12 @@ public class LibrarianControllerTest {
         librarianMenuView = mock(MenuView.class);
         logoutAction = new LogoutAction();
         controller = new LibrarianController(librarianMenuView, quitAction, logoutAction, nullAction);
-        when(librarianMenuView.performActionUponSelection(librarian))
+        when(librarianMenuView.getSelectionAndPerformAction(librarian))
                 .thenReturn(mock(ListAvailableBooksAction.class))
                 .thenReturn(quitAction);
         controller.execute(librarian);
 
-        verify(librarianMenuView, times(2)).performActionUponSelection(librarian);
+        verify(librarianMenuView, times(2)).getSelectionAndPerformAction(librarian);
     }
 
 }
