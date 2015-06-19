@@ -16,11 +16,12 @@ public class ReturnBookAction implements MenuAction {
     }
 
     @Override
-    public void perform(AbstractUser user) {
+    public MenuAction perform(AbstractUser user) {
         String bookTitle = returnBookView.getBookTitle();
         Book toBeReturned = library.searchBook(bookTitle);
         Book returnedBook = library.returnBook(toBeReturned);
         String appropriateCheckoutMessage = returnedBook.getAppropriateReturnMessage();
         returnBookView.printMessage(appropriateCheckoutMessage);
+        return this;
     }
 }

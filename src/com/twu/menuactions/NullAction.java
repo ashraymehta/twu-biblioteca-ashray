@@ -2,10 +2,10 @@ package com.twu.menuactions;
 
 import com.twu.user.AbstractUser;
 
-public class NullAction implements MenuAction{
+public class NullAction implements MenuAction {
     @Override
-    public void perform(AbstractUser user) {
-
+    public MenuAction perform(AbstractUser user) {
+        return this;
     }
 
     @Override

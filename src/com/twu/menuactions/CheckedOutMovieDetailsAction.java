@@ -15,9 +15,10 @@ public class CheckedOutMovieDetailsAction implements MenuAction {
     }
 
     @Override
-    public void perform(AbstractUser user) {
+    public MenuAction perform(AbstractUser user) {
         String title = checkedOutMovieDetailsView.getUserInput();
         Movie movie = library.searchCheckedOutMovie(title);
         checkedOutMovieDetailsView.printMovieDetails(movie);
+        return this;
     }
 }

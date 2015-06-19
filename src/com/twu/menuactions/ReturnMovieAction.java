@@ -16,11 +16,12 @@ public class ReturnMovieAction implements MenuAction {
     }
 
     @Override
-    public void perform(AbstractUser user) {
+    public MenuAction perform(AbstractUser user) {
         String movieName = returnBookView.getMovieName();
         Movie toBeReturned = library.searchMovie(movieName);
         Movie returnedMovie = library.returnMovie(toBeReturned);
         String appropriateCheckoutMessage = returnedMovie.getAppropriateReturnMessage();
         returnBookView.printMessage(appropriateCheckoutMessage);
+        return this;
     }
 }

@@ -68,4 +68,12 @@ public class NullBookTest {
 
         assertEquals(nullBook, actualBook);
     }
+
+    @Test
+    public void shouldHaveEmptyStringAsStringRepresentation() throws Exception {
+        NullBook nullBook = new NullBook();
+        String actualString = nullBook.toString();
+
+        assertEquals("", actualString);
+    }
 }

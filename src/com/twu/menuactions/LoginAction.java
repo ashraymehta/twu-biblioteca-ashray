@@ -23,7 +23,7 @@ public class LoginAction implements MenuAction {
     }
 
     @Override
-    public void perform(AbstractUser user) {
+    public MenuAction perform(AbstractUser user) {
         MenuAction lastActionTaken;
         do {
             user = loginController.login();
@@ -32,5 +32,6 @@ public class LoginAction implements MenuAction {
             else
                 lastActionTaken = customerController.execute(user);
         } while (!stopLoopActions.contains(lastActionTaken));
+        return lastActionTaken;
     }
 }

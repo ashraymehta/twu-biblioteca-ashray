@@ -12,7 +12,8 @@ public class CustomerDetailsAction implements MenuAction {
     }
 
     @Override
-    public void perform(AbstractUser user) {
+    public MenuAction perform(AbstractUser user) {
         customerDetailsView.printCustomerDetails((Customer) user);
+        return this;
     }
 }

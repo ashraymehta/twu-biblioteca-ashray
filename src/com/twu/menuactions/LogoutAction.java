@@ -4,8 +4,8 @@ import com.twu.user.AbstractUser;
 
 public class LogoutAction implements MenuAction {
     @Override
-    public void perform(AbstractUser user) {
-
+    public MenuAction perform(AbstractUser user) {
+        return this;
     }
 
     @Override

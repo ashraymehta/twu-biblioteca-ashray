@@ -52,6 +52,6 @@ public class CheckedOutBook extends Book {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10s", checkedOutTo);
+        return super.toString() + String.format("%-80s", checkedOutTo);
     }
 }

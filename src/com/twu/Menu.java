@@ -17,8 +17,7 @@ public class Menu {
 
     public MenuAction performActionForInput(AbstractUser user, int userInput) {
         MenuAction menuAction = menuItemsMappedToMenuAction.get(userInput);
-        menuAction.perform(user);
-        return menuAction;
+        return menuAction.perform(user);
     }
 
     public boolean hasActionAtPosition(int position) {

@@ -18,10 +18,11 @@ public class CheckoutMovieAction implements MenuAction {
     }
 
     @Override
-    public void perform(AbstractUser user) {
+    public MenuAction perform(AbstractUser user) {
         String movieName = checkoutMovieView.getMovieName();
         Movie matchingMovie = library.searchMovie(movieName);
         matchingMovie = library.checkoutMovie(matchingMovie, (Customer) user);
         checkoutMovieView.printMessage(matchingMovie.getAppropriateCheckoutMessage());
+        return this;
     }
 }

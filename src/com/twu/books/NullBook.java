@@ -40,4 +40,9 @@ public class NullBook extends Book {
     public Book returnBook() {
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "";
+    }
 }

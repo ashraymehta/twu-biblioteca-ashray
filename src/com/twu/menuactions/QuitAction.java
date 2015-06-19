@@ -4,8 +4,8 @@ import com.twu.user.AbstractUser;
 
 public class QuitAction implements MenuAction {
     @Override
-    public void perform(AbstractUser user) {
-        return;
+    public MenuAction perform(AbstractUser user) {
+        return this;
     }
 
     @Override

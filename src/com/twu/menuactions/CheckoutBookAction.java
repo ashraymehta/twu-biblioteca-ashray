@@ -18,10 +18,11 @@ public class CheckoutBookAction implements MenuAction {
     }
 
     @Override
-    public void perform(AbstractUser user) {
+    public MenuAction perform(AbstractUser user) {
         String bookTitle = checkoutBookView.getBookTitle();
         Book matchingBook = library.searchBook(bookTitle);
         matchingBook = library.checkoutBook(matchingBook, (Customer) user);
         checkoutBookView.printMessage(matchingBook.getAppropriateCheckoutMessage());
+        return this;
     }
 }
