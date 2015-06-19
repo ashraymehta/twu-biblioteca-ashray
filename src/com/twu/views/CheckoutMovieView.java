@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 // Prints list of available movies, gets user selection and feedback on successful or unsuccessful checkoutBook
 public class CheckoutMovieView {
-
     private final Scanner scanner;
     private final PrintStream printStream;
 

@@ -11,7 +11,6 @@ import static com.twu.Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
 
 // Prints list of available books, gets user selection and feedback on successful or unsuccessful checkoutBook
 public class CheckoutBookView {
-
     private final Books books;
     private final Scanner scanner;
     private final PrintStream printStream;
