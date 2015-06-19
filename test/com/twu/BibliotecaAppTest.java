@@ -28,7 +28,7 @@ public class BibliotecaAppTest {
     public void setUp() throws Exception {
         quitAction = new QuitAction();
         nullUser = new NullUser();
-        when(initialMenuView.getSelectionAndPerformAction(null))
+        when(initialMenuView.getSelectionAndPerformAction(nullUser))
                 .thenReturn(quitAction);
         bibliotecaApp = new BibliotecaApp(consoleOut, quitAction, initialMenuView, nullUser);
     }
@@ -51,17 +51,17 @@ public class BibliotecaAppTest {
     public void shouldPerformActionUponSelection() throws Exception {
         bibliotecaApp.start();
 
-        verify(initialMenuView).getSelectionAndPerformAction(null);
+        verify(initialMenuView).getSelectionAndPerformAction(nullUser);
     }
 
     @Test
     public void shouldQuitWhenQuitActionIsEncountered() throws Exception {
-        when(initialMenuView.getSelectionAndPerformAction(null))
+        when(initialMenuView.getSelectionAndPerformAction(nullUser))
                 .thenReturn(mock(ListAvailableBooksAction.class))
                 .thenReturn(quitAction);
         bibliotecaApp = new BibliotecaApp(consoleOut, quitAction, initialMenuView, nullUser);
         bibliotecaApp.start();
 
-        verify(initialMenuView, times(2)).getSelectionAndPerformAction(null);
+        verify(initialMenuView, times(2)).getSelectionAndPerformAction(nullUser);
     }
 }
