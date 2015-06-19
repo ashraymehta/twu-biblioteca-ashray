@@ -2,6 +2,7 @@ package com.twu.books;
 
 import com.twu.Messages;
 import com.twu.user.Customer;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,13 +14,21 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class AvailableBookTest {
+    private String title;
+    private String author;
+    private int yearPublished;
+    private AvailableBook book;
+
+    @Before
+    public void setUp() throws Exception {
+        title = "Harry Potter and the Philosopher's Stone";
+        author = "JK Rowling";
+        yearPublished = 1997;
+        book = new AvailableBook(title, author, yearPublished);
+    }
+
     @Test
     public void shouldPresentDetailsOfBookAsString() throws Exception {
-        String title = "Harry Potter and the Philosopher's Stone";
-        String author = "JK Rowling";
-        int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished);
-
         String actualString = book.toString();
         String expectedString = "Harry Potter and the Philosopher's Stone          " +
                 "JK Rowling                    " + "1997      ";
@@ -29,10 +38,6 @@ public class AvailableBookTest {
 
     @Test
     public void shouldAddItselfToAvailableList() throws Exception {
-        String title = "Harry Potter and the Philosopher's Stone";
-        String author = "JK Rowling";
-        int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished);
         List<Book> availableList = new ArrayList<>();
         book.addToListIfAvailable(availableList);
 
@@ -41,10 +46,6 @@ public class AvailableBookTest {
 
     @Test
     public void shouldNotAddItselfToCheckedOutList() throws Exception {
-        String title = "Harry Potter and the Philosopher's Stone";
-        String author = "JK Rowling";
-        int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished);
         List<Book> checkedOutList = new ArrayList<>();
         book.addToListIfCheckedOut(checkedOutList);
 
@@ -53,10 +54,6 @@ public class AvailableBookTest {
 
     @Test
     public void shouldBeAbleToCheckItselfOut() throws Exception {
-        String title = "Harry Potter and the Philosopher's Stone";
-        String author = "JK Rowling";
-        int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished);
         Book newBook = book.checkoutBook(mock(Customer.class));
 
         assertTrue(newBook instanceof CheckedOutBook);
@@ -64,10 +61,6 @@ public class AvailableBookTest {
 
     @Test
     public void shouldAddItselfIfTitleMatchesGivenString() throws Exception {
-        String title = "Harry Potter and the Philosopher's Stone";
-        String author = "JK Rowling";
-        int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished);
         List<Book> matchingList = new ArrayList<>();
         book.addToListIfTitleMatches(matchingList, "Harry Potter and the Philosopher's Stone");
 
@@ -76,12 +69,22 @@ public class AvailableBookTest {
 
     @Test
     public void shouldReturnFailedCheckoutMessage() throws Exception {
-        String title = "Harry Potter and the Philosopher's Stone";
-        String author = "JK Rowling";
-        int yearPublished = 1997;
-        AvailableBook book = new AvailableBook(title, author, yearPublished);
         String actualMessage = book.getAppropriateCheckoutMessage();
 
         assertEquals(actualMessage, Messages.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
+    }
+
+    @Test
+    public void shouldReturnItselfWhenAskedToReturnToLibrary() throws Exception {
+        Book actualReturnedBook = book.returnBook();
+
+        assertEquals(book, actualReturnedBook);
+    }
+
+    @Test
+    public void shouldGetSuccessfulReturnMessage() throws Exception {
+        String actualMessage = book.getAppropriateReturnMessage();
+
+        assertEquals(Messages.SUCCESSFUL_BOOK_RETURN_MESSAGE, actualMessage);
     }
 }

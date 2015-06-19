@@ -190,6 +190,13 @@ public class LibraryTest {
     }
 
     @Test
+    public void shouldBeAbleToReturnABook() throws Exception {
+        Book returnedBook = library.returnBook(checkedOutOutBookOne);
+
+        assertTrue(returnedBook instanceof AvailableBook);
+    }
+
+    @Test
     public void shouldBeAbleToSearchCheckedOutBooks() throws Exception {
         Book actualResult = library.searchCheckedOutBook("Title 3");
 

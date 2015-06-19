@@ -53,6 +53,7 @@ public class EntryPoint {
     private static NullBook nullBook;
     private static NullUser nullUser;
     private static NullMovie nullMovie;
+    private static List<MenuAction> stopLoopActions;
 
     public static void main(String[] args) {
         HashSet<AbstractUser> allUsers = initializeAllUsers();
@@ -73,8 +74,11 @@ public class EntryPoint {
         LibrarianController librarianController = new LibrarianController(librarianMenuView, quitAction, logoutAction, nullAction);
         CustomerController customerController = new CustomerController(customerMenuView, quitAction, logoutAction, nullAction);
 
-        MenuView initialMenuView = getInitialMenuView(loginController, librarianController, customerController);
+        stopLoopActions = new ArrayList<>();
+        stopLoopActions.add(quitAction);
+        stopLoopActions.add(logoutAction);
 
+        MenuView initialMenuView = getInitialMenuView(loginController, librarianController, customerController);
 
         BibliotecaApp bibliotecaApp = new BibliotecaApp(new ConsoleOut(printStream), quitAction,
                 initialMenuView);
@@ -104,7 +108,7 @@ public class EntryPoint {
         initialMenuItemsMappedToMenuAction.put(2, new ListMoviesAction(moviesView, library));
         initialMenuItemsMappedToSerials.put(3, "Login");
         initialMenuItemsMappedToMenuAction.put(3, new LoginAction(loginController, librarianController,
-                customerController, logoutAction));
+                customerController, stopLoopActions));
 
         Menu initialMenu = new Menu(initialMenuItemsMappedToMenuAction, initialMenuItemsMappedToSerials);
 

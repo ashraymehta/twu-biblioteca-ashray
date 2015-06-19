@@ -6,18 +6,20 @@ import com.twu.LoginController;
 import com.twu.user.AbstractUser;
 import com.twu.user.Librarian;
 
+import java.util.List;
+
 public class LoginAction implements MenuAction {
     private LoginController loginController;
     private LibrarianController librarianController;
     private CustomerController customerController;
-    private LogoutAction logoutAction;
+    private List<MenuAction> stopLoopActions;
 
     public LoginAction(LoginController loginController, LibrarianController librarianController,
-                       CustomerController customerController, LogoutAction logoutAction) {
+                       CustomerController customerController, List<MenuAction> stopLoopActions) {
         this.loginController = loginController;
         this.librarianController = librarianController;
         this.customerController = customerController;
-        this.logoutAction = logoutAction;
+        this.stopLoopActions = stopLoopActions;
     }
 
     @Override
@@ -29,6 +31,6 @@ public class LoginAction implements MenuAction {
                 lastActionTaken = librarianController.execute(user);
             else
                 lastActionTaken = customerController.execute(user);
-        } while (!lastActionTaken.equals(logoutAction) && !lastActionTaken.equals(new NullAction()));
+        } while (!stopLoopActions.contains(lastActionTaken));
     }
 }

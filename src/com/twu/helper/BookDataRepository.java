@@ -32,7 +32,6 @@ public class BookDataRepository {
                 listOfBooks.add(readLine.trim());
             }
         } catch (IOException e) {
-            return;
         }
     }
 }

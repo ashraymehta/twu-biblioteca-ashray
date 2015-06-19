@@ -11,7 +11,6 @@ import java.util.Set;
 
 // Holds the available and the checked out books; provides APIs to checkoutBook and return a books
 public class Library {
-
     private final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;
     private final Set<Movie> allMovies;
