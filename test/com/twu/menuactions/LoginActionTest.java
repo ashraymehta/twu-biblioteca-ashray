@@ -14,6 +14,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -44,18 +45,21 @@ public class LoginActionTest {
     private Customer customerOne;
     private NullUser nullUser;
     private List<MenuAction> stopLoopActions;
+    private NullAction nullAction;
 
     @Before
     public void setUp() throws Exception {
         logoutAction = new LogoutAction();
+        nullAction = new NullAction();
         stopLoopActions = new ArrayList<>();
         stopLoopActions.add(logoutAction);
         stopLoopActions.add(new QuitAction());
+        stopLoopActions.add(new NullAction());
         nullUser = new NullUser();
         customerOne = new Customer("123-4567", "Password", "Name1", "Email1", "Phone1");
         when(loginController.login()).thenReturn(customerOne);
         when(customerController.execute(customerOne)).thenReturn(logoutAction);
-        loginAction = new LoginAction(loginController, librarianController, customerController, stopLoopActions);
+        loginAction = new LoginAction(loginController, librarianController, customerController, stopLoopActions, nullAction);
     }
 
     @Test
@@ -66,11 +70,22 @@ public class LoginActionTest {
     }
 
     @Test
+    public void shouldReturnNullActionOnUnsuccessfulLogin() throws Exception {
+        loginController = mock(LoginController.class);
+        when(loginController.login()).thenReturn(nullUser);
+        when(librarianController.execute(nullUser)).thenReturn(nullAction);
+        loginAction = new LoginAction(loginController, librarianController, customerController, stopLoopActions, nullAction);
+        MenuAction result = loginAction.perform(librarian);
+
+        assertEquals(nullAction, result);
+    }
+
+    @Test
     public void shouldExecuteLibrarianControllerWhenLibrarianIsTheUser() throws Exception {
         loginController = mock(LoginController.class);
         when(loginController.login()).thenReturn(librarian);
         when(librarianController.execute(librarian)).thenReturn(logoutAction);
-        loginAction = new LoginAction(loginController, librarianController, customerController, stopLoopActions);
+        loginAction = new LoginAction(loginController, librarianController, customerController, stopLoopActions, nullAction);
         loginAction.perform(librarian);
 
         verify(librarianController, times(1)).execute(librarian);
@@ -79,7 +94,7 @@ public class LoginActionTest {
     @Test
     public void shouldGetOutOfLoopUponLogoutSelection() throws Exception {
         customerMenuView = mock(MenuView.class);
-        loginAction = new LoginAction(loginController, librarianController, customerController, stopLoopActions);
+        loginAction = new LoginAction(loginController, librarianController, customerController, stopLoopActions, nullAction);
         when(librarianController.execute(customerOne)).thenReturn(logoutAction)
                 .thenReturn(logoutAction)
                 .thenReturn(new QuitAction());

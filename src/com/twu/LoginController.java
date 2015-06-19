@@ -20,14 +20,12 @@ public class LoginController {
 
     public AbstractUser login() {
         AbstractUser user;
-        do {
-            loginView.printMessage(ENTER_LIBRARY_NUMBER);
-            String libraryNumber = loginView.getUserInput();
-            loginView.printMessage(ENTER_PASSWORD);
-            String password = loginView.getUserInput();
-            user = authenticator.login(libraryNumber, password);
-            loginView.printMessage(user.getLoginStatusMessage());
-        } while (user.equals(nullUser));
+        loginView.printMessage(ENTER_LIBRARY_NUMBER);
+        String libraryNumber = loginView.getUserInput();
+        loginView.printMessage(ENTER_PASSWORD);
+        String password = loginView.getUserInput();
+        user = authenticator.login(libraryNumber, password);
+        loginView.printMessage(user.getLoginStatusMessage());
         return user;
     }
 }

@@ -77,6 +77,7 @@ public class EntryPoint {
         stopLoopActions = new ArrayList<>();
         stopLoopActions.add(quitAction);
         stopLoopActions.add(logoutAction);
+        stopLoopActions.add(nullAction);
 
         MenuView initialMenuView = getInitialMenuView(loginController, librarianController, customerController);
 
@@ -108,7 +109,7 @@ public class EntryPoint {
         initialMenuItemsMappedToMenuAction.put(2, new ListMoviesAction(moviesView, library));
         initialMenuItemsMappedToSerials.put(3, "Login");
         initialMenuItemsMappedToMenuAction.put(3, new LoginAction(loginController, librarianController,
-                customerController, stopLoopActions));
+                customerController, stopLoopActions, nullAction));
 
         Menu initialMenu = new Menu(initialMenuItemsMappedToMenuAction, initialMenuItemsMappedToSerials);
 
