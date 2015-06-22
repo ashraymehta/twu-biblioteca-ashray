@@ -29,7 +29,7 @@ public class CustomerTest {
     @Test
     public void shouldRepresentCustomerAsString() throws Exception {
         String actualString = customer.toString();
-        String expectedString = "123-4567  " + "Name                          "
+        String expectedString = "123-4567            " + "Name                          "
                 + "Email                         " + "987898789      ";
 
         assertEquals(expectedString, actualString);
@@ -45,7 +45,6 @@ public class CustomerTest {
 
     @Test
     public void shouldBeEqualToItself() {
-
         boolean actual = firstCustomer.equals(firstCustomer);
 
         assertEquals(true, actual);
@@ -53,7 +52,6 @@ public class CustomerTest {
 
     @Test
     public void shouldFollowSymmetricProperty() {
-
         boolean actual = (firstCustomer.equals(secondCustomer) == secondCustomer.equals(firstCustomer));
 
         assertEquals(true, actual);

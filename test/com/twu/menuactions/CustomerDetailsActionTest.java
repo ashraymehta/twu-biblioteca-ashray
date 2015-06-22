@@ -30,4 +30,11 @@ public class CustomerDetailsActionTest {
 
         verify(customerDetailsView).printCustomerDetails(customer);
     }
+
+    @Test
+    public void shouldInvokePrintingOfCustomerDetailsHeaders() throws Exception {
+        customerDetailsAction.perform(customer);
+
+        verify(customerDetailsView).printHeaders();
+    }
 }

@@ -21,7 +21,7 @@ public abstract class AbstractUser {
 
     @Override
     public String toString() {
-        return String.format("%-10s", libraryNumber);
+        return String.format("%-20s", libraryNumber);
     }
 
     @Override

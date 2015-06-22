@@ -26,7 +26,7 @@ public class LibrarianTest {
     @Test
     public void shouldRepresentCustomerAsString() throws Exception {
         String actualString = librarian.toString();
-        String expectedString = "123-4567  ";
+        String expectedString = "123-4567            ";
 
         assertEquals(expectedString, actualString);
     }

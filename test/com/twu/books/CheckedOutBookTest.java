@@ -33,7 +33,7 @@ public class CheckedOutBookTest {
 
         String actualString = book.toString();
         String expectedString = "Harry Potter and the Philosopher's Stone          " +
-                "JK Rowling                    1997      123-4567  " +
+                "JK Rowling                    1997      123-4567            " +
                 "Name                          Email                         98901234       ";
 
         assertEquals(expectedString, actualString);

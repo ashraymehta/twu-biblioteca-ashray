@@ -30,7 +30,7 @@ public class CheckedOutMovieTest {
     public void shouldPresentMovieDetailsAsString() throws Exception {
         String actualString = checkedOutMovie.toString();
         String expectedString = "Batman Begins                                     " +
-                "Christopher Nolan             2005      9    123-4567  " +
+                "Christopher Nolan             2005      9    123-4567            " +
                 "Name                          Email                         Phone          ";
 
         assertEquals(expectedString, actualString);
