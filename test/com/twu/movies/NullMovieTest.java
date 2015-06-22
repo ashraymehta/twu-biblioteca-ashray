@@ -48,13 +48,20 @@ public class NullMovieTest {
     public void shouldReturnUnsuccessfulCheckoutMessage() throws Exception {
         String actualMessage = nullMovie.getAppropriateCheckoutMessage();
 
-        assertEquals(actualMessage, Messages.UNSUCCESSFUL_MOVIE_CHECKOUT_MESSAGE);
+        assertEquals(Messages.UNSUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, actualMessage);
     }
 
     @Test
     public void shouldReturnUnsuccessfulReturnMessage() throws Exception {
         String actualMessage = nullMovie.getAppropriateReturnMessage();
 
-        assertEquals(actualMessage, Messages.UNSUCCESSFUL_MOVIE_RETURN_MESSAGE);
+        assertEquals(Messages.UNSUCCESSFUL_MOVIE_RETURN_MESSAGE, actualMessage);
+    }
+
+    @Test
+    public void shouldHaveNoMovieFoundAsStringRepresentation() throws Exception {
+        String actualString = nullMovie.toString();
+
+        assertEquals(Messages.NO_MOVIE_FOUND, actualString);
     }
 }

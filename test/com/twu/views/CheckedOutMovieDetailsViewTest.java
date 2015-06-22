@@ -1,6 +1,5 @@
 package com.twu.views;
 
-import com.twu.Messages;
 import com.twu.movies.Movie;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,9 +46,10 @@ public class CheckedOutMovieDetailsViewTest {
     }
 
     @Test
-    public void shouldBeAbleToPrintNoMovieFoundMessage() throws Exception {
-        checkedOutMovieDetailsView.printNoMovieFoundMessage();
+    public void shouldBeAbleToPrintAGivenMessage() throws Exception {
+        String message = "Message";
+        checkedOutMovieDetailsView.printMessage(message);
 
-        verify(printStream).println(Messages.NO_MOVIE_FOUND);
+        verify(printStream).println(message);
     }
 }

@@ -1,6 +1,5 @@
 package com.twu.views;
 
-import com.twu.Messages;
 import com.twu.books.Book;
 
 import java.io.PrintStream;
@@ -24,7 +23,7 @@ public class CheckedOutBookDetailsView {
         printStream.println(book);
     }
 
-    public void printNoBookFoundMessage() {
-        printStream.println(Messages.NO_BOOK_FOUND);
+    public void printMessage(String message) {
+        printStream.println(message);
     }
 }

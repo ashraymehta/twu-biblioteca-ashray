@@ -1,6 +1,5 @@
 package com.twu.views;
 
-import com.twu.Messages;
 import com.twu.books.Book;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,9 +46,10 @@ public class CheckedOutBookDetailsViewTest {
     }
 
     @Test
-    public void shouldBeAbleToPrintNoBookFoundMessage() throws Exception {
-        checkedOutBookDetailsView.printNoBookFoundMessage();
+    public void shouldBeAbleToPrintAProvidedMessage() throws Exception {
+        String message = "Message";
+        checkedOutBookDetailsView.printMessage(message);
 
-        verify(printStream).println(Messages.NO_BOOK_FOUND);
+        verify(printStream).println(message);
     }
 }

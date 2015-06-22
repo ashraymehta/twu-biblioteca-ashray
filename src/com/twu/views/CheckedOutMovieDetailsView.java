@@ -1,6 +1,5 @@
 package com.twu.views;
 
-import com.twu.Messages;
 import com.twu.movies.Movie;
 
 import java.io.PrintStream;
@@ -24,7 +23,7 @@ public class CheckedOutMovieDetailsView {
         printStream.println(movie);
     }
 
-    public void printNoMovieFoundMessage() {
-        printStream.println(Messages.NO_MOVIE_FOUND);
+    public void printMessage(String message) {
+        printStream.println(message);
     }
 }

@@ -70,10 +70,10 @@ public class NullBookTest {
     }
 
     @Test
-    public void shouldHaveEmptyStringAsStringRepresentation() throws Exception {
+    public void shouldHaveNoBookFoundMessageAsStringRepresentation() throws Exception {
         NullBook nullBook = new NullBook();
         String actualString = nullBook.toString();
 
-        assertEquals("", actualString);
+        assertEquals(Messages.NO_BOOK_FOUND, actualString);
     }
 }

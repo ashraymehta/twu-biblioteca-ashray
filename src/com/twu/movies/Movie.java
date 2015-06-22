@@ -1,7 +1,6 @@
 package com.twu.movies;
 
 import com.twu.user.AbstractUser;
-import com.twu.user.Customer;
 
 import java.util.List;
 

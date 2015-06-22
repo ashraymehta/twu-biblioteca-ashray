@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.Messages;
 import com.twu.movies.Movie;
 import com.twu.user.AbstractUser;
 import com.twu.views.CheckedOutMovieDetailsView;
@@ -17,6 +18,7 @@ public class CheckedOutMovieDetailsAction implements MenuAction {
 
     @Override
     public MenuAction perform(AbstractUser user) {
+        checkedOutMovieDetailsView.printMessage(Messages.ENTER_MOVIE_NAME);
         String title = checkedOutMovieDetailsView.getUserInput();
         Movie movie = library.searchCheckedOutMovie(title);
         checkedOutMovieDetailsView.printMovieDetails(movie);

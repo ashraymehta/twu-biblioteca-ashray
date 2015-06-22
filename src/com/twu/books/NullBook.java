@@ -43,6 +43,6 @@ public class NullBook extends Book {
 
     @Override
     public String toString() {
-        return "";
+        return Messages.NO_BOOK_FOUND;
     }
 }

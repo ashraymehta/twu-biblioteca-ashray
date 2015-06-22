@@ -40,4 +40,9 @@ public class NullMovie extends Movie {
     public void addToListIfCheckedOut(List<Movie> checkedOutMovies) {
 
     }
+
+    @Override
+    public String toString() {
+        return Messages.NO_MOVIE_FOUND;
+    }
 }
