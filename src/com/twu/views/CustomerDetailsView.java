@@ -1,6 +1,7 @@
 package com.twu.views;
 
-import com.twu.user.Customer;
+import com.twu.Messages;
+import com.twu.user.AbstractUser;
 
 import java.io.PrintStream;
 
@@ -12,7 +13,12 @@ public class CustomerDetailsView {
         this.printStream = printStream;
     }
 
-    public void printCustomerDetails(Customer customer) {
-        printStream.println(customer);
+    public void printCustomerDetails(AbstractUser user) {
+        printStream.println(user);
+    }
+
+
+    public void printHeaders() {
+        printStream.println(Messages.ACCOUNT_HEADERS);
     }
 }

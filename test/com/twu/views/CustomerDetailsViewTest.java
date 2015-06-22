@@ -1,5 +1,6 @@
 package com.twu.views;
 
+import com.twu.Messages;
 import com.twu.user.Customer;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,5 +31,12 @@ public class CustomerDetailsViewTest {
         customerDetailsView.printCustomerDetails(customer);
 
         verify(printStream).println(customer);
+    }
+
+    @Test
+    public void shouldBeAbleToPrintHeaders() throws Exception {
+        customerDetailsView.printHeaders();
+
+        verify(printStream).println(Messages.ACCOUNT_HEADERS);
     }
 }

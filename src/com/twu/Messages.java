@@ -21,4 +21,6 @@ public abstract class Messages {
 
     public static final String ENTER_BOOK_TITLE = "Enter book title: ";
     public static final String ENTER_MOVIE_NAME = "Enter movie name: ";
+    public static final String ACCOUNT_HEADERS = String.format("%-30s", "Name") + String.format("%-30s", "Email") +
+            String.format("%-15s", "Phone");
 }
