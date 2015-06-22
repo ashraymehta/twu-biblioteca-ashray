@@ -11,7 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ListMoviesActionTest {
+public class ListAvailableMoviesActionTest {
     @Mock
     MoviesView moviesView;
     @Mock
@@ -21,16 +21,16 @@ public class ListMoviesActionTest {
 
     @Test
     public void shouldBeAbleToDisplayList() throws Exception {
-        ListMoviesAction listMoviesAction = new ListMoviesAction(moviesView, library);
-        listMoviesAction.perform(customer);
+        ListAvailableMoviesAction listAvailableMoviesAction = new ListAvailableMoviesAction(moviesView, library);
+        listAvailableMoviesAction.perform(customer);
 
         verify(moviesView).printListOfMovies();
     }
 
     @Test
     public void shouldGetListOfMoviesFromLibrary() throws Exception {
-        ListMoviesAction listMoviesAction = new ListMoviesAction(moviesView, library);
-        listMoviesAction.perform(customer);
+        ListAvailableMoviesAction listAvailableMoviesAction = new ListAvailableMoviesAction(moviesView, library);
+        listAvailableMoviesAction.perform(customer);
 
         verify(library).getAvailableMovies();
     }

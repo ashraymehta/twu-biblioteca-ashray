@@ -17,4 +17,7 @@ public abstract class Messages {
     public static final String UNSUCCESSFUL_LOGIN = "Login unsuccessful. Please try again.";
     public static final String NO_BOOK_FOUND = "No book found.";
     public static final String NO_MOVIE_FOUND = "No movie found.";
+
+    public static final String ENTER_BOOK_TITLE = "Enter book title: ";
+    public static final String ENTER_MOVIE_NAME = "Enter movie name: ";
 }

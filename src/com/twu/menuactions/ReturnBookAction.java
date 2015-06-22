@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.Messages;
 import com.twu.books.Book;
 import com.twu.user.AbstractUser;
 import com.twu.views.ReturnBookView;
@@ -17,6 +18,7 @@ public class ReturnBookAction implements MenuAction {
 
     @Override
     public MenuAction perform(AbstractUser user) {
+        returnBookView.printMessage(Messages.ENTER_BOOK_TITLE);
         String bookTitle = returnBookView.getBookTitle();
         Book toBeReturned = library.searchBook(bookTitle);
         Book returnedBook = library.returnBook(toBeReturned);

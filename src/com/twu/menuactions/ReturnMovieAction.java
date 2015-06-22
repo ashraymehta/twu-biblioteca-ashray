@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.Messages;
 import com.twu.movies.Movie;
 import com.twu.user.AbstractUser;
 import com.twu.views.ReturnMovieView;
@@ -17,6 +18,7 @@ public class ReturnMovieAction implements MenuAction {
 
     @Override
     public MenuAction perform(AbstractUser user) {
+        returnBookView.printMessage(Messages.ENTER_MOVIE_NAME);
         String movieName = returnBookView.getMovieName();
         Movie toBeReturned = library.searchMovie(movieName);
         Movie returnedMovie = library.returnMovie(toBeReturned);

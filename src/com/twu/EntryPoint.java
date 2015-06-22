@@ -56,7 +56,7 @@ public class EntryPoint {
     private static List<MenuAction> stopLoopActions;
 
     public static void main(String[] args) {
-        HashSet<AbstractUser> allUsers = initializeAllUsers();
+        HashSet<AbstractUser> allUsers = initializeUsers();
         initializeIndependentActions();
         initializeStreams();
         initializeListOfBooks();
@@ -106,7 +106,7 @@ public class EntryPoint {
         initialMenuItemsMappedToSerials.put(1, "List Books");
         initialMenuItemsMappedToMenuAction.put(1, new ListAvailableBooksAction(availableBooksView, library));
         initialMenuItemsMappedToSerials.put(2, "List movies");
-        initialMenuItemsMappedToMenuAction.put(2, new ListMoviesAction(moviesView, library));
+        initialMenuItemsMappedToMenuAction.put(2, new ListAvailableMoviesAction(moviesView, library));
         initialMenuItemsMappedToSerials.put(3, "Login");
         initialMenuItemsMappedToMenuAction.put(3, new LoginAction(loginController, librarianController,
                 customerController, stopLoopActions, nullAction));
@@ -133,7 +133,7 @@ public class EntryPoint {
         librarianMenu = new Menu(librarianMenuItemsMappedToMenuAction, librarianMenuItemsMappedToSerials);
     }
 
-    private static HashSet<AbstractUser> initializeAllUsers() {
+    private static HashSet<AbstractUser> initializeUsers() {
         HashSet<AbstractUser> allUsers = new HashSet<>();
         checkedOutTo = new Customer("123-4567", "Password", "Name", "name@gmail.com", "98789098");
         allUsers.add(checkedOutTo);
@@ -215,7 +215,7 @@ public class EntryPoint {
         customerMenuItemsMappedToSerials.put(3, "Return Book");
         customerMenuItemsMappedToMenuAction.put(3, returnBookAction);
         customerMenuItemsMappedToSerials.put(4, "List movies");
-        customerMenuItemsMappedToMenuAction.put(4, new ListMoviesAction(moviesView, library));
+        customerMenuItemsMappedToMenuAction.put(4, new ListAvailableMoviesAction(moviesView, library));
         customerMenuItemsMappedToSerials.put(5, "Checkout Movie");
         customerMenuItemsMappedToMenuAction.put(5, new CheckoutMovieAction(checkoutMovieView, library));
         customerMenuItemsMappedToSerials.put(6, "Return Movie");

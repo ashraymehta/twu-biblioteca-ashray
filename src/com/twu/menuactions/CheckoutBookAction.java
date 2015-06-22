@@ -6,6 +6,8 @@ import com.twu.user.AbstractUser;
 import com.twu.user.Customer;
 import com.twu.views.CheckoutBookView;
 
+import static com.twu.Messages.ENTER_BOOK_TITLE;
+
 // Invokes printing of books, checkoutBook of books and print successful or unsuccessful messages
 public class CheckoutBookAction implements MenuAction {
 
@@ -19,6 +21,7 @@ public class CheckoutBookAction implements MenuAction {
 
     @Override
     public MenuAction perform(AbstractUser user) {
+        checkoutBookView.printMessage(ENTER_BOOK_TITLE);
         String bookTitle = checkoutBookView.getBookTitle();
         Book matchingBook = library.searchBook(bookTitle);
         matchingBook = library.checkoutBook(matchingBook, (Customer) user);

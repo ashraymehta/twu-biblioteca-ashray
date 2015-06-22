@@ -1,6 +1,7 @@
 package com.twu.menuactions;
 
 import com.twu.Library;
+import com.twu.Messages;
 import com.twu.movies.Movie;
 import com.twu.user.AbstractUser;
 import com.twu.views.CheckoutMovieView;
@@ -18,6 +19,7 @@ public class CheckoutMovieAction implements MenuAction {
 
     @Override
     public MenuAction perform(AbstractUser user) {
+        checkoutMovieView.printMessage(Messages.ENTER_MOVIE_NAME);
         String movieName = checkoutMovieView.getMovieName();
         Movie matchingMovie = library.searchMovie(movieName);
         matchingMovie = library.checkoutMovie(matchingMovie, user);
