@@ -32,6 +32,6 @@ public class ListAvailableMoviesActionTest {
         ListAvailableMoviesAction listAvailableMoviesAction = new ListAvailableMoviesAction(moviesView, library);
         listAvailableMoviesAction.perform(customer);
 
-        verify(library).getAvailableMovies();
+        verify(library).refreshAvailableMovies();
     }
 }

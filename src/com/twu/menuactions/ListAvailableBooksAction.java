@@ -17,7 +17,7 @@ public class ListAvailableBooksAction implements MenuAction {
 
     @Override
     public MenuAction perform(AbstractUser user) {
-        library.getAvailableBooks();
+        library.refreshAvailableBooks();
         booksView.printListOfBooks();
         return this;
     }

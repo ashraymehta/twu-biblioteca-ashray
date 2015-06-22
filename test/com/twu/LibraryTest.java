@@ -22,9 +22,7 @@ import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LibraryTest {
@@ -71,7 +69,6 @@ public class LibraryTest {
 
         availableMovies = new ArrayList<>();
         checkedOutMovies = new ArrayList<>();
-
         checkedOutMovies.add(checkedOutOutMovieOne);
 
         allBooks.addAll(availableBooks);
@@ -79,6 +76,8 @@ public class LibraryTest {
         allMovies.addAll(checkedOutMovies);
         allMovies.add(availableMovieOne);
         allMovies.add(availableMovieTwo);
+
+        customer = new Customer("111-1111", "1111", "Name", "Email", "Phone");
 
         when(bookSearcher.search(allBooks, "Title 3")).thenReturn(checkedOutOutBookOne);
         when(bookSearcher.search(allBooks, "Title 1")).thenReturn(new NullBook());
@@ -90,48 +89,52 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldReturnAvailableBooks() throws Exception {
-        List<Book> actualResult = library.getAvailableBooks();
+    public void shouldRefreshAvailableBooks() throws Exception {
+        this.availableBooks.clear();
+        library.refreshAvailableBooks();
         List<AvailableBook> availableBooks = new ArrayList<>();
         availableBooks.add(availableBookOne);
         availableBooks.add(availableBookTwo);
 
-        assertTrue(actualResult.equals(availableBooks));
+        assertTrue(this.availableBooks.equals(availableBooks));
     }
 
     @Test
-    public void shouldReturnCheckedOutBooks() throws Exception {
-        List<Book> actualResult = library.getCheckedOutBooks();
+    public void shouldRefreshCheckedOutBooks() throws Exception {
+        this.availableMovies.clear();
+        library.refreshCheckedOutBooks();
         List<CheckedOutBook> checkedOutBooks = new ArrayList<>();
         checkedOutBooks.add(checkedOutOutBookOne);
 
-        assertTrue(actualResult.equals(checkedOutBooks));
+        assertTrue(this.checkedOutBooks.equals(checkedOutBooks));
     }
 
     @Test
-    public void shouldReturnAvailableMovies() throws Exception {
-        List<Movie> actualResult = library.getAvailableMovies();
+    public void shouldRefreshAvailableMovies() throws Exception {
+        this.availableMovies.clear();
+        library.refreshAvailableMovies();
         List<AvailableMovie> availableMovies = new ArrayList<>();
         availableMovies.add(availableMovieOne);
         availableMovies.add(availableMovieTwo);
 
-        assertTrue(actualResult.containsAll(availableMovies));
+        assertTrue(this.availableMovies.containsAll(availableMovies));
     }
 
     @Test
-    public void shouldReturnCheckedOutMovies() throws Exception {
-        List<Movie> actualResult = library.getCheckedOutMovies();
+    public void shouldRefreshCheckedOutMovies() throws Exception {
+        this.checkedOutMovies.clear();
+        library.refreshCheckedOutMovies();
         List<CheckedOutMovie> checkedOutMovies = new ArrayList<>();
         checkedOutMovies.add(checkedOutOutMovieOne);
 
-        assertTrue(actualResult.equals(checkedOutMovies));
+        assertTrue(this.checkedOutMovies.equals(checkedOutMovies));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void shouldReturnUnmodifiableCollectionOfAvailableBooks() throws Exception {
-        List<Book> actualResult = library.getAvailableBooks();
-        actualResult.add(new AvailableBook("Title 4", "Author", 1000));
-    }
+//    @Test(expected = UnsupportedOperationException.class)
+//    public void shouldReturnUnmodifiableCollectionOfAvailableBooks() throws Exception {
+//        List<Book> actualResult = library.refreshAvailableBooks();
+//        actualResult.add(new AvailableBook("Title 4", "Author", 1000));
+//    }
 
     @Test
     public void shouldBeAbleToCheckoutBookWhenBookIsPassed() throws Exception {

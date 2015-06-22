@@ -6,7 +6,6 @@ import com.twu.user.AbstractUser;
 import com.twu.user.Customer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -38,36 +37,32 @@ public class Library {
         this.nullMovie = nullMovie;
     }
 
-    public List<Book> getAvailableBooks() {
+    public void refreshAvailableBooks() {
         availableBooks.clear();
         for (Book book : allBooks) {
             book.addToListIfAvailable(availableBooks);
         }
-        return Collections.unmodifiableList(availableBooks);
     }
 
-    public List<Movie> getAvailableMovies() {
+    public void refreshAvailableMovies() {
         availableMovies.clear();
         for (Movie movie : allMovies) {
             movie.addToListIfAvailable(availableMovies);
         }
-        return Collections.unmodifiableList(availableMovies);
     }
 
-    public List<Book> getCheckedOutBooks() {
+    public void refreshCheckedOutBooks() {
         checkedOutBooks.clear();
         for (Book book : allBooks) {
             book.addToListIfCheckedOut(checkedOutBooks);
         }
-        return Collections.unmodifiableList(checkedOutBooks);
     }
 
-    public List<Movie> getCheckedOutMovies() {
+    public void refreshCheckedOutMovies() {
         checkedOutMovies.clear();
         for (Movie movie : allMovies) {
             movie.addToListIfCheckedOut(checkedOutMovies);
         }
-        return Collections.unmodifiableList(checkedOutMovies);
     }
 
     public Book checkoutBook(Book toBeCheckedOut, Customer customer) {

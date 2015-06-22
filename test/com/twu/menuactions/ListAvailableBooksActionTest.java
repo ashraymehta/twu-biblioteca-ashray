@@ -32,6 +32,6 @@ public class ListAvailableBooksActionTest {
         ListAvailableBooksAction listAvailableBooksAction = new ListAvailableBooksAction(booksViewStub, library);
         listAvailableBooksAction.perform(abstractUser);
 
-        verify(library).getAvailableBooks();
+        verify(library).refreshAvailableBooks();
     }
 }

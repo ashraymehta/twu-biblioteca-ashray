@@ -17,7 +17,7 @@ public class ListAvailableMoviesAction implements MenuAction {
 
     @Override
     public MenuAction perform(AbstractUser user) {
-        library.getAvailableMovies();
+        library.refreshAvailableMovies();
         moviesView.printListOfMovies();
         return this;
     }
