@@ -5,6 +5,7 @@ import com.twu.movies.Movie;
 import com.twu.user.AbstractUser;
 import com.twu.views.CheckedOutMovieDetailsView;
 
+// Accepts a movie name from user and invokes search for a corresponding checked out movie
 public class CheckedOutMovieDetailsAction implements MenuAction {
     private CheckedOutMovieDetailsView checkedOutMovieDetailsView;
     private Library library;

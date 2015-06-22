@@ -130,12 +130,6 @@ public class LibraryTest {
         assertTrue(this.checkedOutMovies.equals(checkedOutMovies));
     }
 
-//    @Test(expected = UnsupportedOperationException.class)
-//    public void shouldReturnUnmodifiableCollectionOfAvailableBooks() throws Exception {
-//        List<Book> actualResult = library.refreshAvailableBooks();
-//        actualResult.add(new AvailableBook("Title 4", "Author", 1000));
-//    }
-
     @Test
     public void shouldBeAbleToCheckoutBookWhenBookIsPassed() throws Exception {
         availableBookOne = mock(AvailableBook.class);

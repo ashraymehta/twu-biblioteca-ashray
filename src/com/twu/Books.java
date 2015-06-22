@@ -5,7 +5,7 @@ import com.twu.books.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-// Holds a collection of books and a string representation for a collection of books
+// Holds a collection of books and provide a string representation for that collection
 public class Books {
     private List<Book> listOfBooks;
 

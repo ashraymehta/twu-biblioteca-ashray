@@ -5,6 +5,7 @@ import com.twu.books.Book;
 import com.twu.user.AbstractUser;
 import com.twu.views.CheckedOutBookDetailsView;
 
+// Accepts a book title from user and invokes search for a corresponding checked out book
 public class CheckedOutBookDetailsAction implements MenuAction {
 
     private CheckedOutBookDetailsView checkedOutBookDetailsView;

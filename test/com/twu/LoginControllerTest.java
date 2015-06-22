@@ -33,7 +33,7 @@ public class LoginControllerTest {
     @Before
     public void setUp() throws Exception {
         nullUser = new NullUser();
-        loginController = new LoginController(loginView, authenticator, nullUser);
+        loginController = new LoginController(loginView, authenticator);
         libraryNumber = "LibraryNumber";
         password = "Password";
         when(loginView.getUserInput())

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-// Holds the available and the checked out books; provides APIs to checkoutBook and return a books
+// Holds the available and the checked out library items; provides APIs to checkout, return and search withing those items
 public class Library {
     private final ArrayList<Book> allBooks;
     private final ArrayList<Book> availableBooks;

@@ -9,6 +9,7 @@ import com.twu.user.Librarian;
 
 import java.util.List;
 
+// Logs the user in and delegates job to appropriate controller based on the type of the user
 public class LoginAction implements MenuAction {
     private LoginController loginController;
     private LibrarianController librarianController;

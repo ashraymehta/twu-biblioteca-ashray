@@ -91,7 +91,7 @@ public class EntryPoint {
         LoginView loginView = new LoginView(printStream, scanner);
 
 
-        return new LoginController(loginView, authenticator, nullUser);
+        return new LoginController(loginView, authenticator);
     }
 
     private static void initializeLibrary() {

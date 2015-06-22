@@ -5,6 +5,7 @@ import com.twu.user.AbstractUser;
 
 import java.util.List;
 
+// Represents a null movie
 public class NullMovie extends Movie {
     public NullMovie() {
         super("", "", 0, 0);

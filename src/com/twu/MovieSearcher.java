@@ -5,6 +5,7 @@ import com.twu.movies.Movie;
 import java.util.ArrayList;
 import java.util.Set;
 
+// Searches a movie's name in a collection of movies
 public class MovieSearcher {
     private Movie nullMovie;
 

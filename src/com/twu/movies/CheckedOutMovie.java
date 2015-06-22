@@ -5,6 +5,7 @@ import com.twu.user.AbstractUser;
 
 import java.util.List;
 
+// Represents a checked out movie and provides APIs to return the movie
 public class CheckedOutMovie extends Movie {
     private AbstractUser checkedOutTo;
 

@@ -6,7 +6,7 @@ import com.twu.books.NullBook;
 import java.util.ArrayList;
 import java.util.List;
 
-// Searches a books title when a list of books is provided
+// Searches a book's title in a collection of books
 public class BookSearcher {
 
     private NullBook nullBook;

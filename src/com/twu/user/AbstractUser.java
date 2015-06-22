@@ -2,6 +2,7 @@ package com.twu.user;
 
 import java.util.List;
 
+// Represents an abstract class common to all types of users; provides apis to compare users
 public abstract class AbstractUser {
     protected String libraryNumber;
     protected String password;

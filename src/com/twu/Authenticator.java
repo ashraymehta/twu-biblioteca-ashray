@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+// Takes library number and password and checks searches for the matching user in the collection of all users
 public class Authenticator {
     private Set<AbstractUser> allUsers;
     private NullUser nullUser;

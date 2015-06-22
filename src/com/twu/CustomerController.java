@@ -5,6 +5,7 @@ import com.twu.menuactions.NullAction;
 import com.twu.user.AbstractUser;
 import com.twu.views.MenuView;
 
+// Takes over control from BibliotecaApp once the user has been determined to be a customer
 public class CustomerController {
     private MenuView customerMenuView;
     private MenuAction quitAction;

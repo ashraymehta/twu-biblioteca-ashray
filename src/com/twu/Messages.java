@@ -1,5 +1,6 @@
 package com.twu;
 
+// Holds string that are used across the application
 public abstract class Messages {
     public static final String WELCOME_MESSAGE = "Welcome";
     public static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for returning the books.";

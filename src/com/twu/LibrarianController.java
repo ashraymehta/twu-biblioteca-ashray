@@ -4,6 +4,7 @@ import com.twu.menuactions.MenuAction;
 import com.twu.user.AbstractUser;
 import com.twu.views.MenuView;
 
+// Takes over control from BibliotecaApp once the user has been determined to be a librarian
 public class LibrarianController {
     private MenuView librarianMenuView;
     private MenuAction quitAction;

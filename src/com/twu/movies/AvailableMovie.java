@@ -5,6 +5,7 @@ import com.twu.user.AbstractUser;
 
 import java.util.List;
 
+// Represents an available movie and provides APIs to checkout the movie
 public class AvailableMovie extends Movie {
     public AvailableMovie(String name, String director, int year, int movieRating) {
         super(name, director, year, movieRating);

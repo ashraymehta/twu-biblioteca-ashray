@@ -3,6 +3,7 @@ package com.twu.views;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+// Handles I/O on the login screen
 public class LoginView {
     private PrintStream out;
     private Scanner scanner;

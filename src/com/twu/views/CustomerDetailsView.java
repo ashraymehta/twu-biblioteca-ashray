@@ -4,6 +4,7 @@ import com.twu.user.Customer;
 
 import java.io.PrintStream;
 
+// Displays customer details
 public class CustomerDetailsView {
     private PrintStream printStream;
 

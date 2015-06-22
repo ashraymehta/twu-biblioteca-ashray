@@ -4,6 +4,7 @@ import com.twu.user.AbstractUser;
 import com.twu.user.Customer;
 import com.twu.views.CustomerDetailsView;
 
+// Invokes display of current user's account details
 public class CustomerDetailsAction implements MenuAction {
     private CustomerDetailsView customerDetailsView;
 

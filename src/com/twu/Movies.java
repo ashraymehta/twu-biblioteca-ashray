@@ -4,6 +4,7 @@ import com.twu.movies.Movie;
 
 import java.util.List;
 
+// Holds a collection of movies and provide a string representation for that collection
 public class Movies {
     private List<Movie> movieSet;
 

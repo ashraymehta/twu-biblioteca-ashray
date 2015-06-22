@@ -2,6 +2,7 @@ package com.twu.user;
 
 import com.twu.Messages;
 
+// Represents user of type customer; provides a string to represent this type of user
 public class Customer extends AbstractUser {
     private String name;
     private String email_address;
